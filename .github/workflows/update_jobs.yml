@@ -26,7 +26,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run scraper
-        run: python scrape_jobs.py
+        run: python butterfree_fly.py
 
       - name: Commit updated CSV
         run: |
