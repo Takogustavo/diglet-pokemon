@@ -158,22 +158,20 @@ def get_lever_jobs(company_slug):
         return []
 
 # =========================================================
-# STEP 5 — COMPANY LISTS
+# STEP 5 — COMPANY LISTS (EXPANDED BEYOND TECH & FINANCE)
 # =========================================================
 
 GREENHOUSE_COMPANIES = [
 
-    # Fintech
+    # =========================
+    # FINTECH / TECH (kept)
+    # =========================
     "monzo",
     "wise",
     "checkoutcom",
     "stripe",
-
-    # UK Tech
     "octopusenergy",
     "deliveroo",
-
-    # SaaS / Security
     "datadog",
     "mongodb",
     "snyk",
@@ -181,15 +179,85 @@ GREENHOUSE_COMPANIES = [
     "gitlab",
     "figma",
     "webflow",
+
+    # =========================
+    # HEALTH / BIOTECH / MEDICAL
+    # =========================
+    "healx",
+    "owkin",
+    "color",
+    "23andme",
+    "flatironhealth",
+    "tempus",
+    "roche",
+    "astrazeneca",
+    "gsk",
+
+    # =========================
+    # CONSTRUCTION / ENGINEERING / PROPTECH
+    # =========================
+    "procore",
+    "autodesk",
+    "planradar",
+    "bentley",
+    "katerra",
+    "buildots",
+
+    # =========================
+    # LOGISTICS / TRANSPORT
+    # =========================
+    "uber",
+    "bolt",
+    "getaround",
+    "cargoone",
+    "flexport",
+
+    # =========================
+    # EDUCATION / EDTECH
+    # =========================
+    "duolingo",
+    "udacity",
+    "coursera",
+    "masterclass",
 ]
 
 LEVER_COMPANIES = [
 
+    # =========================
+    # TECH (kept)
+    # =========================
     "netflix",
     "shopify",
     "asana",
     "robinhood",
     "coinbase",
+
+    # =========================
+    # HEALTH / BIOTECH
+    # =========================
+    "moderna",
+    "invitae",
+    "illuminabio",
+    "grail",
+
+    # =========================
+    # CONSTRUCTION / INDUSTRIAL
+    # =========================
+    "autodesk",
+    "procore",
+    "caterpillar",
+
+    # =========================
+    # RETAIL / CONSUMER
+    # =========================
+    "nike",
+    "adidas",
+    "zappos",
+
+    # =========================
+    # FINANCE (optional keep)
+    # =========================
+    "plaid",
 ]
 
 # Display names
