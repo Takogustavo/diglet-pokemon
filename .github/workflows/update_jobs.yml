@@ -3,8 +3,11 @@ name: Update Jobs CSV
 on:
   schedule:
     - cron: '0 8 * * *'
-
   workflow_dispatch:
+
+# FIX: opt into Node 24 now
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
