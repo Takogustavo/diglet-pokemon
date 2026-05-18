@@ -378,18 +378,8 @@ jobs_df.to_csv("jobs.csv", index=False)
 
 print("\nSaved jobs.csv")
 
-# =========================================================
-# STEP 14 — PREVIEW RESULTS
-# =========================================================
-
-print("\nPreview:")
-
-display(jobs_df.head(20))
-
 print(f"\nFinal total sponsored UK jobs: {len(jobs_df)}")
 
-
-# In[ ]:
 
 
 
