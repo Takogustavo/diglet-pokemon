@@ -19,12 +19,9 @@ GOV_PAGE = "https://www.gov.uk/government/publications/register-of-licensed-spon
 
 print("Finding latest sponsor list...")
 
-# Load GOV page
 response = requests.get(GOV_PAGE)
-
 soup = BeautifulSoup(response.text, "html.parser")
 
-# Find latest CSV URL
 csv_url = None
 
 for link in soup.find_all("a", href=True):
@@ -55,12 +52,10 @@ print(f"\nTotal sponsors: {len(sponsors)}")
 # STEP 2 — CLEAN SPONSOR DATA
 # =========================================================
 
-# Rename company column
 sponsors = sponsors.rename(columns={
     "Organisation Name": "company"
 })
 
-# Normalize company names
 def normalize_company(name):
 
     return (
@@ -69,16 +64,23 @@ def normalize_company(name):
         .replace("limited", "")
         .replace("ltd", "")
         .replace("llp", "")
+        .replace("inc", "")
+        .replace("corp", "")
+        .replace("corporation", "")
+        .replace("holdings", "")
+        .replace("group", "")
         .replace("&", "and")
         .replace(",", "")
         .replace(".", "")
         .replace("-", "")
+        .replace("(", "")
+        .replace(")", "")
         .strip()
     )
 
-# Create clean sponsor names
 sponsors["company_clean"] = (
     sponsors["company"]
+    .astype(str)
     .apply(normalize_company)
 )
 
@@ -95,7 +97,7 @@ def get_greenhouse_jobs(company_slug):
 
     try:
 
-        r = requests.get(url, timeout=10)
+        r = requests.get(url, timeout=15)
 
         if r.status_code != 200:
             print(f"Greenhouse failed: {company_slug}")
@@ -131,7 +133,7 @@ def get_lever_jobs(company_slug):
 
     try:
 
-        r = requests.get(url, timeout=10)
+        r = requests.get(url, timeout=15)
 
         if r.status_code != 200:
             print(f"Lever failed: {company_slug}")
@@ -158,20 +160,34 @@ def get_lever_jobs(company_slug):
         return []
 
 # =========================================================
-# STEP 5 — COMPANY LISTS (EXPANDED BEYOND TECH & FINANCE)
+# STEP 5 — MASSIVELY EXPANDED COMPANY LISTS
 # =========================================================
 
 GREENHOUSE_COMPANIES = [
 
-    # =========================
-    # FINTECH / TECH (kept)
-    # =========================
+    # =====================================================
+    # FINTECH / PAYMENTS / BANKING
+    # =====================================================
+
     "monzo",
     "wise",
     "checkoutcom",
     "stripe",
-    "octopusenergy",
-    "deliveroo",
+    "revolut",
+    "klarna",
+    "plaid",
+    "affirm",
+    "brex",
+    "ramp",
+    "airwallex",
+    "sumup",
+    "zopa",
+    "starlingbank",
+
+    # =====================================================
+    # BIG TECH
+    # =====================================================
+
     "datadog",
     "mongodb",
     "snyk",
@@ -179,10 +195,52 @@ GREENHOUSE_COMPANIES = [
     "gitlab",
     "figma",
     "webflow",
+    "elastic",
+    "hashicorp",
+    "snowflake",
+    "openai",
+    "notion",
+    "miro",
+    "canva",
+    "dropbox",
+    "discord",
+    "reddit",
+    "spotify",
+    "palantir",
+    "criteo",
+    "contentful",
 
-    # =========================
-    # HEALTH / BIOTECH / MEDICAL
-    # =========================
+    # =====================================================
+    # ENTERPRISE SOFTWARE / AI
+    # =====================================================
+
+    "salesforce",
+    "hubspot",
+    "servicenow",
+    "databricks",
+    "confluent",
+    "nvidia",
+    "deepmind",
+    "anthropic",
+
+    # =====================================================
+    # CONSULTING / PROFESSIONAL SERVICES
+    # =====================================================
+
+    "mckinsey",
+    "bcg",
+    "bain",
+    "pwc",
+    "deloitte",
+    "ey",
+    "kpmg",
+    "accenture",
+    "capgemini",
+
+    # =====================================================
+    # HEALTH / BIOTECH / PHARMA
+    # =====================================================
+
     "healx",
     "owkin",
     "color",
@@ -192,29 +250,82 @@ GREENHOUSE_COMPANIES = [
     "roche",
     "astrazeneca",
     "gsk",
+    "pfizer",
+    "novartis",
+    "sanofi",
 
-    # =========================
-    # CONSTRUCTION / ENGINEERING / PROPTECH
-    # =========================
+    # =====================================================
+    # ENERGY / UTILITIES
+    # =====================================================
+
+    "octopusenergy",
+    "shell",
+    "bp",
+    "nationalgrid",
+    "siemensenergy",
+
+    # =====================================================
+    # CONSTRUCTION / ENGINEERING
+    # =====================================================
+
     "procore",
     "autodesk",
     "planradar",
     "bentley",
-    "katerra",
     "buildots",
+    "siemens",
+    "jacobs",
+    "aecom",
 
-    # =========================
+    # =====================================================
+    # DEFENSE / AEROSPACE
+    # =====================================================
+
+    "bae",
+    "boeing",
+    "airbus",
+    "northropgrumman",
+
+    # =====================================================
     # LOGISTICS / TRANSPORT
-    # =========================
+    # =====================================================
+
     "uber",
     "bolt",
-    "getaround",
     "cargoone",
     "flexport",
+    "deliveroo",
 
-    # =========================
-    # EDUCATION / EDTECH
-    # =========================
+    # =====================================================
+    # RETAIL / ECOMMERCE
+    # =====================================================
+
+    "amazon",
+    "zalando",
+    "wayfair",
+    "etsy",
+
+    # =====================================================
+    # MEDIA / ENTERTAINMENT
+    # =====================================================
+
+    "netflix",
+    "spotify",
+    "bbc",
+    "sky",
+
+    # =====================================================
+    # TELECOMS
+    # =====================================================
+
+    "vodafone",
+    "bt",
+    "verizon",
+
+    # =====================================================
+    # EDUCATION
+    # =====================================================
+
     "duolingo",
     "udacity",
     "coursera",
@@ -223,46 +334,79 @@ GREENHOUSE_COMPANIES = [
 
 LEVER_COMPANIES = [
 
-    # =========================
-    # TECH (kept)
-    # =========================
+    # =====================================================
+    # TECH
+    # =====================================================
+
     "netflix",
     "shopify",
     "asana",
     "robinhood",
     "coinbase",
+    "atlassian",
+    "digitalocean",
+    "slack",
+    "segment",
+    "intercom",
+    "zapier",
 
-    # =========================
-    # HEALTH / BIOTECH
-    # =========================
+    # =====================================================
+    # FINANCE
+    # =====================================================
+
+    "plaid",
+    "brex",
+    "ramp",
+    "affirm",
+
+    # =====================================================
+    # BIOTECH
+    # =====================================================
+
     "moderna",
     "invitae",
-    "illuminabio",
     "grail",
 
-    # =========================
-    # CONSTRUCTION / INDUSTRIAL
-    # =========================
+    # =====================================================
+    # INDUSTRIAL / ENGINEERING
+    # =====================================================
+
     "autodesk",
     "procore",
     "caterpillar",
+    "siemens",
 
-    # =========================
+    # =====================================================
     # RETAIL / CONSUMER
-    # =========================
+    # =====================================================
+
     "nike",
     "adidas",
     "zappos",
 
-    # =========================
-    # FINANCE (optional keep)
-    # =========================
-    "plaid",
+    # =====================================================
+    # AI / DATA
+    # =====================================================
+
+    "scaleai",
+    "huggingface",
+    "weightsandbiases",
+
+    # =====================================================
+    # WEB3
+    # =====================================================
+
+    "chainalysis",
+    "consensys",
 ]
 
-# Display names
+# =========================================================
+# STEP 6 — DISPLAY NAMES
+# =========================================================
+
 COMPANY_DISPLAY_NAMES = {
 
+    # EXISTING
     "monzo": "Monzo",
     "wise": "Wise",
     "checkoutcom": "Checkout.com",
@@ -276,15 +420,83 @@ COMPANY_DISPLAY_NAMES = {
     "gitlab": "GitLab",
     "figma": "Figma",
     "webflow": "Webflow",
-    "netflix": "Netflix",
-    "shopify": "Shopify",
-    "asana": "Asana",
-    "robinhood": "Robinhood",
-    "coinbase": "Coinbase",
+
+    # FINTECH
+    "revolut": "Revolut",
+    "klarna": "Klarna",
+    "plaid": "Plaid",
+    "affirm": "Affirm",
+    "brex": "Brex",
+    "ramp": "Ramp",
+    "airwallex": "Airwallex",
+    "sumup": "SumUp",
+    "zopa": "Zopa",
+    "starlingbank": "Starling Bank",
+
+    # BIG TECH
+    "elastic": "Elastic",
+    "hashicorp": "HashiCorp",
+    "snowflake": "Snowflake",
+    "openai": "OpenAI",
+    "notion": "Notion",
+    "miro": "Miro",
+    "canva": "Canva",
+    "dropbox": "Dropbox",
+    "discord": "Discord",
+    "reddit": "Reddit",
+    "spotify": "Spotify",
+    "palantir": "Palantir",
+    "contentful": "Contentful",
+
+    # CONSULTING
+    "mckinsey": "McKinsey",
+    "bcg": "BCG",
+    "bain": "Bain",
+    "pwc": "PwC",
+    "deloitte": "Deloitte",
+    "ey": "EY",
+    "kpmg": "KPMG",
+    "accenture": "Accenture",
+    "capgemini": "Capgemini",
+
+    # PHARMA
+    "pfizer": "Pfizer",
+    "novartis": "Novartis",
+    "sanofi": "Sanofi",
+
+    # ENERGY
+    "shell": "Shell",
+    "bp": "BP",
+    "nationalgrid": "National Grid",
+    "siemensenergy": "Siemens Energy",
+
+    # ENGINEERING
+    "jacobs": "Jacobs",
+    "aecom": "AECOM",
+
+    # AEROSPACE
+    "bae": "BAE Systems",
+    "boeing": "Boeing",
+    "airbus": "Airbus",
+    "northropgrumman": "Northrop Grumman",
+
+    # TELECOM
+    "vodafone": "Vodafone",
+    "bt": "BT",
+    "verizon": "Verizon",
+
+    # AI
+    "scaleai": "Scale AI",
+    "huggingface": "Hugging Face",
+    "weightsandbiases": "Weights & Biases",
+
+    # WEB3
+    "chainalysis": "Chainalysis",
+    "consensys": "Consensys",
 }
 
 # =========================================================
-# STEP 6 — UK LOCATION FILTER
+# STEP 7 — UK LOCATION FILTER
 # =========================================================
 
 UK_PATTERNS = [
@@ -304,9 +516,20 @@ UK_PATTERNS = [
     "cambridge",
     "oxford",
     "leeds",
+    "newcastle",
+    "sheffield",
+    "liverpool",
+    "nottingham",
+    "reading",
+    "milton keynes",
+    "southampton",
+    "belfast",
 
     "remote uk",
     "hybrid uk",
+    "remote - united kingdom",
+    "united kingdom remote",
+    "uk remote",
 ]
 
 def is_uk_location(location):
@@ -319,12 +542,13 @@ def is_uk_location(location):
     return any(pattern in location for pattern in UK_PATTERNS)
 
 # =========================================================
-# STEP 7 — SCRAPE JOBS
+# STEP 8 — SCRAPE JOBS
 # =========================================================
 
 all_jobs = []
 
-# GREENHOUSE JOBS
+# ---------------- GREENHOUSE ----------------
+
 for slug in GREENHOUSE_COMPANIES:
 
     jobs = get_greenhouse_jobs(slug)
@@ -341,7 +565,8 @@ for slug in GREENHOUSE_COMPANIES:
 
     all_jobs.extend(uk_jobs)
 
-# LEVER JOBS
+# ---------------- LEVER ----------------
+
 for slug in LEVER_COMPANIES:
 
     jobs = get_lever_jobs(slug)
@@ -361,7 +586,7 @@ for slug in LEVER_COMPANIES:
 print(f"\nTotal UK jobs found: {len(all_jobs)}")
 
 # =========================================================
-# STEP 8 — CREATE DATAFRAME
+# STEP 9 — CREATE DATAFRAME
 # =========================================================
 
 jobs_df = pd.DataFrame(all_jobs)
@@ -370,16 +595,17 @@ if len(jobs_df) == 0:
     raise Exception("No jobs found.")
 
 # =========================================================
-# STEP 9 — NORMALIZE JOB COMPANY NAMES
+# STEP 10 — NORMALIZE JOB COMPANY NAMES
 # =========================================================
 
 jobs_df["company_clean"] = (
     jobs_df["company"]
+    .astype(str)
     .apply(normalize_company)
 )
 
 # =========================================================
-# STEP 10 — MATCH AGAINST SPONSOR LIST
+# STEP 11 — MATCH AGAINST SPONSOR LIST
 # =========================================================
 
 sponsor_names = (
@@ -394,7 +620,7 @@ def is_sponsor(company_name, sponsor_list, threshold=80):
 
     for sponsor in sponsor_list:
 
-        score = fuzz.ratio(company_name, sponsor)
+        score = fuzz.token_set_ratio(company_name, sponsor)
 
         if score >= threshold:
             return True
@@ -413,7 +639,7 @@ jobs_df = jobs_df[
 print(f"\nLicensed sponsor jobs: {len(jobs_df)}")
 
 # =========================================================
-# STEP 11 — ADD METADATA
+# STEP 12 — ADD METADATA
 # =========================================================
 
 today = datetime.today().strftime("%Y-%m-%d")
@@ -422,10 +648,11 @@ jobs_df["visa_sponsorship_possible"] = True
 jobs_df["scraped_date"] = today
 
 # =========================================================
-# STEP 12 — FINAL COLUMNS
+# STEP 13 — FINAL CLEANUP
 # =========================================================
 
 jobs_df = jobs_df[[
+
     "company",
     "job_title",
     "location",
@@ -438,8 +665,13 @@ jobs_df = jobs_df[[
 # Remove duplicates
 jobs_df = jobs_df.drop_duplicates()
 
+# Sort nicely
+jobs_df = jobs_df.sort_values(
+    by=["company", "job_title"]
+)
+
 # =========================================================
-# STEP 13 — EXPORT CSV
+# STEP 14 — EXPORT CSV
 # =========================================================
 
 jobs_df.to_csv("jobs.csv", index=False)
@@ -448,7 +680,4 @@ print("\nSaved jobs.csv")
 
 print(f"\nFinal total sponsored UK jobs: {len(jobs_df)}")
 
-
-
-
-
+print("\nDone.")
