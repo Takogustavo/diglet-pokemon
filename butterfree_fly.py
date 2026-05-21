@@ -30,7 +30,10 @@ HEADERS = {
 # STEP 1 — DOWNLOAD LATEST UK SPONSOR LIST
 # =========================================================
 
-GOV_PAGE = "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers"
+GOV_PAGE = (
+    "https://www.gov.uk/government/publications/"
+    "register-of-licensed-sponsors-workers"
+)
 
 print("Finding latest sponsor list...")
 
@@ -112,19 +115,6 @@ sponsor_set = set(
 # STEP 3 — UK LOCATION FILTER
 # =========================================================
 
-# IMPORTANT:
-# This now EXPLICITLY blocks:
-# - New South Wales
-# - South Wales (Australia)
-# - Sydney etc.
-#
-# while still allowing:
-# - Wales (UK)
-# - Cardiff
-# - Swansea
-#
-# This fixes the Australia false positives.
-
 UK_PATTERNS = [
 
     # Countries
@@ -165,7 +155,6 @@ UK_PATTERNS = [
     "hybrid uk",
 ]
 
-# Explicit Australia exclusion
 AUSTRALIA_BLOCKLIST = [
 
     "australia",
@@ -188,18 +177,14 @@ def is_uk_location(location):
 
     location = str(location).lower().strip()
 
-    # FIRST:
-    # block Australia
-
+    # Block Australia first
     if any(
         blocked in location
         for blocked in AUSTRALIA_BLOCKLIST
     ):
         return False
 
-    # THEN:
-    # allow UK patterns
-
+    # Then allow UK patterns
     return any(
         pattern in location
         for pattern in UK_PATTERNS
@@ -211,7 +196,10 @@ def is_uk_location(location):
 
 def get_greenhouse_jobs(company_slug):
 
-    url = f"https://boards-api.greenhouse.io/v1/boards/{company_slug}/jobs"
+    url = (
+        f"https://boards-api.greenhouse.io/v1/"
+        f"boards/{company_slug}/jobs"
+    )
 
     try:
 
@@ -233,7 +221,10 @@ def get_greenhouse_jobs(company_slug):
             jobs.append({
                 "company_slug": company_slug,
                 "job_title": job.get("title"),
-                "location": job.get("location", {}).get("name"),
+                "location": (
+                    job.get("location", {})
+                    .get("name")
+                ),
                 "job_url": job.get("absolute_url"),
                 "source": "Greenhouse"
             })
@@ -251,7 +242,10 @@ def get_greenhouse_jobs(company_slug):
 
 def get_lever_jobs(company_slug):
 
-    url = f"https://api.lever.co/v0/postings/{company_slug}?mode=json"
+    url = (
+        f"https://api.lever.co/v0/postings/"
+        f"{company_slug}?mode=json"
+    )
 
     try:
 
@@ -471,7 +465,10 @@ def get_ashby_jobs(company_slug):
 
 GREENHOUSE_COMPANIES = [
 
-    # Fintech
+    # =====================================================
+    # FINTECH
+    # =====================================================
+
     "monzo",
     "wise",
     "checkoutcom",
@@ -487,7 +484,10 @@ GREENHOUSE_COMPANIES = [
     "zopa",
     "starlingbank",
 
-    # Tech
+    # =====================================================
+    # TECH
+    # =====================================================
+
     "datadog",
     "mongodb",
     "snyk",
@@ -509,17 +509,46 @@ GREENHOUSE_COMPANIES = [
     "palantir",
     "contentful",
 
-    # Consulting
+    # =====================================================
+    # CONSULTING
+    # =====================================================
+
     "mckinsey",
     "bcg",
     "bain",
 
-    # Energy
+    # =====================================================
+    # ENERGY
+    # =====================================================
+
     "octopusenergy",
 
-    # Logistics
+    # =====================================================
+    # LOGISTICS
+    # =====================================================
+
     "deliveroo",
     "uber",
+
+    # =====================================================
+    # JOURNALISM / RESEARCH / MEDIA
+    # =====================================================
+
+    "economist",
+    "thomsonreuters",
+    "bellingcat",
+    "restofworld",
+    "semafor",
+    "theathletic",
+    "voxmedia",
+    "buzzfeed",
+    "businessinsider",
+    "washingtonpost",
+    "forbes",
+    "giphy",
+    "axios",
+    "morningbrew",
+    "newscientist",
 ]
 
 LEVER_COMPANIES = [
@@ -537,6 +566,14 @@ LEVER_COMPANIES = [
     "zapier",
     "scaleai",
     "huggingface",
+
+    # Journalism / Research
+    "substack",
+    "quora",
+    "medium",
+    "protocol",
+    "theinformation",
+    "deepl",
 ]
 
 WORKDAY_COMPANIES = [
@@ -548,6 +585,10 @@ WORKDAY_COMPANIES = [
     ("morganstanley", "MorganStanleyCareers"),
     ("blackrock", "BlackRockCareers"),
     ("natwestgroup", "NatWest_Group_Careers"),
+
+    # Research / Financial Data
+    ("bloomberg", "careers"),
+    ("factset", "FactSetCareers"),
 ]
 
 SMARTRECRUITERS_COMPANIES = [
@@ -556,6 +597,11 @@ SMARTRECRUITERS_COMPANIES = [
     "spotify",
     "klarna",
     "wolt",
+
+    # Media / Journalism
+    "bbc",
+    "dw",
+    "euronews",
 ]
 
 ASHBY_COMPANIES = [
@@ -565,6 +611,13 @@ ASHBY_COMPANIES = [
     "notion",
     "cursor",
     "scaleai",
+
+    # AI / Research
+    "perplexity",
+    "character",
+    "huggingface",
+    "runway",
+    "deepmind",
 ]
 
 # =========================================================
@@ -573,6 +626,7 @@ ASHBY_COMPANIES = [
 
 COMPANY_DISPLAY_NAMES = {
 
+    # Fintech
     "monzo": "Monzo",
     "wise": "Wise",
     "checkoutcom": "Checkout.com",
@@ -588,6 +642,7 @@ COMPANY_DISPLAY_NAMES = {
     "zopa": "Zopa",
     "starlingbank": "Starling Bank",
 
+    # Banks
     "barclays": "Barclays",
     "hsbc": "HSBC",
     "jpmorgan": "JPMorgan Chase",
@@ -596,10 +651,22 @@ COMPANY_DISPLAY_NAMES = {
     "blackrock": "BlackRock",
     "natwestgroup": "NatWest Group",
 
+    # AI / Tech
     "openai": "OpenAI",
     "anthropic": "Anthropic",
     "scaleai": "Scale AI",
     "huggingface": "Hugging Face",
+    "deepmind": "Google DeepMind",
+
+    # Media / Research
+    "thomsonreuters": "Thomson Reuters",
+    "voxmedia": "Vox Media",
+    "businessinsider": "Business Insider",
+    "washingtonpost": "The Washington Post",
+    "newscientist": "New Scientist",
+    "theinformation": "The Information",
+    "deepl": "DeepL",
+    "dw": "Deutsche Welle",
 }
 
 # =========================================================
@@ -730,8 +797,6 @@ jobs_df["is_licensed_sponsor"] = (
     jobs_df["company_clean"]
     .isin(sponsor_set)
 )
-
-# Fuzzy fallback
 
 def fuzzy_sponsor_match(company_name, threshold=90):
 
