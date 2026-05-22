@@ -5,18 +5,30 @@
 # IMPORTS
 # =========================================================
 
+import time
+import random
 import pandas as pd
 import requests
+
 from bs4 import BeautifulSoup
 from datetime import datetime
+
 from rapidfuzz import fuzz
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from rapidfuzz.process import extractOne
+
+from concurrent.futures import (
+    ThreadPoolExecutor,
+    as_completed
+)
 
 # =========================================================
 # CONFIG
 # =========================================================
 
 MAX_WORKERS = 20
+
+REQUEST_DELAY_MIN = 0.3
+REQUEST_DELAY_MAX = 1.2
 
 HEADERS = {
     "User-Agent": (
@@ -25,6 +37,39 @@ HEADERS = {
         "Chrome/124.0 Safari/537.36"
     )
 }
+
+# =========================================================
+# UTILITIES
+# =========================================================
+
+def safe_request_delay():
+    time.sleep(
+        random.uniform(
+            REQUEST_DELAY_MIN,
+            REQUEST_DELAY_MAX
+        )
+    )
+
+def safe_get(url, timeout=20):
+
+    safe_request_delay()
+
+    return requests.get(
+        url,
+        headers=HEADERS,
+        timeout=timeout
+    )
+
+def safe_post(url, payload, timeout=30):
+
+    safe_request_delay()
+
+    return requests.post(
+        url,
+        headers=HEADERS,
+        json=payload,
+        timeout=timeout
+    )
 
 # =========================================================
 # STEP 1 — DOWNLOAD LATEST UK SPONSOR LIST
@@ -37,13 +82,12 @@ GOV_PAGE = (
 
 print("Finding latest sponsor list...")
 
-response = requests.get(
-    GOV_PAGE,
-    headers=HEADERS,
-    timeout=30
-)
+response = safe_get(GOV_PAGE, timeout=30)
 
-soup = BeautifulSoup(response.text, "html.parser")
+soup = BeautifulSoup(
+    response.text,
+    "html.parser"
+)
 
 csv_url = None
 
@@ -61,7 +105,9 @@ for link in soup.find_all("a", href=True):
         break
 
 if not csv_url:
-    raise Exception("Could not find sponsor CSV URL")
+    raise Exception(
+        "Could not find sponsor CSV URL"
+    )
 
 print("\nLatest sponsor CSV:")
 print(csv_url)
@@ -153,6 +199,11 @@ UK_PATTERNS = [
     "uk remote",
     "remote - united kingdom",
     "hybrid uk",
+
+    # Europe / EMEA
+    "emea",
+    "europe",
+    "remote",
 ]
 
 AUSTRALIA_BLOCKLIST = [
@@ -167,7 +218,6 @@ AUSTRALIA_BLOCKLIST = [
     "perth",
     "adelaide",
     "canberra",
-    "south wales australia",
 ]
 
 def is_uk_location(location):
@@ -177,21 +227,21 @@ def is_uk_location(location):
 
     location = str(location).lower().strip()
 
-    # Block Australia first
+    # Block Australia
     if any(
         blocked in location
         for blocked in AUSTRALIA_BLOCKLIST
     ):
         return False
 
-    # Then allow UK patterns
+    # Allow UK patterns
     return any(
         pattern in location
         for pattern in UK_PATTERNS
     )
 
 # =========================================================
-# STEP 4 — GREENHOUSE SCRAPER
+# GREENHOUSE
 # =========================================================
 
 def get_greenhouse_jobs(company_slug):
@@ -203,11 +253,7 @@ def get_greenhouse_jobs(company_slug):
 
     try:
 
-        r = requests.get(
-            url,
-            headers=HEADERS,
-            timeout=20
-        )
+        r = safe_get(url)
 
         if r.status_code != 200:
             return []
@@ -226,18 +272,23 @@ def get_greenhouse_jobs(company_slug):
                     .get("name")
                 ),
                 "job_url": job.get("absolute_url"),
-                "source": "Greenhouse"
+                "source": "Greenhouse",
+                "ats": "Greenhouse"
             })
 
         return jobs
 
     except Exception as e:
 
-        print(f"Greenhouse error with {company_slug}: {e}")
+        print(
+            f"Greenhouse error "
+            f"with {company_slug}: {e}"
+        )
+
         return []
 
 # =========================================================
-# STEP 5 — LEVER SCRAPER
+# LEVER
 # =========================================================
 
 def get_lever_jobs(company_slug):
@@ -249,11 +300,7 @@ def get_lever_jobs(company_slug):
 
     try:
 
-        r = requests.get(
-            url,
-            headers=HEADERS,
-            timeout=20
-        )
+        r = safe_get(url)
 
         if r.status_code != 200:
             return []
@@ -272,18 +319,23 @@ def get_lever_jobs(company_slug):
                     .get("location")
                 ),
                 "job_url": job.get("hostedUrl"),
-                "source": "Lever"
+                "source": "Lever",
+                "ats": "Lever"
             })
 
         return jobs
 
     except Exception as e:
 
-        print(f"Lever error with {company_slug}: {e}")
+        print(
+            f"Lever error "
+            f"with {company_slug}: {e}"
+        )
+
         return []
 
 # =========================================================
-# STEP 6 — WORKDAY SCRAPER
+# WORKDAY
 # =========================================================
 
 def get_workday_jobs(company, tenant):
@@ -305,19 +357,17 @@ def get_workday_jobs(company, tenant):
 
         while True:
 
-            r = requests.post(
-                url,
-                headers=HEADERS,
-                json=payload,
-                timeout=30
-            )
+            r = safe_post(url, payload)
 
             if r.status_code != 200:
                 return jobs
 
             data = r.json()
 
-            postings = data.get("jobPostings", [])
+            postings = data.get(
+                "jobPostings",
+                []
+            )
 
             if not postings:
                 break
@@ -327,13 +377,17 @@ def get_workday_jobs(company, tenant):
                 jobs.append({
                     "company_slug": company,
                     "job_title": job.get("title"),
-                    "location": job.get("locationsText"),
+                    "location": (
+                        job.get("locationsText")
+                    ),
                     "job_url": (
-                        f"https://{company}.wd1.myworkdayjobs.com"
+                        f"https://{company}"
+                        f".wd1.myworkdayjobs.com"
                         f"/en-US/{tenant}"
                         f"{job.get('externalPath')}"
                     ),
-                    "source": "Workday"
+                    "source": "Workday",
+                    "ats": "Workday"
                 })
 
             payload["offset"] += payload["limit"]
@@ -342,11 +396,15 @@ def get_workday_jobs(company, tenant):
 
     except Exception as e:
 
-        print(f"Workday error with {company}: {e}")
+        print(
+            f"Workday error "
+            f"with {company}: {e}"
+        )
+
         return []
 
 # =========================================================
-# STEP 7 — SMARTRECRUITERS SCRAPER
+# SMARTRECRUITERS
 # =========================================================
 
 def get_smartrecruiters_jobs(company_slug):
@@ -358,11 +416,7 @@ def get_smartrecruiters_jobs(company_slug):
 
     try:
 
-        r = requests.get(
-            url,
-            headers=HEADERS,
-            timeout=20
-        )
+        r = safe_get(url)
 
         if r.status_code != 200:
             return []
@@ -373,11 +427,24 @@ def get_smartrecruiters_jobs(company_slug):
 
         for job in data.get("content", []):
 
-            location_data = job.get("location", {})
+            location_data = job.get(
+                "location",
+                {}
+            )
 
             location = " ".join([
-                str(location_data.get("city", "")),
-                str(location_data.get("country", "")),
+                str(
+                    location_data.get(
+                        "city",
+                        ""
+                    )
+                ),
+                str(
+                    location_data.get(
+                        "country",
+                        ""
+                    )
+                ),
             ])
 
             jobs.append({
@@ -385,36 +452,49 @@ def get_smartrecruiters_jobs(company_slug):
                 "job_title": job.get("name"),
                 "location": location,
                 "job_url": job.get("ref"),
-                "source": "SmartRecruiters"
+                "source": "SmartRecruiters",
+                "ats": "SmartRecruiters"
             })
 
         return jobs
 
     except Exception as e:
 
-        print(f"SmartRecruiters error: {e}")
+        print(
+            f"SmartRecruiters error "
+            f"with {company_slug}: {e}"
+        )
+
         return []
 
 # =========================================================
-# STEP 8 — ASHBY SCRAPER
+# ASHBY
 # =========================================================
 
 def get_ashby_jobs(company_slug):
 
     url = (
         "https://jobs.ashbyhq.com/api/"
-        "non-user-graphql?op=ApiJobBoardWithTeams"
+        "non-user-graphql"
+        "?op=ApiJobBoardWithTeams"
     )
 
     payload = {
-        "operationName": "ApiJobBoardWithTeams",
+        "operationName":
+        "ApiJobBoardWithTeams",
+
         "variables": {
-            "organizationHostedJobsPageName": company_slug
+            "organizationHostedJobsPageName":
+            company_slug
         },
+
         "query": """
-        query ApiJobBoardWithTeams($organizationHostedJobsPageName: String!) {
+        query ApiJobBoardWithTeams(
+          $organizationHostedJobsPageName: String!
+        ) {
           jobBoard: jobBoardWithTeams(
-            organizationHostedJobsPageName: $organizationHostedJobsPageName
+            organizationHostedJobsPageName:
+            $organizationHostedJobsPageName
           ) {
             jobs {
               title
@@ -428,12 +508,7 @@ def get_ashby_jobs(company_slug):
 
     try:
 
-        r = requests.post(
-            url,
-            headers=HEADERS,
-            json=payload,
-            timeout=20
-        )
+        r = safe_post(url, payload)
 
         if r.status_code != 200:
             return []
@@ -442,113 +517,199 @@ def get_ashby_jobs(company_slug):
 
         jobs = []
 
-        for job in data["data"]["jobBoard"]["jobs"]:
+        for job in (
+            data["data"]
+            ["jobBoard"]
+            ["jobs"]
+        ):
 
             jobs.append({
                 "company_slug": company_slug,
                 "job_title": job.get("title"),
-                "location": job.get("locationName"),
-                "job_url": job.get("absoluteUrl"),
-                "source": "Ashby"
+                "location": (
+                    job.get("locationName")
+                ),
+                "job_url": (
+                    job.get("absoluteUrl")
+                ),
+                "source": "Ashby",
+                "ats": "Ashby"
             })
 
         return jobs
 
     except Exception as e:
 
-        print(f"Ashby error with {company_slug}: {e}")
+        print(
+            f"Ashby error "
+            f"with {company_slug}: {e}"
+        )
+
         return []
 
 # =========================================================
-# STEP 9 — COMPANY LISTS
+# TEAMTAILOR
+# =========================================================
+
+def get_teamtailor_jobs(company_slug):
+
+    url = (
+        f"https://{company_slug}"
+        f".teamtailor.com/api/jobs"
+    )
+
+    try:
+
+        r = safe_get(url)
+
+        if r.status_code != 200:
+            return []
+
+        data = r.json()
+
+        jobs = []
+
+        for job in data.get("data", []):
+
+            attrs = job.get(
+                "attributes",
+                {}
+            )
+
+            jobs.append({
+                "company_slug": company_slug,
+                "job_title": (
+                    attrs.get("title")
+                ),
+                "location": (
+                    attrs.get("locations")
+                ),
+                "job_url": (
+                    attrs.get("url")
+                ),
+                "source": "Teamtailor",
+                "ats": "Teamtailor"
+            })
+
+        return jobs
+
+    except Exception as e:
+
+        print(
+            f"Teamtailor error "
+            f"with {company_slug}: {e}"
+        )
+
+        return []
+
+# =========================================================
+# ICIMS
+# =========================================================
+
+def get_icims_jobs(company_slug):
+
+    url = (
+        "https://jobs.icims.com/jobs/search"
+        f"?ss=1&searchCompany={company_slug}"
+    )
+
+    try:
+
+        r = safe_get(url)
+
+        if r.status_code != 200:
+            return []
+
+        soup = BeautifulSoup(
+            r.text,
+            "html.parser"
+        )
+
+        jobs = []
+
+        cards = soup.select(
+            ".iCIMS_JobsTable .row"
+        )
+
+        for card in cards:
+
+            title_el = card.select_one(
+                ".title a"
+            )
+
+            loc_el = card.select_one(
+                ".location"
+            )
+
+            if not title_el:
+                continue
+
+            jobs.append({
+                "company_slug": company_slug,
+                "job_title": (
+                    title_el.text.strip()
+                ),
+                "location": (
+                    loc_el.text.strip()
+                    if loc_el else None
+                ),
+                "job_url": (
+                    title_el["href"]
+                ),
+                "source": "iCIMS",
+                "ats": "iCIMS"
+            })
+
+        return jobs
+
+    except Exception as e:
+
+        print(
+            f"iCIMS error "
+            f"with {company_slug}: {e}"
+        )
+
+        return []
+
+# =========================================================
+# COMPANY LISTS
 # =========================================================
 
 GREENHOUSE_COMPANIES = [
 
-    # =====================================================
-    # FINTECH
-    # =====================================================
-
+    # Fintech
     "monzo",
     "wise",
-    "checkoutcom",
     "stripe",
+    "checkoutcom",
     "revolut",
     "klarna",
     "plaid",
     "affirm",
-    "brex",
-    "ramp",
-    "airwallex",
-    "sumup",
-    "zopa",
-    "starlingbank",
 
-    # =====================================================
-    # TECH
-    # =====================================================
+    # AI
+    "openai",
+    "anthropic",
+    "deepmind",
+    "synthesia",
+    "elevenlabs",
 
+    # Tech
     "datadog",
     "mongodb",
-    "snyk",
     "cloudflare",
-    "gitlab",
+    "snyk",
     "figma",
-    "webflow",
+    "gitlab",
     "elastic",
     "hashicorp",
-    "snowflake",
-    "openai",
     "notion",
-    "miro",
-    "canva",
-    "dropbox",
-    "discord",
-    "reddit",
-    "spotify",
-    "palantir",
-    "contentful",
 
-    # =====================================================
-    # CONSULTING
-    # =====================================================
-
-    "mckinsey",
-    "bcg",
-    "bain",
-
-    # =====================================================
-    # ENERGY
-    # =====================================================
-
-    "octopusenergy",
-
-    # =====================================================
-    # LOGISTICS
-    # =====================================================
-
-    "deliveroo",
-    "uber",
-
-    # =====================================================
-    # JOURNALISM / RESEARCH / MEDIA
-    # =====================================================
-
+    # Media
     "economist",
-    "thomsonreuters",
-    "bellingcat",
-    "restofworld",
-    "semafor",
-    "theathletic",
     "voxmedia",
     "buzzfeed",
     "businessinsider",
-    "washingtonpost",
-    "forbes",
-    "giphy",
-    "axios",
-    "morningbrew",
-    "newscientist",
 ]
 
 LEVER_COMPANIES = [
@@ -556,39 +717,22 @@ LEVER_COMPANIES = [
     "netflix",
     "shopify",
     "asana",
-    "robinhood",
     "coinbase",
     "atlassian",
-    "digitalocean",
-    "slack",
-    "segment",
     "intercom",
     "zapier",
     "scaleai",
     "huggingface",
-
-    # Journalism / Research
-    "substack",
-    "quora",
-    "medium",
-    "protocol",
-    "theinformation",
-    "deepl",
 ]
 
-WORKDAY_COMPANIES = [
+TEAMTAILOR_COMPANIES = [
 
-    ("barclays", "External_Career_Site"),
-    ("hsbc", "HSBCCareers"),
-    ("jpmorgan", "jpmc"),
-    ("goldmansachs", "External"),
-    ("morganstanley", "MorganStanleyCareers"),
-    ("blackrock", "BlackRockCareers"),
-    ("natwestgroup", "NatWest_Group_Careers"),
-
-    # Research / Financial Data
-    ("bloomberg", "careers"),
-    ("factset", "FactSetCareers"),
+    "octopus-energy",
+    "ovoenergy",
+    "synthesia",
+    "elevenlabs",
+    "graphcore",
+    "gymshark",
 ]
 
 SMARTRECRUITERS_COMPANIES = [
@@ -597,83 +741,97 @@ SMARTRECRUITERS_COMPANIES = [
     "spotify",
     "klarna",
     "wolt",
-
-    # Media / Journalism
     "bbc",
-    "dw",
-    "euronews",
 ]
 
 ASHBY_COMPANIES = [
 
     "openai",
     "anthropic",
-    "notion",
     "cursor",
-    "scaleai",
-
-    # AI / Research
+    "notion",
     "perplexity",
-    "character",
-    "huggingface",
     "runway",
-    "deepmind",
+]
+
+ICIMS_COMPANIES = [
+
+    # Consulting
+    "deloitte",
+    "pwc",
+    "ey",
+    "kpmg",
+
+    # Pharma
+    "astrazeneca",
+    "gsk",
+    "pfizer",
+
+    # Aerospace
+    "airbus",
+    "bae",
+    "rollsroyce",
+
+    # Retail
+    "tesco",
+    "ocado",
+]
+
+WORKDAY_COMPANIES = [
+
+    # Banking
+    ("barclays", "External_Career_Site"),
+    ("hsbc", "HSBCCareers"),
+    ("jpmorgan", "jpmc"),
+    ("goldmansachs", "External"),
+    ("morganstanley", "MorganStanleyCareers"),
+    ("blackrock", "BlackRockCareers"),
+
+    # Energy
+    ("shell", "ShellCareers"),
+    ("bp", "BP_Careers"),
+
+    # Retail
+    ("amazon", "AmazonJobs"),
+
+    # Pharma
+    ("astrazeneca", "ExternalCareerSite"),
 ]
 
 # =========================================================
-# STEP 10 — DISPLAY NAMES
+# DISPLAY NAMES
 # =========================================================
 
 COMPANY_DISPLAY_NAMES = {
 
-    # Fintech
-    "monzo": "Monzo",
-    "wise": "Wise",
-    "checkoutcom": "Checkout.com",
-    "stripe": "Stripe",
-    "revolut": "Revolut",
-    "klarna": "Klarna",
-    "plaid": "Plaid",
-    "affirm": "Affirm",
-    "brex": "Brex",
-    "ramp": "Ramp",
-    "airwallex": "Airwallex",
-    "sumup": "SumUp",
-    "zopa": "Zopa",
-    "starlingbank": "Starling Bank",
+    "openai": "OpenAI",
+    "anthropic": "Anthropic",
+    "deepmind": "Google DeepMind",
+    "scaleai": "Scale AI",
+    "huggingface": "Hugging Face",
 
-    # Banks
-    "barclays": "Barclays",
-    "hsbc": "HSBC",
     "jpmorgan": "JPMorgan Chase",
     "goldmansachs": "Goldman Sachs",
     "morganstanley": "Morgan Stanley",
-    "blackrock": "BlackRock",
-    "natwestgroup": "NatWest Group",
 
-    # AI / Tech
-    "openai": "OpenAI",
-    "anthropic": "Anthropic",
-    "scaleai": "Scale AI",
-    "huggingface": "Hugging Face",
-    "deepmind": "Google DeepMind",
+    "pwc": "PwC",
+    "ey": "EY",
+    "kpmg": "KPMG",
 
-    # Media / Research
-    "thomsonreuters": "Thomson Reuters",
-    "voxmedia": "Vox Media",
-    "businessinsider": "Business Insider",
-    "washingtonpost": "The Washington Post",
-    "newscientist": "New Scientist",
-    "theinformation": "The Information",
-    "deepl": "DeepL",
-    "dw": "Deutsche Welle",
+    "gsk": "GSK",
+    "bae": "BAE Systems",
+    "rollsroyce": "Rolls-Royce",
 }
 
 # =========================================================
-# STEP 11 — PROCESS COMPANY
+# PROCESS COMPANY
 # =========================================================
 
-def process_company(source_name, slug, scraper):
+def process_company(
+    source_name,
+    slug,
+    scraper
+):
 
     try:
 
@@ -681,11 +839,14 @@ def process_company(source_name, slug, scraper):
 
         uk_jobs = [
             job for job in jobs
-            if is_uk_location(job.get("location"))
+            if is_uk_location(
+                job.get("location")
+            )
         ]
 
         print(
-            f"{slug} ({source_name}): "
+            f"{slug} "
+            f"({source_name}): "
             f"{len(uk_jobs)} UK jobs"
         )
 
@@ -700,32 +861,73 @@ def process_company(source_name, slug, scraper):
 
     except Exception as e:
 
-        print(f"Processing error for {slug}: {e}")
+        print(
+            f"Processing error "
+            f"for {slug}: {e}"
+        )
+
         return []
 
 # =========================================================
-# STEP 12 — SCRAPE JOBS
+# SCRAPE JOBS
 # =========================================================
 
 all_jobs = []
 
 JOB_SOURCES = [
 
-    ("Greenhouse", GREENHOUSE_COMPANIES, get_greenhouse_jobs),
-    ("Lever", LEVER_COMPANIES, get_lever_jobs),
-    ("SmartRecruiters", SMARTRECRUITERS_COMPANIES, get_smartrecruiters_jobs),
-    ("Ashby", ASHBY_COMPANIES, get_ashby_jobs),
+    (
+        "Greenhouse",
+        GREENHOUSE_COMPANIES,
+        get_greenhouse_jobs
+    ),
+
+    (
+        "Lever",
+        LEVER_COMPANIES,
+        get_lever_jobs
+    ),
+
+    (
+        "SmartRecruiters",
+        SMARTRECRUITERS_COMPANIES,
+        get_smartrecruiters_jobs
+    ),
+
+    (
+        "Ashby",
+        ASHBY_COMPANIES,
+        get_ashby_jobs
+    ),
+
+    (
+        "Teamtailor",
+        TEAMTAILOR_COMPANIES,
+        get_teamtailor_jobs
+    ),
+
+    (
+        "iCIMS",
+        ICIMS_COMPANIES,
+        get_icims_jobs
+    ),
 ]
 
 print("\nScraping jobs...\n")
 
-with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+with ThreadPoolExecutor(
+    max_workers=MAX_WORKERS
+) as executor:
 
     futures = []
 
-    # Standard ATS systems
+    # Standard ATS
 
-    for source_name, companies, scraper in JOB_SOURCES:
+    for (
+        source_name,
+        companies,
+        scraper
+    ) in JOB_SOURCES:
 
         for slug in companies:
 
@@ -740,17 +942,32 @@ with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
 
     # Workday
 
-    for company, tenant in WORKDAY_COMPANIES:
+    for (
+        company,
+        tenant
+    ) in WORKDAY_COMPANIES:
 
         futures.append(
+
             executor.submit(
+
                 lambda c=company, t=tenant: [
+
                     {
                         **job,
-                        "company": COMPANY_DISPLAY_NAMES.get(c, c)
+
+                        "company":
+                        COMPANY_DISPLAY_NAMES.get(
+                            c,
+                            c
+                        )
                     }
+
                     for job in get_workday_jobs(c, t)
-                    if is_uk_location(job.get("location"))
+
+                    if is_uk_location(
+                        job.get("location")
+                    )
                 ]
             )
         )
@@ -768,10 +985,13 @@ with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
 
             print(f"Future error: {e}")
 
-print(f"\nTotal UK jobs found: {len(all_jobs)}")
+print(
+    f"\nTotal UK jobs found: "
+    f"{len(all_jobs)}"
+)
 
 # =========================================================
-# STEP 13 — CREATE DATAFRAME
+# CREATE DATAFRAME
 # =========================================================
 
 jobs_df = pd.DataFrame(all_jobs)
@@ -780,39 +1000,49 @@ if len(jobs_df) == 0:
     raise Exception("No jobs found.")
 
 # =========================================================
-# STEP 14 — NORMALIZE JOB COMPANIES
+# NORMALIZE COMPANIES
 # =========================================================
 
 jobs_df["company_clean"] = (
+
     jobs_df["company"]
     .astype(str)
     .apply(normalize_company)
 )
 
 # =========================================================
-# STEP 15 — MATCH AGAINST SPONSOR LIST
+# SPONSOR MATCHING
 # =========================================================
 
 jobs_df["is_licensed_sponsor"] = (
+
     jobs_df["company_clean"]
     .isin(sponsor_set)
 )
 
-def fuzzy_sponsor_match(company_name, threshold=90):
+def fuzzy_sponsor_match(
+    company_name,
+    threshold=90
+):
 
-    company_name = normalize_company(company_name)
+    company_name = normalize_company(
+        company_name
+    )
 
-    for sponsor in sponsor_set:
+    result = extractOne(
 
-        score = fuzz.token_set_ratio(
-            company_name,
-            sponsor
-        )
+        company_name,
+        sponsor_set,
 
-        if score >= threshold:
-            return True
+        scorer=fuzz.token_sort_ratio
+    )
 
-    return False
+    if not result:
+        return False
+
+    match, score, _ = result
+
+    return score >= threshold
 
 missing_matches = jobs_df[
     jobs_df["is_licensed_sponsor"] == False
@@ -827,25 +1057,35 @@ if len(missing_matches) > 0:
         fuzzy_sponsor_match
     )
 
-# Keep sponsors only
+# =========================================================
+# KEEP SPONSORS ONLY
+# =========================================================
 
 jobs_df = jobs_df[
     jobs_df["is_licensed_sponsor"] == True
 ]
 
-print(f"\nLicensed sponsor jobs: {len(jobs_df)}")
+print(
+    f"\nLicensed sponsor jobs: "
+    f"{len(jobs_df)}"
+)
 
 # =========================================================
-# STEP 16 — ADD METADATA
+# METADATA
 # =========================================================
 
-today = datetime.today().strftime("%Y-%m-%d")
+today = datetime.today().strftime(
+    "%Y-%m-%d"
+)
 
-jobs_df["visa_sponsorship_possible"] = True
+jobs_df[
+    "visa_sponsorship_possible"
+] = True
+
 jobs_df["scraped_date"] = today
 
 # =========================================================
-# STEP 17 — FINAL CLEANUP
+# FINAL CLEANUP
 # =========================================================
 
 jobs_df = jobs_df[[
@@ -855,6 +1095,7 @@ jobs_df = jobs_df[[
     "location",
     "job_url",
     "source",
+    "ats",
     "visa_sponsorship_possible",
     "scraped_date"
 ]]
@@ -866,13 +1107,19 @@ jobs_df = jobs_df.sort_values(
 )
 
 # =========================================================
-# STEP 18 — EXPORT CSV
+# EXPORT
 # =========================================================
 
-jobs_df.to_csv("jobs.csv", index=False)
+jobs_df.to_csv(
+    "jobs.csv",
+    index=False
+)
 
 print("\nSaved jobs.csv")
 
-print(f"\nFinal total sponsored UK jobs: {len(jobs_df)}")
+print(
+    f"\nFinal sponsored UK jobs: "
+    f"{len(jobs_df)}"
+)
 
 print("\nDone.")
