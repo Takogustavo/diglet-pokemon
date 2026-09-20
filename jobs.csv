@@ -1,292 +1,371 @@
 company,job_title,location,job_url,source,visa_sponsorship_possible,scraped_date
-Affirm,"Analytics Manager, Full Stack (Fraud Analytics)",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7532268003,Greenhouse,True,2026-06-25
-Affirm,Group Product Management Manager,Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7546216003,Greenhouse,True,2026-06-25
-Affirm,"Manager, Machine Learning Engineering (Repayment & Recovery)",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7778532003,Greenhouse,True,2026-06-25
-Affirm,Operations Risk Manager (Backbook Integrations) ,Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7761356003,Greenhouse,True,2026-06-25
-Affirm,"Senior Software Engineer, Backend (Payments)",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7737155003,Greenhouse,True,2026-06-25
-Affirm,Talent Brand Specialist II,Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7726819003,Greenhouse,True,2026-06-25
-Monzo,Analytics Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7564605,Greenhouse,True,2026-06-25
-Monzo,Backend Engineer III ,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6635595,Greenhouse,True,2026-06-25
-Monzo,Credit Model Validation Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8023162,Greenhouse,True,2026-06-25
-Monzo,"Credit Risk Director, Business Borrowing","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8020414,Greenhouse,True,2026-06-25
-Monzo,"Credit Risk Manager, Flex Originations ","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7991200,Greenhouse,True,2026-06-25
-Monzo,"Credit Risk Manager, Portfolio Management",London; Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/7991227,Greenhouse,True,2026-06-25
-Monzo,"Data Director, Workforce Systems & Service Performance","Cardiff, London or Remote (UK); London",https://job-boards.greenhouse.io/monzo/jobs/7694525,Greenhouse,True,2026-06-25
-Monzo,Director of Fraud,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8002441,Greenhouse,True,2026-06-25
-Monzo,Director of Partnerships,London,https://job-boards.greenhouse.io/monzo/jobs/7979000,Greenhouse,True,2026-06-25
-Monzo,"Engineering Director, EU","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8025854,Greenhouse,True,2026-06-25
-Monzo,"Engineering Director, Security","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7912647,Greenhouse,True,2026-06-25
-Monzo,Engineering Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/5018066,Greenhouse,True,2026-06-25
-Monzo,Finance Forecasting Modeller,UK,https://job-boards.greenhouse.io/monzo/jobs/7904675,Greenhouse,True,2026-06-25
-Monzo,Head of Prudential Risk,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8000900,Greenhouse,True,2026-06-25
-Monzo,"International Public Policy, Senior Manager ","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8000142,Greenhouse,True,2026-06-25
-Monzo,Lead Analytics Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7582354,Greenhouse,True,2026-06-25
-Monzo,Lead Insurance Pricing Analyst,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7916595,Greenhouse,True,2026-06-25
-Monzo,Lead Product Designer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6758088,Greenhouse,True,2026-06-25
-Monzo,ML/AI Platform Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8020007,Greenhouse,True,2026-06-25
-Monzo,"Machine Learning Manager, Fincrime","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7973753,Greenhouse,True,2026-06-25
-Monzo,"Operations Leadership, Financial Crime (Multilingual) ",Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/7996449,Greenhouse,True,2026-06-25
-Monzo,People Operations Associate,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7946774,Greenhouse,True,2026-06-25
-Monzo,"Product Director, Flex (Borrowing) ",London,https://job-boards.greenhouse.io/monzo/jobs/7775842,Greenhouse,True,2026-06-25
-Monzo,"Product Marketing Lead, Core Banking",London,https://job-boards.greenhouse.io/monzo/jobs/7966820,Greenhouse,True,2026-06-25
-Monzo,Senior Analytics Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6076740,Greenhouse,True,2026-06-25
-Monzo,Senior Backend Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6635837,Greenhouse,True,2026-06-25
-Monzo,Senior Credit Analyst,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7655258,Greenhouse,True,2026-06-25
-Monzo,Senior Engineering Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6394676,Greenhouse,True,2026-06-25
-Monzo,Senior Finance Business Partner,London,https://job-boards.greenhouse.io/monzo/jobs/7921307,Greenhouse,True,2026-06-25
-Monzo,Senior Finance Business Partner,London,https://job-boards.greenhouse.io/monzo/jobs/7355930,Greenhouse,True,2026-06-25
-Monzo,Senior Financial Crime Investigator - Business Banking,Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8018267,Greenhouse,True,2026-06-25
-Monzo,"Senior Fraud Investigator, EU - English & Spanish Speaking",Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/7989321,Greenhouse,True,2026-06-25
-Monzo,Senior Group Strategy Manager ,London,https://job-boards.greenhouse.io/monzo/jobs/8027811,Greenhouse,True,2026-06-25
-Monzo,"Senior Investigator, Operations Analyst, Financial Crime (Multilingual) ",Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/7996433,Greenhouse,True,2026-06-25
-Monzo,"Senior Legal Counsel, Business Banking","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7621692,Greenhouse,True,2026-06-25
-Monzo,"Senior Machine Learning Manager, Borrowing","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7996955,Greenhouse,True,2026-06-25
-Monzo,"Senior Machine Learning Scientist, Borrowing","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7686352,Greenhouse,True,2026-06-25
-Monzo,Senior Offensive Security Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7981938,Greenhouse,True,2026-06-25
-Monzo,"Senior Product Director, Business Banking",London,https://job-boards.greenhouse.io/monzo/jobs/7732437,Greenhouse,True,2026-06-25
-Monzo,"Senior Product Manager, Business Banking",London,https://job-boards.greenhouse.io/monzo/jobs/7995037,Greenhouse,True,2026-06-25
-Monzo,"Senior Product Manager, EU ",Barcelona; London,https://job-boards.greenhouse.io/monzo/jobs/7622551,Greenhouse,True,2026-06-25
-Monzo,"Senior Product Marketing Manager, Borrowing",London,https://job-boards.greenhouse.io/monzo/jobs/7861991,Greenhouse,True,2026-06-25
-Monzo,Senior Staff Backend Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6036797,Greenhouse,True,2026-06-25
-Monzo,Senior Strategy and Operations Manager,London,https://job-boards.greenhouse.io/monzo/jobs/7962857,Greenhouse,True,2026-06-25
-Monzo,"Service Analyst, Workforce Management","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8025947,Greenhouse,True,2026-06-25
-Monzo,Staff Analytics Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8013699,Greenhouse,True,2026-06-25
-Monzo,Staff Backend Engineer ,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6636147,Greenhouse,True,2026-06-25
-Monzo,Staff Product Designer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6994700,Greenhouse,True,2026-06-25
-Monzo,Technical Accounting & Advisory Senior Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7971941,Greenhouse,True,2026-06-25
-Monzo,Third Party Risk Manager (FTC),London; Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/7893700,Greenhouse,True,2026-06-25
-Monzo,Treasury Risk Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8007314,Greenhouse,True,2026-06-25
-Stripe,"Account Executive, Enterprise Grower (Billing)",London,https://stripe.com/jobs/search?gh_jid=7607568,Greenhouse,True,2026-06-25
-Stripe,"Account Executive, Platforms",London,https://stripe.com/jobs/search?gh_jid=7451366,Greenhouse,True,2026-06-25
-Stripe,"Backend / API Engineer, Payouts",United Kingdom,https://stripe.com/jobs/search?gh_jid=7369543,Greenhouse,True,2026-06-25
-Stripe,Customer Success Manager,London,https://stripe.com/jobs/search?gh_jid=7810205,Greenhouse,True,2026-06-25
-Stripe,Customer Success Manager ,London,https://stripe.com/jobs/search?gh_jid=8009536,Greenhouse,True,2026-06-25
-Stripe,Customer Success Manager (French speaking),London,https://stripe.com/jobs/search?gh_jid=7925790,Greenhouse,True,2026-06-25
-Stripe,Customer Success Manager (German speaking) ,London,https://stripe.com/jobs/search?gh_jid=7522783,Greenhouse,True,2026-06-25
-Stripe,Customer Success Manager (Spanish speaking),London,https://stripe.com/jobs/search?gh_jid=7925821,Greenhouse,True,2026-06-25
-Stripe,EMEA Deal Pricing Strategist,London/Dublin,https://stripe.com/jobs/search?gh_jid=7960873,Greenhouse,True,2026-06-25
-Stripe,Engagement Manager,"London, UK",https://stripe.com/jobs/search?gh_jid=7808299,Greenhouse,True,2026-06-25
-Stripe,Enterprise Paid Marketing Manager,London,https://stripe.com/jobs/search?gh_jid=7882047,Greenhouse,True,2026-06-25
-Stripe,Finance and Strategy Analyst,Dublin OR London,https://stripe.com/jobs/search?gh_jid=7963763,Greenhouse,True,2026-06-25
-Stripe,GSI Partner Development Lead- EMEA,London,https://stripe.com/jobs/search?gh_jid=7677136,Greenhouse,True,2026-06-25
-Stripe,"Global Head of Specialist Solutions Architecture, Revenue ",London,https://stripe.com/jobs/search?gh_jid=7963508,Greenhouse,True,2026-06-25
-Stripe,Indirect Tax Advisory Consultant,Dublin or London,https://stripe.com/jobs/search?gh_jid=7589400,Greenhouse,True,2026-06-25
-Stripe,"Internal Audit Lead - Treasury, Finance & Operations",Dublin OR London,https://stripe.com/jobs/search?gh_jid=7678541,Greenhouse,True,2026-06-25
-Stripe,Major Financial Crimes & Insider Risk Investigator,"Dublin, London",https://stripe.com/jobs/search?gh_jid=7964854,Greenhouse,True,2026-06-25
-Stripe,"Mobile Engineer, Treasury",United Kingdom,https://stripe.com/jobs/search?gh_jid=7978915,Greenhouse,True,2026-06-25
-Stripe,Partner Development Manager (Banks),London - United Kingdom,https://stripe.com/jobs/search?gh_jid=7289456,Greenhouse,True,2026-06-25
-Stripe,"Product Designer, Risk",Ireland / United Kingdom,https://stripe.com/jobs/search?gh_jid=7954118,Greenhouse,True,2026-06-25
-Stripe,Product Enablement Advisor,"London, Dublin",https://stripe.com/jobs/search?gh_jid=8003129,Greenhouse,True,2026-06-25
-Stripe,"Product Lead, EMEA Payments",London,https://stripe.com/jobs/search?gh_jid=8027435,Greenhouse,True,2026-06-25
-Stripe,"Product Manager, Capital",London,https://stripe.com/jobs/search?gh_jid=7721834,Greenhouse,True,2026-06-25
-Stripe,"Product Manager, EMEA Local Payment Methods",London,https://stripe.com/jobs/search?gh_jid=8010011,Greenhouse,True,2026-06-25
-Stripe,"Product Manager, Ecosystem Risk",London,https://stripe.com/jobs/search?gh_jid=7947422,Greenhouse,True,2026-06-25
-Stripe,"Product Manager, Global Marketplaces",London,https://stripe.com/jobs/search?gh_jid=8009671,Greenhouse,True,2026-06-25
-Stripe,"Product Support, Bridge ","New York, Dublin, London",https://stripe.com/jobs/search?gh_jid=7678670,Greenhouse,True,2026-06-25
-Stripe,Regional Field Marketing Manager (Northern and Southern Europe),London,https://stripe.com/jobs/search?gh_jid=7543898,Greenhouse,True,2026-06-25
-Stripe,"Regional Product Marketing Manager, United Kingdom",London,https://stripe.com/jobs/search?gh_jid=7921325,Greenhouse,True,2026-06-25
-Stripe,Services Account Executive,London,https://stripe.com/jobs/search?gh_jid=7566383,Greenhouse,True,2026-06-25
-Stripe,"Software Engineer, Money Movement ",London,https://stripe.com/jobs/search?gh_jid=7208537,Greenhouse,True,2026-06-25
-Stripe,"Solutions Architect, Platforms, UK",London,https://stripe.com/jobs/search?gh_jid=7574857,Greenhouse,True,2026-06-25
-Stripe,Technical Account Manager,London,https://stripe.com/jobs/search?gh_jid=7549012,Greenhouse,True,2026-06-25
-SumUp, Field Sales Consultant - UK - Bradford,"Bradford, England, United Kingdom",https://sumup.com/careers/positions/8313796002?gh_jid=8313796002,Greenhouse,True,2026-06-25
-SumUp, Field Sales Consultant - UK - Glasgow,"Glasgow, Scotland, United Kingdom",https://sumup.com/careers/positions/8313807002?gh_jid=8313807002,Greenhouse,True,2026-06-25
-SumUp, Field Sales Consultant - UK - Wolverhampton,"Wolverhampton, England, United Kingdom",https://sumup.com/careers/positions/8313726002?gh_jid=8313726002,Greenhouse,True,2026-06-25
-SumUp, Field Sales Representative,"Chelmsford, England, United Kingdom",https://sumup.com/careers/positions/7810182002?gh_jid=7810182002,Greenhouse,True,2026-06-25
-SumUp, Field Sales Representative,"Cardiff, Wales, United Kingdom",https://sumup.com/careers/positions/7809649002?gh_jid=7809649002,Greenhouse,True,2026-06-25
-SumUp, Field Sales Representative,"Cambridge, England, United Kingdom",https://sumup.com/careers/positions/8526376002?gh_jid=8526376002,Greenhouse,True,2026-06-25
-SumUp,"Area Manager, Field Sales - South West","Bath, England, United Kingdom; Bournemouth, England, United Kingdom; Bristol, England, United Kingdom; Exeter, England, United Kingdom; Plymouth, England, United Kingdom; Stoke-on-Trent, England, United Kingdom",https://sumup.com/careers/positions/8539456002?gh_jid=8539456002,Greenhouse,True,2026-06-25
-SumUp,Business Development Manager – Payments & POS,"Manchester, England, United Kingdom",https://sumup.com/careers/positions/7789384002?gh_jid=7789384002,Greenhouse,True,2026-06-25
-SumUp,Business Development Manager – Payments & POS,"Glasgow, Scotland, United Kingdom",https://sumup.com/careers/positions/8592035002?gh_jid=8592035002,Greenhouse,True,2026-06-25
-SumUp,Business Development Manager – Payments & POS,"Edinburgh, Scotland, United Kingdom",https://sumup.com/careers/positions/8518822002?gh_jid=8518822002,Greenhouse,True,2026-06-25
-SumUp,Commercial Planning Senior Associate,"London, England, United Kingdom",https://sumup.com/careers/positions/8587363002?gh_jid=8587363002,Greenhouse,True,2026-06-25
-SumUp,Engineering Manager,"London, England, United Kingdom",https://sumup.com/careers/positions/8213032002?gh_jid=8213032002,Greenhouse,True,2026-06-25
-SumUp,Engineering Manager - Website,"Berlin, Germany; London, England, United Kingdom",https://sumup.com/careers/positions/8482965002?gh_jid=8482965002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK - Belfast,"Belfast, Northern Ireland, United Kingdom",https://sumup.com/careers/positions/8313760002?gh_jid=8313760002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK - Brighton ,"Brighton, England, United Kingdom",https://sumup.com/careers/positions/8313716002?gh_jid=8313716002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK - Cardiff,"Cardiff, Wales, United Kingdom",https://sumup.com/careers/positions/8313746002?gh_jid=8313746002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK - Edinburgh,"Edinburgh, Scotland, United Kingdom",https://sumup.com/careers/positions/8313837002?gh_jid=8313837002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK - Hull,"Hull, England, United Kingdom",https://sumup.com/careers/positions/8313886002?gh_jid=8313886002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK - Leicester,"Leicester, England, United Kingdom",https://sumup.com/careers/positions/8313736002?gh_jid=8313736002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK - Liverpool,"Liverpool, England, United Kingdom",https://sumup.com/careers/positions/8313865002?gh_jid=8313865002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK - Newcastle,"Newcastle upon Tyne, England, United Kingdom",https://sumup.com/careers/positions/8313856002?gh_jid=8313856002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK - Sheffield,"Sheffield, England, United Kingdom",https://sumup.com/careers/positions/8313772002?gh_jid=8313772002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Consultant - UK -Nottingham,"Nottingham, England, United Kingdom",https://sumup.com/careers/positions/8313875002?gh_jid=8313875002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Executive,"Newry, Northern Ireland, United Kingdom",https://sumup.com/careers/positions/7786555002?gh_jid=7786555002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Lincoln, England, United Kingdom",https://sumup.com/careers/positions/8456549002?gh_jid=8456549002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Twickenham, England, United Kingdom",https://sumup.com/careers/positions/8225729002?gh_jid=8225729002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Edinburgh, Scotland, United Kingdom",https://sumup.com/careers/positions/8209300002?gh_jid=8209300002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Stoke-on-Trent, England, United Kingdom",https://sumup.com/careers/positions/8209282002?gh_jid=8209282002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Wakefield, England, United Kingdom",https://sumup.com/careers/positions/8209311002?gh_jid=8209311002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Belfast, Northern Ireland, United Kingdom",https://sumup.com/careers/positions/8209410002?gh_jid=8209410002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Burton-on-Trent, England, United Kingdom",https://sumup.com/careers/positions/8209227002?gh_jid=8209227002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Swansea, Wales, United Kingdom",https://sumup.com/careers/positions/8209409002?gh_jid=8209409002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Newport, Wales, United Kingdom",https://sumup.com/careers/positions/8209406002?gh_jid=8209406002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Northampton, England, United Kingdom",https://sumup.com/careers/positions/8209216002?gh_jid=8209216002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Blackburn, England, United Kingdom",https://sumup.com/careers/positions/8209395002?gh_jid=8209395002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Sunderland, England, United Kingdom",https://sumup.com/careers/positions/8209335002?gh_jid=8209335002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Darlington, England, United Kingdom",https://sumup.com/careers/positions/8209324002?gh_jid=8209324002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Guildford, England, United Kingdom",https://sumup.com/careers/positions/8209186002?gh_jid=8209186002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Middlesbrough, England, United Kingdom",https://sumup.com/careers/positions/8209318002?gh_jid=8209318002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Reading, England, United Kingdom",https://sumup.com/careers/positions/8209173002?gh_jid=8209173002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Enfield, England, United Kingdom",https://sumup.com/careers/positions/8209165002?gh_jid=8209165002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Luton, England, United Kingdom",https://sumup.com/careers/positions/8209162002?gh_jid=8209162002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"St Albans, England, United Kingdom",https://sumup.com/careers/positions/8209155002?gh_jid=8209155002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Colchester, England, United Kingdom",https://sumup.com/careers/positions/7786771002?gh_jid=7786771002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Norwich, England, United Kingdom",https://sumup.com/careers/positions/7810133002?gh_jid=7810133002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Peterborough, England, United Kingdom",https://sumup.com/careers/positions/7810136002?gh_jid=7810136002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Armagh, Northern Ireland, United Kingdom",https://sumup.com/careers/positions/8375826002?gh_jid=8375826002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Ipswich, England, United Kingdom",https://sumup.com/careers/positions/7810142002?gh_jid=7810142002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Coventry, England, United Kingdom",https://sumup.com/careers/positions/8381301002?gh_jid=8381301002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Telford, England, United Kingdom",https://sumup.com/careers/positions/8381319002?gh_jid=8381319002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Stevenage, England, United Kingdom",https://sumup.com/careers/positions/7810145002?gh_jid=7810145002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Enniskillen, Northern Ireland, United Kingdom",https://sumup.com/careers/positions/8388293002?gh_jid=8388293002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Omagh, Northern Ireland, United Kingdom",https://sumup.com/careers/positions/8388565002?gh_jid=8388565002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Portsmouth, England, United Kingdom",https://sumup.com/careers/positions/8401428002?gh_jid=8401428002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Southampton, England, United Kingdom",https://sumup.com/careers/positions/8401442002?gh_jid=8401442002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Southend-on-Sea, England, United Kingdom",https://sumup.com/careers/positions/7810159002?gh_jid=7810159002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Walsall, England, United Kingdom",https://sumup.com/careers/positions/8545288002?gh_jid=8545288002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Worcester, England, United Kingdom",https://sumup.com/careers/positions/8542561002?gh_jid=8542561002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Preston, England, United Kingdom",https://sumup.com/careers/positions/8448475002?gh_jid=8448475002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Wigan, England, United Kingdom",https://sumup.com/careers/positions/8448476002?gh_jid=8448476002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Wrexham, Wales, United Kingdom",https://sumup.com/careers/positions/8448480002?gh_jid=8448480002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Stockport, England, United Kingdom",https://sumup.com/careers/positions/8448482002?gh_jid=8448482002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Stoke-on-Trent, England, United Kingdom",https://sumup.com/careers/positions/8448486002?gh_jid=8448486002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Manchester, England, United Kingdom",https://sumup.com/careers/positions/8448514002?gh_jid=8448514002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Bolton, England, United Kingdom",https://sumup.com/careers/positions/8448519002?gh_jid=8448519002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Oldham, England, United Kingdom",https://sumup.com/careers/positions/8448521002?gh_jid=8448521002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Chester, England, United Kingdom",https://sumup.com/careers/positions/8448523002?gh_jid=8448523002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Liverpool, England, United Kingdom",https://sumup.com/careers/positions/8448526002?gh_jid=8448526002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Lancaster, England, United Kingdom",https://sumup.com/careers/positions/8448530002?gh_jid=8448530002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Carlisle, England, United Kingdom",https://sumup.com/careers/positions/8448531002?gh_jid=8448531002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Crewe, England, United Kingdom",https://sumup.com/careers/positions/8448534002?gh_jid=8448534002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Warrington, England, United Kingdom",https://sumup.com/careers/positions/8448536002?gh_jid=8448536002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Blackpool, England, United Kingdom",https://sumup.com/careers/positions/8448539002?gh_jid=8448539002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Doncaster, England, United Kingdom",https://sumup.com/careers/positions/8456523002?gh_jid=8456523002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Huddersfield, England, United Kingdom",https://sumup.com/careers/positions/8456525002?gh_jid=8456525002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Harrogate, England, United Kingdom",https://sumup.com/careers/positions/8456528002?gh_jid=8456528002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Hull, England, United Kingdom",https://sumup.com/careers/positions/8456529002?gh_jid=8456529002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Leeds, England, United Kingdom",https://sumup.com/careers/positions/8456531002?gh_jid=8456531002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"York, England, United Kingdom",https://sumup.com/careers/positions/8456534002?gh_jid=8456534002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Bradford, England, United Kingdom",https://sumup.com/careers/positions/8456536002?gh_jid=8456536002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Derby, England, United Kingdom",https://sumup.com/careers/positions/8456541002?gh_jid=8456541002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Halifax, England, United Kingdom",https://sumup.com/careers/positions/8456546002?gh_jid=8456546002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Nottingham, England, United Kingdom",https://sumup.com/careers/positions/8456554002?gh_jid=8456554002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Sheffield, England, United Kingdom",https://sumup.com/careers/positions/8456566002?gh_jid=8456566002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"Oxford, England, United Kingdom",https://sumup.com/careers/positions/8493810002?gh_jid=8493810002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative,"London, England, United Kingdom",https://sumup.com/careers/positions/8493802002?gh_jid=8493802002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representative ,"Newcastle upon Tyne, England, United Kingdom",https://sumup.com/careers/positions/8209309002?gh_jid=8209309002,Greenhouse,True,2026-06-25
-SumUp,Field Sales Representitive ,"Glasgow, Scotland, United Kingdom",https://sumup.com/careers/positions/8441337002?gh_jid=8441337002,Greenhouse,True,2026-06-25
-SumUp,IT Infrastructure & Systems Internal Auditor,"London, England, United Kingdom",https://sumup.com/careers/positions/8401894002?gh_jid=8401894002,Greenhouse,True,2026-06-25
-SumUp,Inbound Account Executive [Dutch Market],"London, England, United Kingdom",https://sumup.com/careers/positions/8564784002?gh_jid=8564784002,Greenhouse,True,2026-06-25
-SumUp,Inbound Sales Representative [Nordics],"London, England, United Kingdom",https://sumup.com/careers/positions/8599165002?gh_jid=8599165002,Greenhouse,True,2026-06-25
-SumUp,International Tax Lead,"London, England, United Kingdom",https://sumup.com/careers/positions/8592478002?gh_jid=8592478002,Greenhouse,True,2026-06-25
-SumUp,Jr Inbound Account Executive - London,"London, England, United Kingdom",https://sumup.com/careers/positions/8522183002?gh_jid=8522183002,Greenhouse,True,2026-06-25
-SumUp,Senior Android Engineer,"London, England, United Kingdom",https://sumup.com/careers/positions/8458914002?gh_jid=8458914002,Greenhouse,True,2026-06-25
-SumUp,Senior Backend Engineer,"Cologne, Germany; London, England, United Kingdom",https://sumup.com/careers/positions/8566460002?gh_jid=8566460002,Greenhouse,True,2026-06-25
-SumUp,"Senior Engineering Manager, Developer Experience","London, England, United Kingdom",https://sumup.com/careers/positions/8607477002?gh_jid=8607477002,Greenhouse,True,2026-06-25
-SumUp,"Senior Engineering Manager, Global Bank","London, England, United Kingdom",https://sumup.com/careers/positions/8600419002?gh_jid=8600419002,Greenhouse,True,2026-06-25
-SumUp,Senior People Partner - SumUp Pay,"London, England, United Kingdom",https://sumup.com/careers/positions/8596654002?gh_jid=8596654002,Greenhouse,True,2026-06-25
-SumUp,Senior Product Designer - Consumer,"London, England, United Kingdom",https://sumup.com/careers/positions/8427124002?gh_jid=8427124002,Greenhouse,True,2026-06-25
-SumUp,Senior Social Media Manager,"London, England, United Kingdom",https://sumup.com/careers/positions/8585765002?gh_jid=8585765002,Greenhouse,True,2026-06-25
-SumUp,Senior iOS Engineer,"London, England, United Kingdom",https://sumup.com/careers/positions/8468017002?gh_jid=8468017002,Greenhouse,True,2026-06-25
-SumUp,Tax Process and Operations Lead,"London, England, United Kingdom",https://sumup.com/careers/positions/8587511002?gh_jid=8587511002,Greenhouse,True,2026-06-25
-SumUp,iOS Engineer - Mobile Platform,"Berlin, Germany; Cologne, Germany; London, England, United Kingdom; Sofia, Bulgaria",https://sumup.com/careers/positions/8481527002?gh_jid=8481527002,Greenhouse,True,2026-06-25
-SumUp, IT Controls Specialist,"London, England, United Kingdom",https://sumup.com/careers/positions/8596335002?gh_jid=8596335002,Greenhouse,True,2026-06-25
-contentful, Senior Software Engineer - Machine Learning (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7487850,Greenhouse,True,2026-06-25
-contentful,Analytical Engineer f/m/d,London,https://job-boards.greenhouse.io/contentful/jobs/7859228,Greenhouse,True,2026-06-25
-contentful,Area Sales Director,"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7782592,Greenhouse,True,2026-06-25
-contentful,"Business Development Representative, Commercial- French speaking (f/m/d)","London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/6137574,Greenhouse,True,2026-06-25
-contentful,"Business Development Representative, Enterprise - French speaking (f/m/d)","London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/5853004,Greenhouse,True,2026-06-25
-contentful,"Business Development Representative, Enterprise- German speaking (f/m/d)","London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/5853009,Greenhouse,True,2026-06-25
-contentful,"Business Development Representative, Enterprise- Italian Speaking (f/m/d)",London,https://job-boards.greenhouse.io/contentful/jobs/6671440,Greenhouse,True,2026-06-25
-contentful,"Business Development Representative, Enterprise- Spanish speaking (f/m/d)","London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/6696223,Greenhouse,True,2026-06-25
-contentful,"Business Development Representative, Mid Market UKI (f/m/d)","London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/5852946,Greenhouse,True,2026-06-25
-contentful,Commercial Account Executive DACH (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7874826,Greenhouse,True,2026-06-25
-contentful,Customer Support Engineer (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7655986,Greenhouse,True,2026-06-25
-contentful,"Director, Product Management (f/m/d)","London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7789452,Greenhouse,True,2026-06-25
-contentful,Engineering Manager - Content API (f/m/d),"London, London, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8023842,Greenhouse,True,2026-06-25
-contentful,Fullstack Software Engineer (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7553930,Greenhouse,True,2026-06-25
-contentful,"Manager, Customer Success, Scale EMEA (f/m/d)","London, London, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7918705,Greenhouse,True,2026-06-25
-contentful,Mid Market Account Executive - DACH (f/m/d),"London, London, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7874829,Greenhouse,True,2026-06-25
-contentful,Mid Market Account Executive - UKI (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7177651,Greenhouse,True,2026-06-25
-contentful,Optimization Strategist (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7627279,Greenhouse,True,2026-06-25
-contentful,Senior Backend Engineer - AI Platform (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7776562,Greenhouse,True,2026-06-25
-contentful,Senior Product Manager (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7635752,Greenhouse,True,2026-06-25
-contentful,Senior Software Engineer - Backend & Infrastructure (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7757968,Greenhouse,True,2026-06-25
-contentful,Senior Solution Engineer DACH (f/m/d),"London, London, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7899398,Greenhouse,True,2026-06-25
-contentful,Strategic Alliances Manager (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/7658593,Greenhouse,True,2026-06-25
-datadog,Enterprise Account Executive (UKI) - Public Sector,"London, United Kingdom",https://careers.datadoghq.com/detail/7599334/?gh_jid=7599334,Greenhouse,True,2026-06-25
-datadog,Enterprise Account Executive - UKI,"London, United Kingdom",https://careers.datadoghq.com/detail/6836442/?gh_jid=6836442,Greenhouse,True,2026-06-25
-datadog,Enterprise Sales Engineer - UK,"United Kingdom, Remote",https://careers.datadoghq.com/detail/7487353/?gh_jid=7487353,Greenhouse,True,2026-06-25
-datadog,Event Marketing Manager,"Amsterdam, The Netherlands; Dublin, Ireland; London, United Kingdom",https://careers.datadoghq.com/detail/8000028/?gh_jid=8000028,Greenhouse,True,2026-06-25
-datadog,Partner Marketing Manager - Cloud & Channel (EMEA),"London, United Kingdom",https://careers.datadoghq.com/detail/8003183/?gh_jid=8003183,Greenhouse,True,2026-06-25
-datadog,Principal Partner Manager - Channels (EMEA GSI),"Dubai, United Arab Emirates; Dublin, Ireland; Germany, Remote; Italy, Remote; London, United Kingdom; Madrid, Spain; Paris, France",https://careers.datadoghq.com/detail/7747026/?gh_jid=7747026,Greenhouse,True,2026-06-25
-datadog,Real Estate Associate Project Manager,"Amsterdam, The Netherlands; London, United Kingdom; Paris, France",https://careers.datadoghq.com/detail/7732564/?gh_jid=7732564,Greenhouse,True,2026-06-25
-datadog,"Senior Manager, Technical Account Management ","Dublin, Ireland; London, United Kingdom; Paris, France",https://careers.datadoghq.com/detail/7658810/?gh_jid=7658810,Greenhouse,True,2026-06-25
-datadog,Senior Software Engineer - Linux/eBPF,"Denmark, Remote; France, Remote; Germany, Remote; Ireland, Remote; Italy, Remote; Poland, Remote; Spain, Remote; Sweden, Remote; Switzerland, Remote; United Kingdom, Remote",https://careers.datadoghq.com/detail/7957460/?gh_jid=7957460,Greenhouse,True,2026-06-25
-datadog,Strategic Account Executive (UKI),"London, United Kingdom",https://careers.datadoghq.com/detail/5622381/?gh_jid=5622381,Greenhouse,True,2026-06-25
-datadog,Strategic Account Executive (UKI) - Public Sector,"London, United Kingdom",https://careers.datadoghq.com/detail/7591735/?gh_jid=7591735,Greenhouse,True,2026-06-25
-datadog,Technical Account Manager 2 - EMEA,"Amsterdam, The Netherlands; Dublin, Ireland; London, United Kingdom",https://careers.datadoghq.com/detail/7862489/?gh_jid=7862489,Greenhouse,True,2026-06-25
-elastic,Account Executive ,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7505982&gh_jid=7505982,Greenhouse,True,2026-06-25
-elastic,Account Executive - MSSP,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7525643&gh_jid=7525643,Greenhouse,True,2026-06-25
-elastic,Elastic Consultant - Public Sector,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7451737&gh_jid=7451737,Greenhouse,True,2026-06-25
-elastic,Lifecycle Marketing Manager - Self Service Cloud,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8022946&gh_jid=8022946,Greenhouse,True,2026-06-25
-elastic,Mid Market Account Executive,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7764822&gh_jid=7764822,Greenhouse,True,2026-06-25
-elastic,Mid Market Account Executive (Expansion),United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7764834&gh_jid=7764834,Greenhouse,True,2026-06-25
-elastic,Principal Data Scientist - Agent Builder,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7957356&gh_jid=7957356,Greenhouse,True,2026-06-25
-elastic,"Principal Product Manager, AI agents - Search",United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7995180&gh_jid=7995180,Greenhouse,True,2026-06-25
-elastic,Principal Software Engineer - Search Scaling - Elasticsearch,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8020852&gh_jid=8020852,Greenhouse,True,2026-06-25
-elastic,Principal Software Engineer - Search Scaling - Elasticsearch,"London, United Kingdom",https://jobs.elastic.co/jobs?gh_jid=7051986&gh_jid=7051986,Greenhouse,True,2026-06-25
-elastic,Principal Software Engineer - Vector Search - Elasticsearch,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8020841&gh_jid=8020841,Greenhouse,True,2026-06-25
-elastic,Principal Software Engineer I - Distributed Systems - Elasticsearch,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7982099&gh_jid=7982099,Greenhouse,True,2026-06-25
-elastic,Public Sector Account Executive,"London, United Kingdom",https://jobs.elastic.co/jobs?gh_jid=7865012&gh_jid=7865012,Greenhouse,True,2026-06-25
-elastic,Public Sector Account Executive (Central Government) ,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7728182&gh_jid=7728182,Greenhouse,True,2026-06-25
-elastic,Public Sector Partner Manager,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8026175&gh_jid=8026175,Greenhouse,True,2026-06-25
-elastic,Regional Vice President,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7867553&gh_jid=7867553,Greenhouse,True,2026-06-25
-elastic,Regional Vice President,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7874677&gh_jid=7874677,Greenhouse,True,2026-06-25
-elastic,Senior Developer Advocate (Video Content Creator),United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7190130&gh_jid=7190130,Greenhouse,True,2026-06-25
-elastic,Senior Java Engineer - Distributed Systems - Elasticsearch,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7734552&gh_jid=7734552,Greenhouse,True,2026-06-25
-elastic,"Senior Manager, Solutions Architecture (Pre-Sales)",United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7798047&gh_jid=7798047,Greenhouse,True,2026-06-25
-elastic,Senior Mid Market Account Executive,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7988380&gh_jid=7988380,Greenhouse,True,2026-06-25
-elastic,Senior Product Marketing Manager - Serverless,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8025972&gh_jid=8025972,Greenhouse,True,2026-06-25
-elastic,Senior Solution Architect (Pre-sales),"London, United Kingdom",https://jobs.elastic.co/jobs?gh_jid=7960049&gh_jid=7960049,Greenhouse,True,2026-06-25
-elastic,Tax Manager (EMEA & APJ) ,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7991552&gh_jid=7991552,Greenhouse,True,2026-06-25
-figma,"Account Executive - Figma Weave (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5760223004?gh_jid=5760223004,Greenhouse,True,2026-06-25
-figma,"Account Executive, Enterprise (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5458801004?gh_jid=5458801004,Greenhouse,True,2026-06-25
-figma,"Account Executive, Mid-Market (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5415515004?gh_jid=5415515004,Greenhouse,True,2026-06-25
-figma,"Account Executive, SMB (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5647851004?gh_jid=5647851004,Greenhouse,True,2026-06-25
-figma,"Community Support Specialist, Weekend (London, United Kingdom) ","London, England",https://boards.greenhouse.io/figma/jobs/5985406004?gh_jid=5985406004,Greenhouse,True,2026-06-25
-figma,"Manager, Inside Sales (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6010992004?gh_jid=6010992004,Greenhouse,True,2026-06-25
-figma,"Senior Account Executive, UK Government (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5988684004?gh_jid=5988684004,Greenhouse,True,2026-06-25
-figma,"Software Engineer, AI Product (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5551697004?gh_jid=5551697004,Greenhouse,True,2026-06-25
-figma,"Software Engineer, Production Engineering  (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5781928004?gh_jid=5781928004,Greenhouse,True,2026-06-25
-figma,"Solutions Consultant (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5735493004?gh_jid=5735493004,Greenhouse,True,2026-06-25
-figma,"Technical Account Manager (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6098063004?gh_jid=6098063004,Greenhouse,True,2026-06-25
-figma,"Technical Support Engineer (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5708436004?gh_jid=5708436004,Greenhouse,True,2026-06-25
-mongodb,Enterprise Account Executive,London,https://www.mongodb.com/careers/job/?gh_jid=7607210,Greenhouse,True,2026-06-25
-mongodb,Enterprise Account Executive	,London,https://www.mongodb.com/careers/job/?gh_jid=7219459,Greenhouse,True,2026-06-25
-mongodb,Principal Partner Programs Lead,London,https://www.mongodb.com/careers/job/?gh_jid=7942147,Greenhouse,True,2026-06-25
-mongodb,Principal Solutions Architect,Great Britain,https://www.mongodb.com/careers/job/?gh_jid=7657688,Greenhouse,True,2026-06-25
-mongodb,Senior Enterprise Account Executive,London,https://www.mongodb.com/careers/job/?gh_jid=7227836,Greenhouse,True,2026-06-25
-mongodb,Senior Solutions Architect,London,https://www.mongodb.com/careers/job/?gh_jid=7942609,Greenhouse,True,2026-06-25
-reddit,"Acquisition Account Manager, Mid-Market EMEA","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8012700,Greenhouse,True,2026-06-25
-reddit,Community Manager - French speaker (contract),Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/7669372,Greenhouse,True,2026-06-25
-reddit,"Creative Strategist, KarmaLab","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8015790,Greenhouse,True,2026-06-25
-reddit,"International Strategic Finance, London","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/7520366,Greenhouse,True,2026-06-25
-reddit,"Lead, Advertising Measurement - UK","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/7734973,Greenhouse,True,2026-06-25
-reddit,"Machine Learning Systems Engineer, Ads ML Platform",Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8022937,Greenhouse,True,2026-06-25
-reddit,"Program Manager, Vendor Operations","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/7396638,Greenhouse,True,2026-06-25
-reddit,"Sales Manager, Mid-Market - UK","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8012708,Greenhouse,True,2026-06-25
-reddit,"Senior Client Account Manager, Global Strategic Accounts (UK)","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8017263,Greenhouse,True,2026-06-25
-reddit,"Senior Client Partner, Global Strategic Accounts (UK)","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8017196,Greenhouse,True,2026-06-25
-reddit,"Senior Client Partner, Mid-Market - UK","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8012744,Greenhouse,True,2026-06-25
-reddit,"Senior Machine Learning Engineer, Ads Foundational Representations",Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8018513,Greenhouse,True,2026-06-25
-reddit,"Senior Product Adoption Strategist, Lower Funnel, EMEA","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/7735760,Greenhouse,True,2026-06-25
-reddit,"Senior SRE, Ads",Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8016253,Greenhouse,True,2026-06-25
-reddit,"Staff Machine Learning Engineer, ML Efficiency ",Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8018527,Greenhouse,True,2026-06-25
-reddit,"Staff SRE, Ads",Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8018555,Greenhouse,True,2026-06-25
-reddit,Staff Site Reliability Engineer - Site Experience,Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/7956443,Greenhouse,True,2026-06-25
-webflow,"Account Executive, EMEA","London, U.K. (Hybrid)",https://job-boards.greenhouse.io/webflow/jobs/7951428,Greenhouse,True,2026-06-25
-webflow,"Field Marketing Manager, EMEA","London, U.K. (Hybrid)",https://job-boards.greenhouse.io/webflow/jobs/7711402,Greenhouse,True,2026-06-25
-webflow,"Senior Manager, Solutions Engineering - EMEA","London, U.K. (Hybrid)",https://job-boards.greenhouse.io/webflow/jobs/7965515,Greenhouse,True,2026-06-25
+Affirm,"Analyst II, Credit",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7832318003,Greenhouse,True,2026-09-20
+Affirm,"Analytics Lead, Full Stack",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7799329003,Greenhouse,True,2026-09-20
+Affirm,"Compliance Manager (Data Protection Officer, Regulatory Compliance & Privacy)",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7850550003,Greenhouse,True,2026-09-20
+Affirm,"Director, Key Accounts Sales",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7871086003,Greenhouse,True,2026-09-20
+Affirm,Executive Assistant III,Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7995763003,Greenhouse,True,2026-09-20
+Affirm,"Senior Manager, Technical Recruiting",Remote Poland; Remote Spain; Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7895270003,Greenhouse,True,2026-09-20
+Affirm,"Senior Software Engineer, Backend (Payments)",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7737155003,Greenhouse,True,2026-09-20
+Affirm,"Senior Software Engineer, Fullstack (International) ",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7827039003,Greenhouse,True,2026-09-20
+Affirm,"Software Engineer II, Fullstack (International)",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7854835003,Greenhouse,True,2026-09-20
+Affirm,"Staff Software Engineer, Backend (Identity International)",Remote UK,https://job-boards.greenhouse.io/affirm/jobs/7979134003,Greenhouse,True,2026-09-20
+Monzo,Anaplan Support Analyst,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8143930,Greenhouse,True,2026-09-20
+Monzo,Android Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7115379,Greenhouse,True,2026-09-20
+Monzo,Backend Engineer III ,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6635595,Greenhouse,True,2026-09-20
+Monzo,Credit Analyst,London; Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8098919,Greenhouse,True,2026-09-20
+Monzo,Credit Model Validation Manager (Machine Learning & NPV Models),"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8023162,Greenhouse,True,2026-09-20
+Monzo,"Credit Risk Manager, Portfolio Management",London; Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/7991227,Greenhouse,True,2026-09-20
+Monzo,Data Science Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7194922,Greenhouse,True,2026-09-20
+Monzo,"Data Science Manager,  Financial Crime ","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/5758065,Greenhouse,True,2026-09-20
+Monzo,"Director of Data, Payments","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8146871,Greenhouse,True,2026-09-20
+Monzo,Director of Investments and Pensions,London,https://job-boards.greenhouse.io/monzo/jobs/8163979,Greenhouse,True,2026-09-20
+Monzo,Director of Product Design,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7825424,Greenhouse,True,2026-09-20
+Monzo,"Engineering Director, EU","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8025854,Greenhouse,True,2026-09-20
+Monzo,Engineering Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/5018066,Greenhouse,True,2026-09-20
+Monzo,FP&A Data & Analytics Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8156063,Greenhouse,True,2026-09-20
+Monzo,Financial Promotions Manager ,London; Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8170780,Greenhouse,True,2026-09-20
+Monzo,Fraud Compliance Manager,Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8179466,Greenhouse,True,2026-09-20
+Monzo,"Fraud Team Manager, Out of Hours",Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8203579,Greenhouse,True,2026-09-20
+Monzo,Graduate Credit Analyst,London,https://job-boards.greenhouse.io/monzo/jobs/8173733,Greenhouse,True,2026-09-20
+Monzo,Lead Data Scientist,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6369658,Greenhouse,True,2026-09-20
+Monzo,"Lead Machine Learning Scientist, Business Banking","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8121191,Greenhouse,True,2026-09-20
+Monzo,"Lead Machine Learning Scientist, Customer Operations","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8103509,Greenhouse,True,2026-09-20
+Monzo,"Lead Machine Learning Scientist, FinCrime","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8050756,Greenhouse,True,2026-09-20
+Monzo,"Lead Machine Learning Scientist, Search","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8041029,Greenhouse,True,2026-09-20
+Monzo,Lead Product Designer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6758088,Greenhouse,True,2026-09-20
+Monzo,"Lead Product Designer, Growth","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8185694,Greenhouse,True,2026-09-20
+Monzo,"Lead Product Manager, Payments",London,https://job-boards.greenhouse.io/monzo/jobs/8156058,Greenhouse,True,2026-09-20
+Monzo,"Machine Learning, Tech Lead","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8043988,Greenhouse,True,2026-09-20
+Monzo,"Martech Specialist, AI Deployment",London,https://job-boards.greenhouse.io/monzo/jobs/8195225,Greenhouse,True,2026-09-20
+Monzo,"Operational Tax, Senior Manager","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8200681,Greenhouse,True,2026-09-20
+Monzo,Operations Strategy & Commercial Lead,Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8173669,Greenhouse,True,2026-09-20
+Monzo,Payments Control Partner ,London; Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8161520,Greenhouse,True,2026-09-20
+Monzo,Product Marketing Lead,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7966820,Greenhouse,True,2026-09-20
+Monzo,"Sales Account Executive, Fixed Term Contract",London,https://job-boards.greenhouse.io/monzo/jobs/8105783,Greenhouse,True,2026-09-20
+Monzo,Senior Analytics Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6076740,Greenhouse,True,2026-09-20
+Monzo,Senior Backend Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6635837,Greenhouse,True,2026-09-20
+Monzo,"Senior Brand Designer, Fixed Term Contract ",London,https://job-boards.greenhouse.io/monzo/jobs/8180014,Greenhouse,True,2026-09-20
+Monzo,Senior Credit Analyst,London; Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8098960,Greenhouse,True,2026-09-20
+Monzo,"Senior Credit Risk Manager, Credit Platform ",London; Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8092745,Greenhouse,True,2026-09-20
+Monzo,Senior Director of People Operations,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8195476,Greenhouse,True,2026-09-20
+Monzo,Senior Engineering Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6394676,Greenhouse,True,2026-09-20
+Monzo,Senior Finance Business Partner,London,https://job-boards.greenhouse.io/monzo/jobs/8132044,Greenhouse,True,2026-09-20
+Monzo,"Senior Financial Crime Investigator  - EU, Spanish & English ",Remote (UK),https://job-boards.greenhouse.io/monzo/jobs/8207682,Greenhouse,True,2026-09-20
+Monzo,Senior Lead - Operational Performance & Excellence,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8161068,Greenhouse,True,2026-09-20
+Monzo,"Senior Legal Counsel, Digital Assets and Payments ","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7621662,Greenhouse,True,2026-09-20
+Monzo,"Senior Machine Learning Manager, Borrowing","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7996955,Greenhouse,True,2026-09-20
+Monzo,"Senior Marketing Manager, EU Business Banking",London,https://job-boards.greenhouse.io/monzo/jobs/8121259,Greenhouse,True,2026-09-20
+Monzo,Senior Motion Designer,London,https://job-boards.greenhouse.io/monzo/jobs/8179750,Greenhouse,True,2026-09-20
+Monzo,"Senior Product Director, Business Banking",London,https://job-boards.greenhouse.io/monzo/jobs/7732437,Greenhouse,True,2026-09-20
+Monzo,Senior Product Marketing Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/7861991,Greenhouse,True,2026-09-20
+Monzo,"Senior Product Marketing Manager, Business Banking","Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8121253,Greenhouse,True,2026-09-20
+Monzo,Senior Regulatory Reporting Analyst,London,https://job-boards.greenhouse.io/monzo/jobs/8053177,Greenhouse,True,2026-09-20
+Monzo,Senior Security Analyst,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8204229,Greenhouse,True,2026-09-20
+Monzo,Senior Staff Backend Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6036797,Greenhouse,True,2026-09-20
+Monzo,Senior Technical Program Manager,London,https://job-boards.greenhouse.io/monzo/jobs/8083280,Greenhouse,True,2026-09-20
+Monzo,Senior User Research Manager,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8015240,Greenhouse,True,2026-09-20
+Monzo,Staff Analytics Engineer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8013699,Greenhouse,True,2026-09-20
+Monzo,Staff Backend Engineer ,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6636147,Greenhouse,True,2026-09-20
+Monzo,Staff Product Designer,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/6994700,Greenhouse,True,2026-09-20
+Monzo,Technical Recruiter,"Cardiff, London or Remote (UK)",https://job-boards.greenhouse.io/monzo/jobs/8195485,Greenhouse,True,2026-09-20
+Stripe,"Account Executive, Enterprise (Hunter) ",London,https://stripe.com/jobs/search?gh_jid=8165275,Greenhouse,True,2026-09-20
+Stripe,"Account Executive, Existing Business ",London,https://stripe.com/jobs/search?gh_jid=8114155,Greenhouse,True,2026-09-20
+Stripe,"Account Executive, Financial Services, Grower ",London,https://stripe.com/jobs/search?gh_jid=8048193,Greenhouse,True,2026-09-20
+Stripe,"Account Executive, Product Sales (Terminal) ",Dublin or London,https://stripe.com/jobs/search?gh_jid=7389692,Greenhouse,True,2026-09-20
+Stripe,"Account Executive, Product Sales - Optimised Checkout ",London,https://stripe.com/jobs/search?gh_jid=8040940,Greenhouse,True,2026-09-20
+Stripe,"Account Executive, Retail (Grower)",London,https://stripe.com/jobs/search?gh_jid=8207708,Greenhouse,True,2026-09-20
+Stripe,"Account Executive, UK Velocity Hunter",London or Dublin,https://stripe.com/jobs/search?gh_jid=8130729,Greenhouse,True,2026-09-20
+Stripe,"Account Executive, hunter",London,https://stripe.com/jobs/search?gh_jid=8079514,Greenhouse,True,2026-09-20
+Stripe,"Backend/API Engineer, Money as a Service (Product) ",United Kingdom,https://stripe.com/jobs/search?gh_jid=7369543,Greenhouse,True,2026-09-20
+Stripe,"Benefits Program Manager, EMEA","Dublin, London",https://stripe.com/jobs/search?gh_jid=8202831,Greenhouse,True,2026-09-20
+Stripe,Channel Sales Executive,London,https://stripe.com/jobs/search?gh_jid=8165273,Greenhouse,True,2026-09-20
+Stripe,"Compliance Manager, User Enablement",Dublin OR London,https://stripe.com/jobs/search?gh_jid=7530580,Greenhouse,True,2026-09-20
+Stripe,Customer Success Manager,London,https://stripe.com/jobs/search?gh_jid=7810205,Greenhouse,True,2026-09-20
+Stripe,Customer Success Manager ,London,https://stripe.com/jobs/search?gh_jid=8009536,Greenhouse,True,2026-09-20
+Stripe,Customer Success Manager ,London,https://stripe.com/jobs/search?gh_jid=8170772,Greenhouse,True,2026-09-20
+Stripe,"Customer Success Manager, Metronome",London,https://stripe.com/jobs/search?gh_jid=8074199,Greenhouse,True,2026-09-20
+Stripe,EMEA Chief Compliance Officer,"London, Dublin",https://stripe.com/jobs/search?gh_jid=8188321,Greenhouse,True,2026-09-20
+Stripe,"EMEA Demand Generation, Platforms ",London,https://stripe.com/jobs/search?gh_jid=8209626,Greenhouse,True,2026-09-20
+Stripe,GSI Partner Development Lead- EMEA,London,https://stripe.com/jobs/search?gh_jid=7677136,Greenhouse,True,2026-09-20
+Stripe,GTM Recruiter,"Dublin, London",https://stripe.com/jobs/search?gh_jid=8141450,Greenhouse,True,2026-09-20
+Stripe,Indirect Tax Advisory Consultant,Dublin or London,https://stripe.com/jobs/search?gh_jid=7589400,Greenhouse,True,2026-09-20
+Stripe,"Integration Engineer, Metronome ",London,https://stripe.com/jobs/search?gh_jid=8171222,Greenhouse,True,2026-09-20
+Stripe,"Internal Audit - Regulatory Lead, EMEA",London,https://stripe.com/jobs/search?gh_jid=8205278,Greenhouse,True,2026-09-20
+Stripe,Internal Audit - Treasury,Dublin OR London,https://stripe.com/jobs/search?gh_jid=7678541,Greenhouse,True,2026-09-20
+Stripe,"Marketing Operations Program Manager, EMEA Events",London,https://stripe.com/jobs/search?gh_jid=8172495,Greenhouse,True,2026-09-20
+Stripe,"Mobile Engineer, Treasury",United Kingdom,https://stripe.com/jobs/search?gh_jid=7978915,Greenhouse,True,2026-09-20
+Stripe,Partner Development Manager,London,https://stripe.com/jobs/search?gh_jid=8104427,Greenhouse,True,2026-09-20
+Stripe,Partner Development Manager (Banks),London - United Kingdom,https://stripe.com/jobs/search?gh_jid=7289456,Greenhouse,True,2026-09-20
+Stripe,People Analytics Analyst & Business Partner,"Dublin, London",https://stripe.com/jobs/search?gh_jid=8069694,Greenhouse,True,2026-09-20
+Stripe,Privacy Operations Program Manager,"Dublin, London",https://stripe.com/jobs/search?gh_jid=8094087,Greenhouse,True,2026-09-20
+Stripe,Product Compliance and Enablement Manager,"London, Dublin",https://stripe.com/jobs/search?gh_jid=8003129,Greenhouse,True,2026-09-20
+Stripe,"Product Design Manager, Global Payments",United Kingdom,https://stripe.com/jobs/search?gh_jid=8096726,Greenhouse,True,2026-09-20
+Stripe,"Product Designer, Risk",Ireland / United Kingdom,https://stripe.com/jobs/search?gh_jid=7954118,Greenhouse,True,2026-09-20
+Stripe,"Product Manager, Professional Services","Dublin, London",https://stripe.com/jobs/search?gh_jid=8007692,Greenhouse,True,2026-09-20
+Stripe,"Risk Partnerships Manager, Banks & Treasury","London, Dublin, UK-Remote",https://stripe.com/jobs/search?gh_jid=8178563,Greenhouse,True,2026-09-20
+Stripe,"Software Engineer, Intern",London,https://stripe.com/jobs/search?gh_jid=8130867,Greenhouse,True,2026-09-20
+Stripe,"Software Engineer, Money Movement ",London,https://stripe.com/jobs/search?gh_jid=7208537,Greenhouse,True,2026-09-20
+Stripe,"Software Engineer, New Grad",London,https://stripe.com/jobs/search?gh_jid=8130930,Greenhouse,True,2026-09-20
+Stripe,"Solutions Architect, Enterprise, UK ","London, UK",https://stripe.com/jobs/search?gh_jid=7882492,Greenhouse,True,2026-09-20
+Stripe,"Solutions Architect, Metronome (AI Native)",London,https://stripe.com/jobs/search?gh_jid=8168813,Greenhouse,True,2026-09-20
+Stripe,"Solutions Architect, Metronome (Startups)",London,https://stripe.com/jobs/search?gh_jid=8179419,Greenhouse,True,2026-09-20
+Stripe,"Specialist Solutions Architect, Payments","London, Dublin",https://stripe.com/jobs/search?gh_jid=8119967,Greenhouse,True,2026-09-20
+Stripe,"Staff Product Manager, Issuing",London,https://stripe.com/jobs/search?gh_jid=8043083,Greenhouse,True,2026-09-20
+Stripe,"Staff Product Manager, Local Payment Methods Growth",London,https://stripe.com/jobs/search?gh_jid=8142649,Greenhouse,True,2026-09-20
+Stripe,"Staff Security Engineer, Abuse Control",London,https://stripe.com/jobs/search?gh_jid=8211180,Greenhouse,True,2026-09-20
+Stripe,"Strategic Account Executive, Platforms",London,https://stripe.com/jobs/search?gh_jid=8129954,Greenhouse,True,2026-09-20
+Stripe,"Technical Support Engineer (EMEA), Metronome","London, Dublin",https://stripe.com/jobs/search?gh_jid=7737248,Greenhouse,True,2026-09-20
+Stripe,UK Public Sector Lead,London,https://stripe.com/jobs/search?gh_jid=8096121,Greenhouse,True,2026-09-20
+Stripe,University Recruiter,"Dublin, London",https://stripe.com/jobs/search?gh_jid=8128011,Greenhouse,True,2026-09-20
+SumUp, Field Sales Consultant - UK - Bradford,"Bradford, England, United Kingdom",https://sumup.com/careers/positions/8313796002?gh_jid=8313796002,Greenhouse,True,2026-09-20
+SumUp, Field Sales Consultant - UK - Glasgow,"Glasgow, Scotland, United Kingdom",https://sumup.com/careers/positions/8313807002?gh_jid=8313807002,Greenhouse,True,2026-09-20
+SumUp, Field Sales Consultant - UK - Wolverhampton,"Wolverhampton, England, United Kingdom",https://sumup.com/careers/positions/8313726002?gh_jid=8313726002,Greenhouse,True,2026-09-20
+SumUp,Account Executive,"London, England, United Kingdom",https://sumup.com/careers/positions/8097315002?gh_jid=8097315002,Greenhouse,True,2026-09-20
+SumUp,Brand Marketing Designer - (Fixed Contract 12 months) ,"London, England, United Kingdom",https://sumup.com/careers/positions/8794667002?gh_jid=8794667002,Greenhouse,True,2026-09-20
+SumUp,Business Development Manager – Payments & POS,"Newcastle upon Tyne, England, United Kingdom",https://sumup.com/careers/positions/7789384002?gh_jid=7789384002,Greenhouse,True,2026-09-20
+SumUp,Engineering Manager,"London, England, United Kingdom",https://sumup.com/careers/positions/8213032002?gh_jid=8213032002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Area Manager - Scotland ,"Glasgow, Scotland, United Kingdom",https://sumup.com/careers/positions/8795352002?gh_jid=8795352002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK - Belfast,"Belfast, Northern Ireland, United Kingdom",https://sumup.com/careers/positions/8313760002?gh_jid=8313760002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK - Brighton ,"Brighton, England, United Kingdom",https://sumup.com/careers/positions/8313716002?gh_jid=8313716002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK - Cardiff,"Cardiff, Wales, United Kingdom",https://sumup.com/careers/positions/8313746002?gh_jid=8313746002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK - Edinburgh,"Edinburgh, Scotland, United Kingdom",https://sumup.com/careers/positions/8313837002?gh_jid=8313837002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK - Hull,"Hull, England, United Kingdom",https://sumup.com/careers/positions/8313886002?gh_jid=8313886002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK - Leicester,"Leicester, England, United Kingdom",https://sumup.com/careers/positions/8313736002?gh_jid=8313736002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK - Liverpool,"Liverpool, England, United Kingdom",https://sumup.com/careers/positions/8313865002?gh_jid=8313865002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK - Newcastle,"Newcastle upon Tyne, England, United Kingdom",https://sumup.com/careers/positions/8313856002?gh_jid=8313856002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK - Sheffield,"Sheffield, England, United Kingdom",https://sumup.com/careers/positions/8313772002?gh_jid=8313772002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Consultant - UK -Nottingham,"Nottingham, England, United Kingdom",https://sumup.com/careers/positions/8313875002?gh_jid=8313875002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Portsmouth, England, United Kingdom",https://sumup.com/careers/positions/8638021002?gh_jid=8638021002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Belfast, Northern Ireland, United Kingdom",https://sumup.com/careers/positions/7786542002?gh_jid=7786542002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Colchester, England, United Kingdom",https://sumup.com/careers/positions/7786771002?gh_jid=7786771002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Norwich, England, United Kingdom",https://sumup.com/careers/positions/7810133002?gh_jid=7810133002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Peterborough, England, United Kingdom",https://sumup.com/careers/positions/7810136002?gh_jid=7810136002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Hemel Hempstead, England, United Kingdom",https://sumup.com/careers/positions/8221929002?gh_jid=8221929002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Crewe, England, United Kingdom",https://sumup.com/careers/positions/8638007002?gh_jid=8638007002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Southampton, England, United Kingdom",https://sumup.com/careers/positions/8638023002?gh_jid=8638023002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Ipswich, England, United Kingdom",https://sumup.com/careers/positions/7810142002?gh_jid=7810142002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Londonderry, Northern Ireland, United Kingdom",https://sumup.com/careers/positions/8642854002?gh_jid=8642854002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Maidstone, England, United Kingdom",https://sumup.com/careers/positions/8644476002?gh_jid=8644476002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Canterbury, England, United Kingdom",https://sumup.com/careers/positions/8644506002?gh_jid=8644506002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Redhill, England, United Kingdom",https://sumup.com/careers/positions/8644570002?gh_jid=8644570002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Edinburgh, Scotland, United Kingdom",https://sumup.com/careers/positions/8209300002?gh_jid=8209300002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Stevenage, England, United Kingdom",https://sumup.com/careers/positions/7810145002?gh_jid=7810145002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Stoke-on-Trent, England, United Kingdom",https://sumup.com/careers/positions/8644751002?gh_jid=8644751002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Southend-on-Sea, England, United Kingdom",https://sumup.com/careers/positions/7810159002?gh_jid=7810159002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Chelmsford, England, United Kingdom",https://sumup.com/careers/positions/7810182002?gh_jid=7810182002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Coventry, England, United Kingdom",https://sumup.com/careers/positions/8381301002?gh_jid=8381301002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Blackpool, England, United Kingdom",https://sumup.com/careers/positions/8638008002?gh_jid=8638008002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Worcester, England, United Kingdom",https://sumup.com/careers/positions/8542561002?gh_jid=8542561002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Cambridge, England, United Kingdom",https://sumup.com/careers/positions/8526376002?gh_jid=8526376002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"St Albans, England, United Kingdom",https://sumup.com/careers/positions/8209155002?gh_jid=8209155002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Oxford, England, United Kingdom",https://sumup.com/careers/positions/8493810002?gh_jid=8493810002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Luton, England, United Kingdom",https://sumup.com/careers/positions/8209162002?gh_jid=8209162002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Enfield, England, United Kingdom",https://sumup.com/careers/positions/8209165002?gh_jid=8209165002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Dartford, England, United Kingdom",https://sumup.com/careers/positions/8472179002?gh_jid=8472179002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Guildford, England, United Kingdom",https://sumup.com/careers/positions/8209186002?gh_jid=8209186002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Sheffield, England, United Kingdom",https://sumup.com/careers/positions/8456566002?gh_jid=8456566002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Nottingham, England, United Kingdom",https://sumup.com/careers/positions/8456554002?gh_jid=8456554002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Derby, England, United Kingdom",https://sumup.com/careers/positions/8456541002?gh_jid=8456541002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Bradford, England, United Kingdom",https://sumup.com/careers/positions/8456536002?gh_jid=8456536002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"York, England, United Kingdom",https://sumup.com/careers/positions/8456534002?gh_jid=8456534002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Leeds, England, United Kingdom",https://sumup.com/careers/positions/8456531002?gh_jid=8456531002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Hull, England, United Kingdom",https://sumup.com/careers/positions/8456529002?gh_jid=8456529002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Northampton, England, United Kingdom",https://sumup.com/careers/positions/8209216002?gh_jid=8209216002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Lancaster, England, United Kingdom",https://sumup.com/careers/positions/8209395002?gh_jid=8209395002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Swansea, Wales, United Kingdom",https://sumup.com/careers/positions/8209409002?gh_jid=8209409002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Liverpool, England, United Kingdom",https://sumup.com/careers/positions/8638004002?gh_jid=8638004002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive,"Carlisle, England, United Kingdom",https://sumup.com/careers/positions/8638006002?gh_jid=8638006002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive ,"Darlington, England, United Kingdom",https://sumup.com/careers/positions/8642839002?gh_jid=8642839002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive ,"Glasgow, Scotland, United Kingdom",https://sumup.com/careers/positions/8441337002?gh_jid=8441337002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Executive - South West London,"London, England, United Kingdom",https://sumup.com/careers/positions/8644509002?gh_jid=8644509002,Greenhouse,True,2026-09-20
+SumUp,Field Sales Representative,"London, England, United Kingdom",https://sumup.com/careers/positions/8493802002?gh_jid=8493802002,Greenhouse,True,2026-09-20
+SumUp,Head of Consumer Growth,"London, England, United Kingdom",https://sumup.com/careers/positions/8634772002?gh_jid=8634772002,Greenhouse,True,2026-09-20
+SumUp,Inbound Account Executive [Dutch Market],"London, England, United Kingdom",https://sumup.com/careers/positions/8564784002?gh_jid=8564784002,Greenhouse,True,2026-09-20
+SumUp,Junior Inbound Sales Representative [Nordics],"London, England, United Kingdom",https://sumup.com/careers/positions/8713865002?gh_jid=8713865002,Greenhouse,True,2026-09-20
+SumUp,Regional Head of Key Account Sales,"London, England, United Kingdom",https://sumup.com/careers/positions/8537093002?gh_jid=8537093002,Greenhouse,True,2026-09-20
+SumUp,Senior Commercial Finance Business Partner,"London, England, United Kingdom",https://sumup.com/careers/positions/8690955002?gh_jid=8690955002,Greenhouse,True,2026-09-20
+SumUp,Senior Internal Auditor ,"London, England, United Kingdom",https://sumup.com/careers/positions/8646778002?gh_jid=8646778002,Greenhouse,True,2026-09-20
+SumUp,Senior Marketing Manager - Consumer ,"London, England, United Kingdom",https://sumup.com/careers/positions/8690954002?gh_jid=8690954002,Greenhouse,True,2026-09-20
+SumUp,Senior Product Data Analyst - Consumer Growth,"London, England, United Kingdom",https://sumup.com/careers/positions/8559467002?gh_jid=8559467002,Greenhouse,True,2026-09-20
+SumUp,Senior Product Data Analyst- Consumer Growth,"London, England, United Kingdom",https://sumup.com/careers/positions/8458941002?gh_jid=8458941002,Greenhouse,True,2026-09-20
+SumUp,Senior Product Designer,"London, England, United Kingdom",https://sumup.com/careers/positions/8427124002?gh_jid=8427124002,Greenhouse,True,2026-09-20
+SumUp,Senior iOS Engineer,"London, England, United Kingdom",https://sumup.com/careers/positions/8468017002?gh_jid=8468017002,Greenhouse,True,2026-09-20
+SumUp,Workday Specialist,"London, England, United Kingdom",https://sumup.com/careers/positions/8558369002?gh_jid=8558369002,Greenhouse,True,2026-09-20
+contentful,"Customer Success Manager, Growth (f/m/d)","London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8160121,Greenhouse,True,2026-09-20
+contentful,Enterprise Account Executive - DACH (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8193675,Greenhouse,True,2026-09-20
+contentful,Enterprise Account Executive - German Speaking (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8197219,Greenhouse,True,2026-09-20
+contentful,Mid Market Account Executive - DACH (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8202957,Greenhouse,True,2026-09-20
+contentful,Mid Market Account Executive - France (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8193736,Greenhouse,True,2026-09-20
+contentful,Mid Market Account Executive - French Speaking (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8197036,Greenhouse,True,2026-09-20
+contentful,Mid Market Account Executive - German Speaking (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8202959,Greenhouse,True,2026-09-20
+contentful,Senior Sales Engineer (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8204989,Greenhouse,True,2026-09-20
+contentful,Senior Solution Engineer (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8204987,Greenhouse,True,2026-09-20
+contentful,Senior Solution Engineer (f/m/d),"London, England, United Kingdom",https://job-boards.greenhouse.io/contentful/jobs/8209860,Greenhouse,True,2026-09-20
+datadog,"Director, Technical Account Management ","Dublin, Ireland; London, United Kingdom; Paris, France",https://careers.datadoghq.com/detail/7658810/?gh_jid=7658810,Greenhouse,True,2026-09-20
+datadog,Enterprise Account Executive (UKI) - Public Sector,"London, United Kingdom",https://careers.datadoghq.com/detail/7599334/?gh_jid=7599334,Greenhouse,True,2026-09-20
+datadog,Enterprise Account Executive - UKI,"London, United Kingdom",https://careers.datadoghq.com/detail/6836442/?gh_jid=6836442,Greenhouse,True,2026-09-20
+datadog,Enterprise Sales Engineer - UK,"United Kingdom, Remote",https://careers.datadoghq.com/detail/7487353/?gh_jid=7487353,Greenhouse,True,2026-09-20
+datadog,Field Marketing Manager (UKI),"London, United Kingdom",https://careers.datadoghq.com/detail/8114585/?gh_jid=8114585,Greenhouse,True,2026-09-20
+datadog,Key Accounts Executive - EMEA,"Germany, Remote; London, United Kingdom",https://careers.datadoghq.com/detail/6485604/?gh_jid=6485604,Greenhouse,True,2026-09-20
+datadog,"Manager, Field Enablement EMEA","Amsterdam, The Netherlands; Dublin, Ireland; London, United Kingdom",https://careers.datadoghq.com/detail/8173964/?gh_jid=8173964,Greenhouse,True,2026-09-20
+datadog,Partner Solutions Architect (Pan-EMEA GSI),"Amsterdam, The Netherlands; Germany, Remote; Italy, Remote; London, United Kingdom; Madrid, Spain; Stockholm, Sweden",https://careers.datadoghq.com/detail/7997198/?gh_jid=7997198,Greenhouse,True,2026-09-20
+datadog,Principal GSI Partner Manager - Accenture (EMEA),"United Kingdom, Remote",https://careers.datadoghq.com/detail/8203733/?gh_jid=8203733,Greenhouse,True,2026-09-20
+datadog,Principal Partner Manager - Channels (EMEA GSI),"Amsterdam, The Netherlands; Berlin, Germany; Copenhagen, Denmark; London, United Kingdom; Paris, France; Stockholm, Sweden",https://careers.datadoghq.com/detail/8039295/?gh_jid=8039295,Greenhouse,True,2026-09-20
+datadog,Principal Partner Manager - Channels (UKI Security),"United Kingdom, Remote",https://careers.datadoghq.com/detail/8146927/?gh_jid=8146927,Greenhouse,True,2026-09-20
+datadog,Principal Partner Manager - Channels (UKI Security),"London, United Kingdom",https://careers.datadoghq.com/detail/7747740/?gh_jid=7747740,Greenhouse,True,2026-09-20
+datadog,"Recruiter, Enterprise Sales","Dublin, Ireland; London, United Kingdom",https://careers.datadoghq.com/detail/8096400/?gh_jid=8096400,Greenhouse,True,2026-09-20
+datadog,"Regional Manager, Sales Engineering - UK","London, United Kingdom",https://careers.datadoghq.com/detail/8048106/?gh_jid=8048106,Greenhouse,True,2026-09-20
+datadog,Senior Field Enablement Manager,"London, United Kingdom",https://careers.datadoghq.com/detail/8170639/?gh_jid=8170639,Greenhouse,True,2026-09-20
+datadog,Senior Partner Manager - Channels (UKI),"London, United Kingdom",https://careers.datadoghq.com/detail/8082007/?gh_jid=8082007,Greenhouse,True,2026-09-20
+datadog,Senior Partner Marketing Manager - Cloud & Channel,"London, United Kingdom; Madrid, Spain",https://careers.datadoghq.com/detail/8127916/?gh_jid=8127916,Greenhouse,True,2026-09-20
+datadog,Senior Sales Engineer - Majors (UK/Nordics/Netherlands),"Denmark, Remote; Sweden, Remote; The Netherlands, Remote; United Kingdom, Remote",https://careers.datadoghq.com/detail/7904634/?gh_jid=7904634,Greenhouse,True,2026-09-20
+datadog,Senior Sales Engineer - Public Sector (UK),"London, United Kingdom",https://careers.datadoghq.com/detail/8030214/?gh_jid=8030214,Greenhouse,True,2026-09-20
+datadog,Senior Software Engineer - REDAPL Graph Engine,"France, Remote; Germany, Remote; Italy, Remote; Spain, Remote; Switzerland, Remote; United Kingdom, Remote",https://careers.datadoghq.com/detail/7959966/?gh_jid=7959966,Greenhouse,True,2026-09-20
+datadog,Services Architect 3 - Paris/London,"London, United Kingdom; Paris, France",https://careers.datadoghq.com/detail/8128182/?gh_jid=8128182,Greenhouse,True,2026-09-20
+datadog,Strategic Account Executive (UKI),"London, United Kingdom",https://careers.datadoghq.com/detail/5622381/?gh_jid=5622381,Greenhouse,True,2026-09-20
+datadog,Strategic Account Executive (UKI) - Public Sector,"London, United Kingdom",https://careers.datadoghq.com/detail/7591735/?gh_jid=7591735,Greenhouse,True,2026-09-20
+datadog,Technical Enablement Manager (Italian Speaking),"Amsterdam, The Netherlands; Dublin, Ireland; London, United Kingdom; Paris, France",https://careers.datadoghq.com/detail/8046399/?gh_jid=8046399,Greenhouse,True,2026-09-20
+deliveroo,Account Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202437,Greenhouse,True,2026-09-20
+deliveroo,Account Manager - French Speaking (L1/I2),"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202576,Greenhouse,True,2026-09-20
+deliveroo,Account Manager - Italian Speaking,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202351,Greenhouse,True,2026-09-20
+deliveroo,Analytics Engineering Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206309,Greenhouse,True,2026-09-20
+deliveroo,B2B Demand Generation Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206635,Greenhouse,True,2026-09-20
+deliveroo,Business Development Manager - Bristol (L2),"Bristol, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8205894,Greenhouse,True,2026-09-20
+deliveroo,Business Development Manager - Core London,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202625,Greenhouse,True,2026-09-20
+deliveroo,Business Development Manager - Greater London,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202444,Greenhouse,True,2026-09-20
+deliveroo,Business Development Manager - Newcastle,"Leeds, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8206335,Greenhouse,True,2026-09-20
+deliveroo,"City Manager, Yorkshire","Leeds, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202584,Greenhouse,True,2026-09-20
+deliveroo,Commercial Merchant Support Agent,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8205852,Greenhouse,True,2026-09-20
+deliveroo,Customer Service Agent (Italian Speaking) - Inbound B2B,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8205780,Greenhouse,True,2026-09-20
+deliveroo,Data Science Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202485,Greenhouse,True,2026-09-20
+deliveroo,Digital Marketing Manager - Programmatic - FTC,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206537,Greenhouse,True,2026-09-20
+deliveroo,Enterprise Client Partner - Deliveroo for Work,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206281,Greenhouse,True,2026-09-20
+deliveroo,Finance Manager - 12-month FTC,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206555,Greenhouse,True,2026-09-20
+deliveroo,Finance and Strategy Senior Associate,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202464,Greenhouse,True,2026-09-20
+deliveroo,"Franchisee Manager, Enterprise QSR","Bristol, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8206393,Greenhouse,True,2026-09-20
+deliveroo,"Franchisee Manager, Enterprise QSR","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206421,Greenhouse,True,2026-09-20
+deliveroo,French SDR Inbound (LE),"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202370,Greenhouse,True,2026-09-20
+deliveroo,Global Advertising Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206607,Greenhouse,True,2026-09-20
+deliveroo,"Group Product Manager, Regulatory Finance","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206315,Greenhouse,True,2026-09-20
+deliveroo,Machine Learning Engineer - Growth & Personalisation,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202399,Greenhouse,True,2026-09-20
+deliveroo,"Manager Engineering, Accounting Data and Systems","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206469,Greenhouse,True,2026-09-20
+deliveroo,New Partner Experience Advisor (Dutch/Flemish Speaking) - Belgium Market,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202613,Greenhouse,True,2026-09-20
+deliveroo,New Partner Experience Advisor (UKI Market),"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202431,Greenhouse,True,2026-09-20
+deliveroo,New Partner Experience Advisor - French Speaking (NPX Team) - LE,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202544,Greenhouse,True,2026-09-20
+deliveroo,New Partner Experience Advisor - Italian Speaking,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202392,Greenhouse,True,2026-09-20
+deliveroo,Partner Operations Manager,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8206029,Greenhouse,True,2026-09-20
+deliveroo,"Product Manager, Double Order","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8205858,Greenhouse,True,2026-09-20
+deliveroo,Restaurant Launch Assistant - Dutch Speaking,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202572,Greenhouse,True,2026-09-20
+deliveroo,Rider Onboarding Associate - (6 Months FTC),"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206405,Greenhouse,True,2026-09-20
+deliveroo,SMB Account Manager - UKI,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202542,Greenhouse,True,2026-09-20
+deliveroo,SMB Program Manager,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8205822,Greenhouse,True,2026-09-20
+deliveroo,Sales Development Representative,"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202388,Greenhouse,True,2026-09-20
+deliveroo,Sales Development Representative (Italian Speaking),"Manchester, United Kingdom",https://job-boards.greenhouse.io/deliveroo/jobs/8202483,Greenhouse,True,2026-09-20
+deliveroo,Senior B2B Marketing Operations Executive,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8205836,Greenhouse,True,2026-09-20
+deliveroo,Senior Corporate Security Engineer,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206001,Greenhouse,True,2026-09-20
+deliveroo,Senior Data Scientist,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202372,Greenhouse,True,2026-09-20
+deliveroo,Senior Data Scientist - Business Operations,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202582,Greenhouse,True,2026-09-20
+deliveroo,"Senior Engineer, Accounting Infrastructure and Systems","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8205832,Greenhouse,True,2026-09-20
+deliveroo,Senior Finance & Strategy Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202386,Greenhouse,True,2026-09-20
+deliveroo,Senior Finance Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206575,Greenhouse,True,2026-09-20
+deliveroo,Senior Machine Learning Engineer,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202532,Greenhouse,True,2026-09-20
+deliveroo,"Senior Manager, Accounting","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206082,Greenhouse,True,2026-09-20
+deliveroo,"Senior Manager, Commercial Enablement","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206007,Greenhouse,True,2026-09-20
+deliveroo,"Senior Manager, Corporate Services Sourcing","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206517,Greenhouse,True,2026-09-20
+deliveroo,"Senior Manager, Global HR Compliance","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206291,Greenhouse,True,2026-09-20
+deliveroo,"Senior Marketing Manager, Search and App - Europe","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8205934,Greenhouse,True,2026-09-20
+deliveroo,Senior National Account Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8205864,Greenhouse,True,2026-09-20
+deliveroo,Senior National Account Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202380,Greenhouse,True,2026-09-20
+deliveroo,"Senior Platform Engineer, Developer Platform","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8205924,Greenhouse,True,2026-09-20
+deliveroo,Senior Product Manager,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206031,Greenhouse,True,2026-09-20
+deliveroo,"Senior Product Manager, Core People Technology","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206559,Greenhouse,True,2026-09-20
+deliveroo,"Senior Product Manager, New Verticals","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206045,Greenhouse,True,2026-09-20
+deliveroo,"Senior Product Manager, Retail","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206035,Greenhouse,True,2026-09-20
+deliveroo,Senior Software Engineer,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202407,Greenhouse,True,2026-09-20
+deliveroo,Senior Software Engineer - Android,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202417,Greenhouse,True,2026-09-20
+deliveroo,Senior Software Engineer - Full-Stack,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202536,Greenhouse,True,2026-09-20
+deliveroo,Senior Software Engineer - iOS,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202448,Greenhouse,True,2026-09-20
+deliveroo,"Senior Software Engineer, Android SDUI","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206363,Greenhouse,True,2026-09-20
+deliveroo,"Senior Software Engineer, Event Streaming Systems","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206057,Greenhouse,True,2026-09-20
+deliveroo,"Senior Software Engineer, Proactive Security","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206049,Greenhouse,True,2026-09-20
+deliveroo,Software Engineer,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202489,Greenhouse,True,2026-09-20
+deliveroo,Software Engineer,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206351,Greenhouse,True,2026-09-20
+deliveroo,Software Engineer II - Full-Stack,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202568,Greenhouse,True,2026-09-20
+deliveroo,"Software Engineer, Backend (BI Platform)","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206463,Greenhouse,True,2026-09-20
+deliveroo,"Software Engineer, GenAI Platform","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206423,Greenhouse,True,2026-09-20
+deliveroo,"Software Engineer, New Grad","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202627,Greenhouse,True,2026-09-20
+deliveroo,Staff Machine Learning Engineer - Ads Bidding,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206645,Greenhouse,True,2026-09-20
+deliveroo,Staff Product Designer,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202562,Greenhouse,True,2026-09-20
+deliveroo,Staff Product Designer (12-Month FTC),"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202607,Greenhouse,True,2026-09-20
+deliveroo,"Staff Product Manager, People Product","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8205774,Greenhouse,True,2026-09-20
+deliveroo,Staff Software Engineer,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202586,Greenhouse,True,2026-09-20
+deliveroo,Staff Software Engineer - Full-Stack,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8202560,Greenhouse,True,2026-09-20
+deliveroo,"Staff Software Engineer, Dev Environments","London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206509,Greenhouse,True,2026-09-20
+deliveroo,Strategy & Operations Manager - Payments Risk & Fraud,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206371,Greenhouse,True,2026-09-20
+deliveroo,Strategy & Operations Manager – Emerging Fraud & Abuse,"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206375,Greenhouse,True,2026-09-20
+deliveroo,Technical Sourcer (FTC),"London, United Kingdom - Deliveroo",https://job-boards.greenhouse.io/deliveroo/jobs/8206577,Greenhouse,True,2026-09-20
+dropbox,Regional Sales Operations Manager - EMEA (Remote),Remote - Ireland; Remote - United Kingdom,https://jobs.dropbox.com/listing/8075216?gh_jid=8075216,Greenhouse,True,2026-09-20
+dropbox,Senior Account Executive UKI - Growth ,Remote - Ireland; Remote - United Kingdom,https://jobs.dropbox.com/listing/8051403?gh_jid=8051403,Greenhouse,True,2026-09-20
+elastic,AWS Alliance Director — EMEA,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8121350&gh_jid=8121350,Greenhouse,True,2026-09-20
+elastic,Elastic Consulting Architect - Public Sector,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8018328&gh_jid=8018328,Greenhouse,True,2026-09-20
+elastic,Enterprise Account Executive,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8035004&gh_jid=8035004,Greenhouse,True,2026-09-20
+elastic,Mid Market Account Executive,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8158597&gh_jid=8158597,Greenhouse,True,2026-09-20
+elastic,Principal Product Manager (Strategic Account Interactions) - Security Solutions,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8155427&gh_jid=8155427,Greenhouse,True,2026-09-20
+elastic,Principal Software Engineer - Search Infra - Elasticsearch,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8213963&gh_jid=8213963,Greenhouse,True,2026-09-20
+elastic,Public Sector Account Executive (DWP) ,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=7728182&gh_jid=7728182,Greenhouse,True,2026-09-20
+elastic,Public Sector Account Executive (Education),"London, United Kingdom",https://jobs.elastic.co/jobs?gh_jid=8045325&gh_jid=8045325,Greenhouse,True,2026-09-20
+elastic,Public Sector Account Executive - Defence,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8143969&gh_jid=8143969,Greenhouse,True,2026-09-20
+elastic,Public Sector Partner Manager,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8026175&gh_jid=8026175,Greenhouse,True,2026-09-20
+elastic,Regional Vice President ,"London, United Kingdom",https://jobs.elastic.co/jobs?gh_jid=8103077&gh_jid=8103077,Greenhouse,True,2026-09-20
+elastic,Senior Information Security Infrastructure Engineer - Security Architecture - InfoSec,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8195967&gh_jid=8195967,Greenhouse,True,2026-09-20
+elastic,Senior Software Engineer - Integrations 3P - Platform,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8173421&gh_jid=8173421,Greenhouse,True,2026-09-20
+elastic,Senior Software Engineer - Prism - Security,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8168938&gh_jid=8168938,Greenhouse,True,2026-09-20
+elastic,Senior Solutions Architect,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8023149&gh_jid=8023149,Greenhouse,True,2026-09-20
+elastic,Software Engineer II - EDR Workflows - Security,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8173419&gh_jid=8173419,Greenhouse,True,2026-09-20
+elastic,Solutions Architect - Search Specialist ,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8153272&gh_jid=8153272,Greenhouse,True,2026-09-20
+elastic,UK Commercial Counsel Public Sector,United Kingdom,https://jobs.elastic.co/jobs?gh_jid=8044321&gh_jid=8044321,Greenhouse,True,2026-09-20
+figma,"Account Executive, Mid-Market (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5415515004?gh_jid=5415515004,Greenhouse,True,2026-09-20
+figma,"Account Executive, SMB (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5647851004?gh_jid=5647851004,Greenhouse,True,2026-09-20
+figma,"Customer Enablement Manager (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6130557004?gh_jid=6130557004,Greenhouse,True,2026-09-20
+figma,"Designer Advocate (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6122399004?gh_jid=6122399004,Greenhouse,True,2026-09-20
+figma,"Director, Enterprise Sales (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6130524004?gh_jid=6130524004,Greenhouse,True,2026-09-20
+figma,"Director, SMB Sales (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6163420004?gh_jid=6163420004,Greenhouse,True,2026-09-20
+figma,"Enterprise Support Specialist, Korean Speaking (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6105678004?gh_jid=6105678004,Greenhouse,True,2026-09-20
+figma,"Manager, Inside Sales (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6010992004?gh_jid=6010992004,Greenhouse,True,2026-09-20
+figma,"Manager, Mid-Market Sales (London, United Kingdom) ","London, England",https://boards.greenhouse.io/figma/jobs/6186265004?gh_jid=6186265004,Greenhouse,True,2026-09-20
+figma,"Manager, Product Management - Roundtripping (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6149007004?gh_jid=6149007004,Greenhouse,True,2026-09-20
+figma,"Manager, Solutions Consulting (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6111591004?gh_jid=6111591004,Greenhouse,True,2026-09-20
+figma,"Manager, Technical Support (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6189444004?gh_jid=6189444004,Greenhouse,True,2026-09-20
+figma,"Product Designer, Roundtripping (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6193686004?gh_jid=6193686004,Greenhouse,True,2026-09-20
+figma,"Program Manager, Scale Onboarding (London, United Kingdom) ","London, England",https://boards.greenhouse.io/figma/jobs/6130540004?gh_jid=6130540004,Greenhouse,True,2026-09-20
+figma,"Senior Account Executive, UK Government (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5988684004?gh_jid=5988684004,Greenhouse,True,2026-09-20
+figma,"Senior Manager, Enterprise Sales (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/6124232004?gh_jid=6124232004,Greenhouse,True,2026-09-20
+figma,"Software Engineer - AI Product (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5551697004?gh_jid=5551697004,Greenhouse,True,2026-09-20
+figma,"Software Engineer Intern (London, United Kingdom) (Summer 2027) ","London, England",https://boards.greenhouse.io/figma/jobs/6152695004?gh_jid=6152695004,Greenhouse,True,2026-09-20
+figma,"Solutions Consultant (London, United Kingdom)","London, England",https://boards.greenhouse.io/figma/jobs/5735493004?gh_jid=5735493004,Greenhouse,True,2026-09-20
+mongodb,Enterprise Account Executive,London,https://www.mongodb.com/careers/job/?gh_jid=8153715,Greenhouse,True,2026-09-20
+mongodb,Enterprise Account Executive,London,https://www.mongodb.com/careers/job/?gh_jid=7607210,Greenhouse,True,2026-09-20
+mongodb,Enterprise Account Executive	,London,https://www.mongodb.com/careers/job/?gh_jid=7219459,Greenhouse,True,2026-09-20
+mongodb,"Enterprise Account Executive, AI Natives",London,https://www.mongodb.com/careers/job/?gh_jid=8147938,Greenhouse,True,2026-09-20
+mongodb,"Manager, Solutions Architecture",London,https://www.mongodb.com/careers/job/?gh_jid=8076696,Greenhouse,True,2026-09-20
+mongodb,"Regional Director, Enterprise, Growth",London,https://www.mongodb.com/careers/job/?gh_jid=8148001,Greenhouse,True,2026-09-20
+mongodb,Regional Marketing Manager,London,https://www.mongodb.com/careers/job/?gh_jid=8129878,Greenhouse,True,2026-09-20
+mongodb,Senior Consulting Engineer,Great Britain; London,https://www.mongodb.com/careers/job/?gh_jid=8127859,Greenhouse,True,2026-09-20
+mongodb,Senior Customer Success Manager,"Dublin, Ireland; London",https://www.mongodb.com/careers/job/?gh_jid=8091796,Greenhouse,True,2026-09-20
+mongodb,Senior Enterprise Account Executive,London,https://www.mongodb.com/careers/job/?gh_jid=7227836,Greenhouse,True,2026-09-20
+mongodb,Solutions Architect,London,https://www.mongodb.com/careers/job/?gh_jid=8174075,Greenhouse,True,2026-09-20
+reddit,"Community Manager, French Speaking (Contract)",Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8143677,Greenhouse,True,2026-09-20
+reddit,"Country Lead, Business Marketing, UK","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8121099,Greenhouse,True,2026-09-20
+reddit,Global Indirect Tax Manager,Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8189894,Greenhouse,True,2026-09-20
+reddit,"Manager, Large Customer Sales - UK","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8023926,Greenhouse,True,2026-09-20
+reddit,"Senior Client Account Manager, Global Strategic Accounts (UK)","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8017263,Greenhouse,True,2026-09-20
+reddit,"Senior Client Partner, Global Strategic Accounts (UK)","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8017196,Greenhouse,True,2026-09-20
+reddit,Senior Growth Manager (Contract),Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8143702,Greenhouse,True,2026-09-20
+reddit,"Senior Growth Manager,  UK","London, United Kingdom",https://job-boards.greenhouse.io/reddit/jobs/8030230,Greenhouse,True,2026-09-20
+reddit,"Staff Machine Learning Engineer, Ads Foundational Representations",Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8018513,Greenhouse,True,2026-09-20
+reddit,"Trust and Safety Policy, Ads Policy,  Lead (Europe)",Remote - United Kingdom,https://job-boards.greenhouse.io/reddit/jobs/8190627,Greenhouse,True,2026-09-20
+webflow,"Account Executive, EMEA (Germany)","London, U.K. (Hybrid)",https://job-boards.greenhouse.io/webflow/jobs/7951430,Greenhouse,True,2026-09-20
+webflow,"Partner Manager, EMEA (French Speaking)","London, U.K. (Hybrid)",https://job-boards.greenhouse.io/webflow/jobs/8106093,Greenhouse,True,2026-09-20
+webflow,Sales Development Representative (German Speaking) ,"London, U.K. (Hybrid)",https://job-boards.greenhouse.io/webflow/jobs/7241307,Greenhouse,True,2026-09-20
+webflow,"Sales Development Representative (SDR), EMEA","London, U.K. (Hybrid)",https://job-boards.greenhouse.io/webflow/jobs/7241229,Greenhouse,True,2026-09-20
+webflow,"Senior Solutions Architect, EMEA","London, U.K. (Hybrid)",https://job-boards.greenhouse.io/webflow/jobs/8152736,Greenhouse,True,2026-09-20
