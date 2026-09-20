@@ -1610,9 +1610,7 @@ today = datetime.today().strftime(
     "%Y-%m-%d"
 )
 
-
 jobs_df["visa_sponsorship_possible"] = True
-
 jobs_df["scraped_date"] = today
 
 
@@ -1628,42 +1626,7 @@ jobs_df["job_url"] = (
 
 
 # =========================================================
-# STEP 22 — FINAL COLUMNS
-# =========================================================
-
-final_columns = [
-
-    "company",
-
-    "job_title",
-
-    "location",
-
-    "job_url",
-
-    "source",
-
-    "is_care_job",
-
-    "is_licensed_sponsor",
-
-    "visa_sponsorship_possible",
-
-    "scraped_date",
-]
-
-
-jobs_df = jobs_df[
-    [
-        column
-        for column in final_columns
-        if column in jobs_df.columns
-    ]
-]
-
-
-# =========================================================
-# STEP 23 — REMOVE DUPLICATES
+# STEP 22 — REMOVE DUPLICATES
 # =========================================================
 
 jobs_df = jobs_df.drop_duplicates(
@@ -1673,6 +1636,23 @@ jobs_df = jobs_df.drop_duplicates(
         "location",
         "job_url",
     ]
+).copy()
+
+
+# =========================================================
+# STEP 23 — COUNT CARE-HOME / CARE JOBS
+# =========================================================
+#
+# is_care_job is used internally only.
+# It will NOT be included in the CSV.
+#
+# Because this happens after sponsor filtering and
+# duplicate removal, this is the number of care jobs
+# actually added to the final CSV.
+# =========================================================
+
+care_home_jobs_added = int(
+    jobs_df["is_care_job"].sum()
 )
 
 
@@ -1695,7 +1675,47 @@ jobs_df = jobs_df.sort_values(
 
 
 # =========================================================
-# STEP 25 — EXPORT SINGLE CSV
+# STEP 25 — FINAL CSV COLUMNS
+# =========================================================
+#
+# IMPORTANT:
+# The CSV will contain ONLY these columns.
+#
+# company
+# job_title
+# location
+# job_url
+# source
+# visa_sponsorship_possible
+# scraped_date
+#
+# Internal columns such as:
+# - is_care_job
+# - is_licensed_sponsor
+# - company_clean
+#
+# are deliberately excluded.
+# =========================================================
+
+final_columns = [
+
+    "company",
+    "job_title",
+    "location",
+    "job_url",
+    "source",
+    "visa_sponsorship_possible",
+    "scraped_date",
+]
+
+
+jobs_df = jobs_df[
+    final_columns
+].copy()
+
+
+# =========================================================
+# STEP 26 — EXPORT SINGLE CSV
 # =========================================================
 
 OUTPUT_FILE = "jobs.csv"
@@ -1709,7 +1729,7 @@ jobs_df.to_csv(
 
 
 # =========================================================
-# STEP 26 — SUMMARY
+# STEP 27 — SUMMARY
 # =========================================================
 
 print("\n" + "=" * 70)
@@ -1721,23 +1741,23 @@ print(
 )
 
 print(
-    f"Total jobs: "
+    f"Total jobs added: "
     f"{len(jobs_df):,}"
 )
 
 print(
-    f"Care-related jobs: "
-    f"{jobs_df['is_care_job'].sum():,}"
+    f"Care-home / care-related jobs added: "
+    f"{care_home_jobs_added:,}"
 )
 
 print(
-    f"Other jobs: "
-    f"{(~jobs_df['is_care_job']).sum():,}"
+    f"Other jobs added: "
+    f"{len(jobs_df) - care_home_jobs_added:,}"
 )
 
 print(
-    f"Licensed sponsor jobs: "
-    f"{jobs_df['is_licensed_sponsor'].sum():,}"
+    f"Visa sponsorship possible: "
+    f"{jobs_df['visa_sponsorship_possible'].sum():,}"
 )
 
 print(
@@ -1753,5 +1773,14 @@ print(
 )
 
 print(
+    "\nCSV columns:"
+)
+
+print(
+    jobs_df.columns.tolist()
+)
+
+print(
     "\nDone."
 )
+
