@@ -7,16 +7,33 @@
 # Output:
 #     jobs.csv
 #
-# Includes:
-#     - Existing Greenhouse companies
-#     - Existing Lever companies
-#     - Existing Workday companies
-#     - Existing SmartRecruiters companies
-#     - Existing Ashby companies
-#     - Care / healthcare job filtering
-#     - GOV.UK sponsor-list verification
+# CSV COLUMNS:
+#     company
+#     job_title
+#     location
+#     job_url
+#     source
+#     visa_sponsorship_possible
+#     scraped_date
+#
+# SOURCES:
+#     - Greenhouse
+#     - Lever
+#     - Workday
+#     - SmartRecruiters
+#     - Ashby
+#     - Barchester Healthcare
+#     - HC-One
+#     - Care UK
+#
+# FILTERING:
+#     - UK jobs only
+#     - Licensed Worker sponsors only
+#     - Care jobs tracked internally
+#     - Care-home jobs counted separately
 #
 # =========================================================
+
 
 import re
 import time
@@ -36,6 +53,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 MAX_WORKERS = 20
 
+REQUEST_TIMEOUT = 30
+
 GOV_PAGE = (
     "https://www.gov.uk/government/publications/"
     "register-of-licensed-sponsors-workers"
@@ -45,12 +64,28 @@ HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0 Safari/537.36"
+        "Chrome/140.0 Safari/537.36"
     ),
-    "Accept": "text/html,application/json,text/csv,*/*",
+    "Accept": (
+        "text/html,application/xhtml+xml,"
+        "application/json,text/csv,*/*"
+    ),
+    "Accept-Language": "en-GB,en;q=0.9",
 }
 
 SPONSOR_FUZZY_THRESHOLD = 88
+
+OUTPUT_FILE = "jobs.csv"
+
+SPONSOR_CSV_FILE = "uk_sponsor_list.csv"
+
+
+# =========================================================
+# SESSION
+# =========================================================
+
+SESSION = requests.Session()
+SESSION.headers.update(HEADERS)
 
 
 # =========================================================
@@ -63,10 +98,9 @@ print("=" * 70)
 
 print("\nFinding latest sponsor list...")
 
-response = requests.get(
+response = SESSION.get(
     GOV_PAGE,
-    headers=HEADERS,
-    timeout=30
+    timeout=REQUEST_TIMEOUT
 )
 
 response.raise_for_status()
@@ -86,7 +120,10 @@ csv_url = None
 for link in soup.find_all("a", href=True):
 
     href = link["href"]
-    text = link.get_text(" ", strip=True).lower()
+    text = link.get_text(
+        " ",
+        strip=True
+    ).lower()
 
     if ".csv" in href.lower():
 
@@ -96,10 +133,12 @@ for link in soup.find_all("a", href=True):
             or "temporary worker" in text
             or "register" in text
         ):
+
             csv_url = urljoin(
                 GOV_PAGE,
                 href
             )
+
             break
 
 
@@ -109,7 +148,10 @@ for link in soup.find_all("a", href=True):
 
 if not csv_url:
 
-    for link in soup.find_all("a", href=True):
+    for link in soup.find_all(
+        "a",
+        href=True
+    ):
 
         href = link["href"]
 
@@ -119,6 +161,7 @@ if not csv_url:
                 GOV_PAGE,
                 href
             )
+
             break
 
 
@@ -130,10 +173,16 @@ if not csv_url:
 
     print("\nLinks found on GOV.UK page:")
 
-    for link in soup.find_all("a", href=True):
+    for link in soup.find_all(
+        "a",
+        href=True
+    ):
 
         print(
-            link.get_text(" ", strip=True),
+            link.get_text(
+                " ",
+                strip=True
+            ),
             "=>",
             link["href"]
         )
@@ -151,9 +200,8 @@ print(csv_url)
 # Download CSV
 # ---------------------------------------------------------
 
-csv_response = requests.get(
+csv_response = SESSION.get(
     csv_url,
-    headers=HEADERS,
     timeout=60
 )
 
@@ -161,7 +209,7 @@ csv_response.raise_for_status()
 
 
 with open(
-    "uk_sponsor_list.csv",
+    SPONSOR_CSV_FILE,
     "wb"
 ) as f:
 
@@ -175,7 +223,7 @@ with open(
 # ---------------------------------------------------------
 
 sponsors = pd.read_csv(
-    "uk_sponsor_list.csv"
+    SPONSOR_CSV_FILE
 )
 
 
@@ -184,7 +232,6 @@ print(
     f"{len(sponsors):,}"
 )
 
-
 print("\nSponsor columns:")
 print(
     sponsors.columns.tolist()
@@ -192,11 +239,11 @@ print(
 
 
 # =========================================================
-# STEP 2 — NORMALIZATION
+# STEP 2 — SPONSOR NORMALIZATION
 # =========================================================
 
 print("\n" + "=" * 70)
-print("STEP 2 — NORMALIZATION")
+print("STEP 2 — NORMALIZING SPONSOR LIST")
 print("=" * 70)
 
 
@@ -207,6 +254,7 @@ print("=" * 70)
 organisation_column = None
 
 possible_company_columns = [
+
     "Organisation Name",
     "Organisation name",
     "Organisation",
@@ -228,7 +276,8 @@ if organisation_column is None:
 
     raise Exception(
         "Could not find organisation/company column "
-        f"in sponsor CSV.\nColumns: {sponsors.columns.tolist()}"
+        "in sponsor CSV.\n"
+        f"Columns: {sponsors.columns.tolist()}"
     )
 
 
@@ -240,14 +289,39 @@ sponsors = sponsors.rename(
 
 
 # ---------------------------------------------------------
+# Keep Worker sponsors where possible
+# ---------------------------------------------------------
+
+if "Route" in sponsors.columns:
+
+    sponsors = sponsors[
+        sponsors["Route"]
+        .astype(str)
+        .str.contains(
+            "Skilled Worker|Worker",
+            case=False,
+            na=False,
+            regex=True
+        )
+    ].copy()
+
+
+# ---------------------------------------------------------
 # Normalization function
 # ---------------------------------------------------------
 
 def normalize_company(name):
 
-    name = str(name).lower()
+    if name is None:
+        return ""
+
+    if pd.isna(name):
+        return ""
+
+    name = str(name).lower().strip()
 
     replacements = [
+
         ("&", "and"),
         (".", ""),
         (",", ""),
@@ -255,22 +329,36 @@ def normalize_company(name):
         ("(", " "),
         (")", " "),
         ("/", " "),
+        ("'", ""),
+        ("’", ""),
     ]
 
     for old, new in replacements:
+
         name = name.replace(
             old,
             new
         )
 
+
+    # -----------------------------------------------------
     # Remove common legal/company words
+    # -----------------------------------------------------
+
     name = re.sub(
-        r"\b(limited|ltd|llp|inc|corp|corporation|plc)\b",
+        r"\b("
+        r"limited|ltd|llp|inc|incorporated|"
+        r"corp|corporation|plc|company|co"
+        r")\b",
         " ",
         name
     )
 
+
+    # -----------------------------------------------------
     # Remove duplicate whitespace
+    # -----------------------------------------------------
+
     name = re.sub(
         r"\s+",
         " ",
@@ -300,17 +388,16 @@ print(
 
 
 # =========================================================
-# STEP 3 — CARE / HEALTHCARE SPONSOR DISCOVERY
+# STEP 3 — CARE PROVIDER DETECTION
 # =========================================================
 
 print("\n" + "=" * 70)
-print("STEP 3 — FINDING POTENTIAL CARE / HEALTHCARE SPONSORS")
+print("STEP 3 — IDENTIFYING CARE / HEALTHCARE SPONSORS")
 print("=" * 70)
 
 
 CARE_PROVIDER_KEYWORDS = [
 
-    # Care homes
     "care home",
     "care homes",
     "nursing home",
@@ -321,7 +408,6 @@ CARE_PROVIDER_KEYWORDS = [
     "care centre",
     "care center",
 
-    # Care providers
     "healthcare",
     "health care",
     "social care",
@@ -332,14 +418,12 @@ CARE_PROVIDER_KEYWORDS = [
     "adult care",
     "elderly care",
 
-    # Medical
     "hospital",
     "hospice",
     "clinic",
     "medical",
     "nursing",
 
-    # Specialist care
     "dementia",
     "mental health",
     "community health",
@@ -363,25 +447,28 @@ CARE_EXCLUDE_KEYWORDS = [
 ]
 
 
-def looks_like_care_provider(company_name):
+def looks_like_care_provider(
+    company_name
+):
 
     name = str(
         company_name
     ).lower().strip()
 
-    # Exclude obvious false positives
+
     for word in CARE_EXCLUDE_KEYWORDS:
 
         if word in name:
 
             return False
 
-    # Match provider keywords
+
     for keyword in CARE_PROVIDER_KEYWORDS:
 
         if keyword in name:
 
             return True
+
 
     return False
 
@@ -399,15 +486,19 @@ print(
 )
 
 
-print("\nSample care/health sponsors:")
+if len(care_sponsors) > 0:
 
-print(
-    care_sponsors[
-        ["company"]
-    ]
-    .head(50)
-    .to_string(index=False)
-)
+    print(
+        "\nSample care/health sponsors:"
+    )
+
+    print(
+        care_sponsors[
+            ["company"]
+        ]
+        .head(50)
+        .to_string(index=False)
+    )
 
 
 # =========================================================
@@ -415,13 +506,16 @@ print(
 # =========================================================
 
 print("\n" + "=" * 70)
-print("STEP 4 — LOCATION FILTER")
+print("STEP 4 — UK LOCATION FILTER")
 print("=" * 70)
 
 
-UK_PATTERNS = [
+# ---------------------------------------------------------
+# UK countries
+# ---------------------------------------------------------
 
-    # Countries
+UK_COUNTRY_PATTERNS = [
+
     "united kingdom",
     "great britain",
     "england",
@@ -429,8 +523,17 @@ UK_PATTERNS = [
     "wales",
     "northern ireland",
     "uk",
+    "gb",
+    "gbr",
+]
 
-    # Major cities
+
+# ---------------------------------------------------------
+# UK cities
+# ---------------------------------------------------------
+
+UK_CITY_PATTERNS = [
+
     "london",
     "manchester",
     "birmingham",
@@ -452,7 +555,6 @@ UK_PATTERNS = [
     "swansea",
     "newport",
 
-    # Other common locations
     "aberdeen",
     "bath",
     "brighton",
@@ -467,20 +569,61 @@ UK_PATTERNS = [
     "portsmouth",
     "salford",
     "st albans",
-    "stoke",
+    "stoke-on-trent",
+    "stoke on trent",
     "sunderland",
     "wolverhampton",
     "york",
 
-    # Remote
-    "remote uk",
-    "uk remote",
-    "remote - united kingdom",
-    "hybrid uk",
+    "bournemouth",
+    "bradford",
+    "blackpool",
+    "bolton",
+    "burnley",
+    "chester",
+    "croydon",
+    "darlington",
+    "doncaster",
+    "dundee",
+    "durham",
+    "guildford",
+    "harrogate",
+    "hastings",
+    "ipswich",
+    "luton",
+    "maidstone",
+    "middlesbrough",
+    "northampton",
+    "peterborough",
+    "poole",
+    "preston",
+    "romford",
+    "shrewsbury",
+    "slough",
+    "stockport",
+    "swindon",
+    "telford",
+    "warrington",
+    "watford",
+    "wigan",
+    "worcester",
+    "worthing",
 ]
 
 
-AUSTRALIA_BLOCKLIST = [
+# ---------------------------------------------------------
+# Non-UK locations
+# ---------------------------------------------------------
+
+NON_UK_PATTERNS = [
+
+    "united states",
+    "united states of america",
+    "u.s.a",
+    "usa",
+    "us",
+
+    "canada",
 
     "australia",
     "australian",
@@ -492,10 +635,50 @@ AUSTRALIA_BLOCKLIST = [
     "perth",
     "adelaide",
     "canberra",
+
+    "new zealand",
+
+    "ireland",
+    "republic of ireland",
+    "dublin",
+
+    "france",
+    "germany",
+    "spain",
+    "italy",
+    "netherlands",
+    "amsterdam",
+
+    "india",
+
+    "singapore",
+
+    "hong kong",
+
+    "japan",
+
+    "china",
+
+    "south africa",
 ]
 
 
-def is_uk_location(location):
+# ---------------------------------------------------------
+# UK postcode
+# ---------------------------------------------------------
+
+UK_POSTCODE_PATTERN = re.compile(
+    r"\b("
+    r"[A-Z]{1,2}\d[A-Z\d]?"
+    r"\s*\d[A-Z]{2}"
+    r")\b",
+    re.IGNORECASE
+)
+
+
+def is_uk_location(
+    location
+):
 
     if location is None:
         return False
@@ -505,24 +688,106 @@ def is_uk_location(location):
 
     location = str(
         location
-    ).lower().strip()
+    ).strip().lower()
+
 
     if not location:
         return False
 
-    # Block Australia first
-    for blocked in AUSTRALIA_BLOCKLIST:
 
-        if blocked in location:
+    # -----------------------------------------------------
+    # Reject obvious non-UK locations first
+    # -----------------------------------------------------
 
-            return False
+    for pattern in NON_UK_PATTERNS:
 
-    # UK
-    for pattern in UK_PATTERNS:
+        if pattern in [
+            "usa",
+            "us",
+            "u.s.a",
+        ]:
 
-        if pattern in location:
+            if re.search(
+                rf"\b{re.escape(pattern)}\b",
+                location
+            ):
+
+                return False
+
+        else:
+
+            if re.search(
+                rf"\b{re.escape(pattern)}\b",
+                location
+            ):
+
+                return False
+
+
+    # -----------------------------------------------------
+    # UK postcode
+    # -----------------------------------------------------
+
+    if UK_POSTCODE_PATTERN.search(
+        location
+    ):
+
+        return True
+
+
+    # -----------------------------------------------------
+    # UK country
+    # -----------------------------------------------------
+
+    for pattern in UK_COUNTRY_PATTERNS:
+
+        if re.search(
+            rf"\b{re.escape(pattern)}\b",
+            location
+        ):
 
             return True
+
+
+    # -----------------------------------------------------
+    # UK cities
+    # -----------------------------------------------------
+
+    for pattern in UK_CITY_PATTERNS:
+
+        if re.search(
+            rf"\b{re.escape(pattern)}\b",
+            location
+        ):
+
+            return True
+
+
+    # -----------------------------------------------------
+    # Remote UK
+    # -----------------------------------------------------
+
+    remote_patterns = [
+
+        r"\bremote\s*,?\s*uk\b",
+        r"\buk\s*,?\s*remote\b",
+        r"\bremote\s*-\s*uk\b",
+        r"\bremote\s*-\s*united kingdom\b",
+        r"\bunited kingdom\s*-\s*remote\b",
+        r"\buk\s*remote\b",
+        r"\bremote\s+within\s+the\s+uk\b",
+    ]
+
+
+    for pattern in remote_patterns:
+
+        if re.search(
+            pattern,
+            location
+        ):
+
+            return True
+
 
     return False
 
@@ -534,7 +799,7 @@ def is_uk_location(location):
 CARE_JOB_KEYWORDS = [
 
     # -----------------------------------------------------
-    # Care
+    # Direct care
     # -----------------------------------------------------
 
     "care assistant",
@@ -554,11 +819,14 @@ CARE_JOB_KEYWORDS = [
     # -----------------------------------------------------
 
     "registered nurse",
+    "registered general nurse",
     "staff nurse",
     "nurse",
     "nursing",
     "nurse associate",
     "clinical nurse",
+    "rgn",
+    "rmn",
 
     # -----------------------------------------------------
     # Management
@@ -592,18 +860,40 @@ CARE_JOB_KEYWORDS = [
     "physiotherapist",
     "speech therapist",
     "activities coordinator",
+    "activities co-ordinator",
 
     # -----------------------------------------------------
-    # Provider terms
+    # Care-home-specific
     # -----------------------------------------------------
 
     "care home",
+    "care homes",
     "nursing home",
+    "nursing homes",
     "residential care",
+    "residential home",
+
+    # -----------------------------------------------------
+    # Care-home support
+    # -----------------------------------------------------
+
+    "housekeeper",
+    "housekeeping",
+    "kitchen assistant",
+    "catering assistant",
+    "chef",
+    "cook",
+    "domestic",
+    "maintenance operative",
+    "home administrator",
+    "administrator",
+    "activities",
 ]
 
 
-def is_care_job(job_title):
+def is_care_job(
+    job_title
+):
 
     if not job_title:
         return False
@@ -612,6 +902,7 @@ def is_care_job(job_title):
         job_title
     ).lower().strip()
 
+
     return any(
         keyword in title
         for keyword in CARE_JOB_KEYWORDS
@@ -619,30 +910,118 @@ def is_care_job(job_title):
 
 
 # =========================================================
-# STEP 6 — GREENHOUSE
+# STEP 6 — CARE-HOME PROVIDER SPONSOR ALIASES
 # =========================================================
 
-def get_greenhouse_jobs(company_slug):
+CARE_SPONSOR_ALIASES = {
+
+    "Barchester Healthcare": [
+
+        "barchester healthcare",
+        "barchester healthcare limited",
+    ],
+
+    "HC-One": [
+
+        "hc one",
+        "hc-one",
+        "hc-one limited",
+        "hc one limited",
+        "hc one no1 limited",
+        "hc one no2 limited",
+        "hc one no3 limited",
+        "hc one no4 limited",
+        "hc one no5 limited",
+        "hc one no6 limited",
+        "hc one management limited",
+    ],
+
+    "Care UK": [
+
+        "care uk",
+        "care uk limited",
+        "care uk healthcare",
+        "care uk healthcare group",
+    ],
+}
+
+
+def care_provider_is_sponsor(
+    provider_name
+):
+
+    aliases = CARE_SPONSOR_ALIASES.get(
+        provider_name,
+        []
+    )
+
+
+    for alias in aliases:
+
+        alias_clean = normalize_company(
+            alias
+        )
+
+        if alias_clean in sponsor_set:
+
+            return True
+
+
+    # -----------------------------------------------------
+    # Fuzzy fallback
+    # -----------------------------------------------------
+
+    provider_clean = normalize_company(
+        provider_name
+    )
+
+
+    for sponsor in sponsor_set:
+
+        score = fuzz.token_set_ratio(
+            provider_clean,
+            sponsor
+        )
+
+        if score >= 88:
+
+            return True
+
+
+    return False
+
+
+# =========================================================
+# STEP 7 — GREENHOUSE
+# =========================================================
+
+def get_greenhouse_jobs(
+    company_slug
+):
 
     url = (
         "https://boards-api.greenhouse.io/v1/"
         f"boards/{company_slug}/jobs"
     )
 
+
     try:
 
-        r = requests.get(
+        r = SESSION.get(
             url,
-            headers=HEADERS,
-            timeout=20
+            timeout=REQUEST_TIMEOUT
         )
 
+
         if r.status_code != 200:
+
             return []
+
 
         data = r.json()
 
         jobs = []
+
 
         for job in data.get(
             "jobs",
@@ -653,6 +1032,7 @@ def get_greenhouse_jobs(company_slug):
                 "location",
                 {}
             )
+
 
             jobs.append({
 
@@ -672,7 +1052,9 @@ def get_greenhouse_jobs(company_slug):
                     "Greenhouse",
             })
 
+
         return jobs
+
 
     except Exception as e:
 
@@ -685,32 +1067,44 @@ def get_greenhouse_jobs(company_slug):
 
 
 # =========================================================
-# STEP 7 — LEVER
+# STEP 8 — LEVER
 # =========================================================
 
-def get_lever_jobs(company_slug):
+def get_lever_jobs(
+    company_slug
+):
 
     url = (
         "https://api.lever.co/v0/postings/"
         f"{company_slug}?mode=json"
     )
 
+
     try:
 
-        r = requests.get(
+        r = SESSION.get(
             url,
-            headers=HEADERS,
-            timeout=20
+            timeout=REQUEST_TIMEOUT
         )
 
+
         if r.status_code != 200:
+
             return []
+
 
         data = r.json()
 
         jobs = []
 
+
         for job in data:
+
+            categories = job.get(
+                "categories",
+                {}
+            )
+
 
             jobs.append({
 
@@ -721,10 +1115,9 @@ def get_lever_jobs(company_slug):
                     job.get("text"),
 
                 "location":
-                    job.get(
-                        "categories",
-                        {}
-                    ).get("location"),
+                    categories.get(
+                        "location"
+                    ),
 
                 "job_url":
                     job.get("hostedUrl"),
@@ -733,7 +1126,9 @@ def get_lever_jobs(company_slug):
                     "Lever",
             })
 
+
         return jobs
+
 
     except Exception as e:
 
@@ -746,7 +1141,7 @@ def get_lever_jobs(company_slug):
 
 
 # =========================================================
-# STEP 8 — WORKDAY
+# STEP 9 — WORKDAY
 # =========================================================
 
 def get_workday_jobs(
@@ -759,38 +1154,48 @@ def get_workday_jobs(
         f"/wday/cxs/{company}/{tenant}/jobs"
     )
 
+
     payload = {
+
         "limit": 100,
         "offset": 0,
-        "searchText": ""
+        "searchText": "",
     }
 
+
     jobs = []
+
 
     try:
 
         while True:
 
-            r = requests.post(
+            r = SESSION.post(
                 url,
                 headers=HEADERS,
                 json=payload,
-                timeout=30
+                timeout=REQUEST_TIMEOUT
             )
+
 
             if r.status_code != 200:
 
                 return jobs
 
+
             data = r.json()
+
 
             postings = data.get(
                 "jobPostings",
                 []
             )
 
+
             if not postings:
+
                 break
+
 
             for job in postings:
 
@@ -800,6 +1205,7 @@ def get_workday_jobs(
                     )
                     or ""
                 )
+
 
                 jobs.append({
 
@@ -826,13 +1232,19 @@ def get_workday_jobs(
                         "Workday",
                 })
 
-            payload["offset"] += payload["limit"]
 
-            # Safety limit
+            payload["offset"] += (
+                payload["limit"]
+            )
+
+
             if payload["offset"] > 5000:
+
                 break
 
+
         return jobs
+
 
     except Exception as e:
 
@@ -845,7 +1257,7 @@ def get_workday_jobs(
 
 
 # =========================================================
-# STEP 9 — SMARTRECRUITERS
+# STEP 10 — SMARTRECRUITERS
 # =========================================================
 
 def get_smartrecruiters_jobs(
@@ -857,20 +1269,24 @@ def get_smartrecruiters_jobs(
         f"/v1/companies/{company_slug}/postings"
     )
 
+
     try:
 
-        r = requests.get(
+        r = SESSION.get(
             url,
-            headers=HEADERS,
-            timeout=20
+            timeout=REQUEST_TIMEOUT
         )
 
+
         if r.status_code != 200:
+
             return []
+
 
         data = r.json()
 
         jobs = []
+
 
         for job in data.get(
             "content",
@@ -882,22 +1298,49 @@ def get_smartrecruiters_jobs(
                 {}
             )
 
+
             location = " ".join(
+
                 [
+
                     str(
                         location_data.get(
                             "city",
                             ""
                         )
                     ),
+
                     str(
                         location_data.get(
                             "country",
                             ""
                         )
                     ),
+
                 ]
+
             ).strip()
+
+
+            job_url = job.get(
+                "ref"
+            )
+
+
+            # -------------------------------------------------
+            # SmartRecruiters sometimes returns a reference
+            # rather than a complete URL.
+            # -------------------------------------------------
+
+            if job_url and not str(
+                job_url
+            ).startswith("http"):
+
+                job_url = (
+                    f"https://jobs.smartrecruiters.com/"
+                    f"{company_slug}/{job_url}"
+                )
+
 
             jobs.append({
 
@@ -911,13 +1354,15 @@ def get_smartrecruiters_jobs(
                     location,
 
                 "job_url":
-                    job.get("ref"),
+                    job_url,
 
                 "source":
                     "SmartRecruiters",
             })
 
+
         return jobs
+
 
     except Exception as e:
 
@@ -930,7 +1375,7 @@ def get_smartrecruiters_jobs(
 
 
 # =========================================================
-# STEP 10 — ASHBY
+# STEP 11 — ASHBY
 # =========================================================
 
 def get_ashby_jobs(
@@ -939,8 +1384,10 @@ def get_ashby_jobs(
 
     url = (
         "https://jobs.ashbyhq.com/api/"
-        "non-user-graphql?op=ApiJobBoardWithTeams"
+        "non-user-graphql"
+        "?op=ApiJobBoardWithTeams"
     )
+
 
     payload = {
 
@@ -971,19 +1418,24 @@ def get_ashby_jobs(
         """
     }
 
+
     try:
 
-        r = requests.post(
+        r = SESSION.post(
             url,
             headers=HEADERS,
             json=payload,
-            timeout=20
+            timeout=REQUEST_TIMEOUT
         )
 
+
         if r.status_code != 200:
+
             return []
 
+
         data = r.json()
+
 
         job_board = (
             data
@@ -991,7 +1443,9 @@ def get_ashby_jobs(
             .get("jobBoard", {})
         )
 
+
         jobs = []
+
 
         for job in job_board.get(
             "jobs",
@@ -1016,7 +1470,9 @@ def get_ashby_jobs(
                     "Ashby",
             })
 
+
         return jobs
+
 
     except Exception as e:
 
@@ -1029,15 +1485,1031 @@ def get_ashby_jobs(
 
 
 # =========================================================
-# STEP 11 — EXISTING COMPANY LISTS
+# STEP 12 — BARCHESTER HEALTHCARE
+# =========================================================
+#
+# Barchester has its own careers website with searchable
+# vacancies.
+#
+# Current career site:
+# https://jobs.barchester.com/search
+#
+# =========================================================
+
+BARCHester_BASE_URL = (
+    "https://jobs.barchester.com"
+)
+
+BARCHester_SEARCH_URL = (
+    "https://jobs.barchester.com/search"
+)
+
+
+def extract_postcode(
+    text
+):
+
+    if not text:
+
+        return None
+
+
+    match = UK_POSTCODE_PATTERN.search(
+        str(text)
+    )
+
+
+    if match:
+
+        return match.group(
+            1
+        ).upper()
+
+
+    return None
+
+
+def clean_location_text(
+    text
+):
+
+    if not text:
+
+        return ""
+
+
+    text = str(text)
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        text
+    ).strip()
+
+
+    postcode = extract_postcode(
+        text
+    )
+
+
+    if postcode:
+
+        # Try to keep text around the postcode
+        parts = text.split(
+            postcode,
+            1
+        )
+
+        before = parts[0].strip()
+
+        before = re.sub(
+            r"^\([^)]*\)\s*",
+            "",
+            before
+        )
+
+        return (
+            f"{before}, {postcode}"
+            if before
+            else postcode
+        )
+
+
+    return text
+
+
+def get_barchester_jobs():
+
+    jobs = []
+
+    seen_urls = set()
+
+    max_pages = 20
+
+
+    for page in range(
+        1,
+        max_pages + 1
+    ):
+
+        params = {
+
+            "orderBy": 1,
+            "page": page,
+        }
+
+
+        try:
+
+            r = SESSION.get(
+                BARCHester_SEARCH_URL,
+                params=params,
+                timeout=REQUEST_TIMEOUT
+            )
+
+
+            if r.status_code != 200:
+
+                print(
+                    "Barchester HTTP status:",
+                    r.status_code
+                )
+
+                break
+
+
+            soup = BeautifulSoup(
+                r.text,
+                "html.parser"
+            )
+
+
+            # -------------------------------------------------
+            # Barchester job links
+            # -------------------------------------------------
+
+            found_on_page = 0
+
+
+            for heading in soup.find_all(
+                ["h2", "h3", "h4"]
+            ):
+
+                anchor = heading.find(
+                    "a",
+                    href=True
+                )
+
+
+                if not anchor:
+
+                    continue
+
+
+                title = anchor.get_text(
+                    " ",
+                    strip=True
+                )
+
+
+                href = anchor.get(
+                    "href"
+                )
+
+
+                if not title or not href:
+
+                    continue
+
+
+                job_url = urljoin(
+                    BARCHester_BASE_URL,
+                    href
+                )
+
+
+                if job_url in seen_urls:
+
+                    continue
+
+
+                # -------------------------------------------------
+                # Ignore navigation links
+                # -------------------------------------------------
+
+                title_lower = title.lower()
+
+
+                if title_lower in [
+                    "careers",
+                    "search",
+                    "home",
+                    "login",
+                    "register",
+                ]:
+
+                    continue
+
+
+                # -------------------------------------------------
+                # Find surrounding job card
+                # -------------------------------------------------
+
+                card = heading
+
+
+                for _ in range(5):
+
+                    if card.parent:
+
+                        card = card.parent
+
+
+                    card_text = card.get_text(
+                        " ",
+                        strip=True
+                    )
+
+
+                    if (
+                        extract_postcode(
+                            card_text
+                        )
+                        or
+                        "Posted:" in card_text
+                        or
+                        "Expires:" in card_text
+                    ):
+
+                        break
+
+
+                card_text = card.get_text(
+                    " ",
+                    strip=True
+                )
+
+
+                # -------------------------------------------------
+                # Barchester job locations usually appear before
+                # pay/type/posted information.
+                # -------------------------------------------------
+
+                location = ""
+
+
+                postcode = extract_postcode(
+                    card_text
+                )
+
+
+                if postcode:
+
+                    # Take the sentence/portion before the postcode
+                    index = card_text.lower().find(
+                        postcode.lower()
+                    )
+
+                    if index >= 0:
+
+                        before = card_text[
+                            :index + len(postcode)
+                        ]
+
+                        # Remove title from the beginning
+                        before = before.replace(
+                            title,
+                            "",
+                            1
+                        ).strip()
+
+
+                        location = clean_location_text(
+                            before
+                        )
+
+
+                # -------------------------------------------------
+                # Fallback
+                # -------------------------------------------------
+
+                if not location:
+
+                    location = "UK"
+
+
+                # -------------------------------------------------
+                # Only care-related Barchester jobs
+                # -------------------------------------------------
+
+                if not is_care_job(
+                    title
+                ):
+
+                    continue
+
+
+                if not is_uk_location(
+                    location
+                ):
+
+                    # Barchester is UK-focused, but still enforce
+                    # the same location rule.
+                    if location != "UK":
+
+                        continue
+
+
+                seen_urls.add(
+                    job_url
+                )
+
+
+                jobs.append({
+
+                    "company":
+                        "Barchester Healthcare",
+
+                    "job_title":
+                        title,
+
+                    "location":
+                        location,
+
+                    "job_url":
+                        job_url,
+
+                    "source":
+                        "Barchester Healthcare",
+
+                    "is_care_job":
+                        True,
+
+                    "is_care_home_job":
+                        True,
+                })
+
+
+                found_on_page += 1
+
+
+            print(
+                f"Barchester page {page}: "
+                f"{found_on_page} care jobs"
+            )
+
+
+            # -------------------------------------------------
+            # Stop if page has no jobs
+            # -------------------------------------------------
+
+            if found_on_page == 0:
+
+                # There may still be pages with no matching
+                # care jobs, so inspect pagination before stopping.
+                page_text = soup.get_text(
+                    " ",
+                    strip=True
+                ).lower()
+
+
+                if (
+                    "next" not in page_text
+                    and page > 1
+                ):
+
+                    break
+
+
+        except Exception as e:
+
+            print(
+                f"Barchester error page "
+                f"{page}: {e}"
+            )
+
+            break
+
+
+        time.sleep(
+            0.25
+        )
+
+
+    return jobs
+
+
+# =========================================================
+# STEP 13 — HC-ONE
+# =========================================================
+#
+# HC-One uses Eploy.
+#
+# =========================================================
+
+HC_ONE_BASE_URL = (
+    "https://apply.hc-one.co.uk"
+)
+
+HC_ONE_SEARCH_URL = (
+    "https://apply.hc-one.co.uk/"
+    "vacancies/vacancy-search-results.aspx"
+)
+
+
+def get_hcone_jobs():
+
+    jobs = []
+
+    seen_urls = set()
+
+    max_pages = 30
+
+
+    for page in range(
+        1,
+        max_pages + 1
+    ):
+
+        params = {
+
+            "view": "list",
+            "page": page,
+        }
+
+
+        try:
+
+            r = SESSION.get(
+                HC_ONE_SEARCH_URL,
+                params=params,
+                timeout=REQUEST_TIMEOUT
+            )
+
+
+            if r.status_code != 200:
+
+                print(
+                    "HC-One HTTP status:",
+                    r.status_code
+                )
+
+                break
+
+
+            soup = BeautifulSoup(
+                r.text,
+                "html.parser"
+            )
+
+
+            found_on_page = 0
+
+
+            # -------------------------------------------------
+            # Job headings are generally h2 links.
+            # -------------------------------------------------
+
+            headings = soup.find_all(
+                ["h2", "h3"]
+            )
+
+
+            for heading in headings:
+
+                anchor = heading.find(
+                    "a",
+                    href=True
+                )
+
+
+                if not anchor:
+
+                    continue
+
+
+                title = anchor.get_text(
+                    " ",
+                    strip=True
+                )
+
+
+                href = anchor.get(
+                    "href"
+                )
+
+
+                if not title or not href:
+
+                    continue
+
+
+                title_lower = title.lower()
+
+
+                # Ignore navigation
+                if title_lower in [
+                    "register",
+                    "login",
+                    "search jobs",
+                    "more info",
+                    "apply",
+                ]:
+
+                    continue
+
+
+                job_url = urljoin(
+                    HC_ONE_BASE_URL,
+                    href
+                )
+
+
+                if job_url in seen_urls:
+
+                    continue
+
+
+                # -------------------------------------------------
+                # Find surrounding job card.
+                # -------------------------------------------------
+
+                card = heading
+
+
+                for _ in range(6):
+
+                    if card.parent:
+
+                        card = card.parent
+
+
+                    card_text = card.get_text(
+                        " ",
+                        strip=True
+                    )
+
+
+                    if (
+                        "All Locations:" in card_text
+                        or
+                        "Home/Department:" in card_text
+                        or
+                        "Job Family:" in card_text
+                    ):
+
+                        break
+
+
+                card_text = card.get_text(
+                    " ",
+                    strip=True
+                )
+
+
+                # -------------------------------------------------
+                # Extract location.
+                # -------------------------------------------------
+
+                location = ""
+
+
+                location_match = re.search(
+                    r"All Locations:\s*(.*?)(?:"
+                    r"All Departments:"
+                    r"|Job Family:"
+                    r"|Salary Details:"
+                    r"|£"
+                    r")",
+                    card_text,
+                    re.IGNORECASE
+                )
+
+
+                if location_match:
+
+                    location = location_match.group(
+                        1
+                    ).strip()
+
+
+                # -------------------------------------------------
+                # Fallback: postcode
+                # -------------------------------------------------
+
+                if not location:
+
+                    postcode = extract_postcode(
+                        card_text
+                    )
+
+
+                    if postcode:
+
+                        location = postcode
+
+
+                if not location:
+
+                    location = "UK"
+
+
+                # -------------------------------------------------
+                # Only care-home/care jobs
+                # -------------------------------------------------
+
+                if not is_care_job(
+                    title
+                ):
+
+                    # Some HC-One jobs have generic titles,
+                    # so inspect the card text too.
+                    if not any(
+                        keyword in card_text.lower()
+                        for keyword in [
+                            "care home",
+                            "nursing home",
+                            "residential",
+                            "dementia",
+                            "resident",
+                            "carer",
+                        ]
+                    ):
+
+                        continue
+
+
+                if not is_uk_location(
+                    location
+                ):
+
+                    continue
+
+
+                seen_urls.add(
+                    job_url
+                )
+
+
+                jobs.append({
+
+                    "company":
+                        "HC-One",
+
+                    "job_title":
+                        title,
+
+                    "location":
+                        location,
+
+                    "job_url":
+                        job_url,
+
+                    "source":
+                        "HC-One",
+
+                    "is_care_job":
+                        True,
+
+                    "is_care_home_job":
+                        True,
+                })
+
+
+                found_on_page += 1
+
+
+            print(
+                f"HC-One page {page}: "
+                f"{found_on_page} care jobs"
+            )
+
+
+            # -------------------------------------------------
+            # Detect pagination
+            # -------------------------------------------------
+
+            next_exists = False
+
+
+            for anchor in soup.find_all(
+                "a",
+                href=True
+            ):
+
+                anchor_text = anchor.get_text(
+                    " ",
+                    strip=True
+                ).lower()
+
+
+                if anchor_text in [
+                    "next",
+                    "next >",
+                    ">",
+                ]:
+
+                    next_exists = True
+
+                    break
+
+
+            if (
+                not next_exists
+                and page > 1
+            ):
+
+                break
+
+
+            # Avoid endless looping if page parameter
+            # is ignored by the site.
+            if found_on_page == 0:
+
+                break
+
+
+        except Exception as e:
+
+            print(
+                f"HC-One error page "
+                f"{page}: {e}"
+            )
+
+            break
+
+
+        time.sleep(
+            0.25
+        )
+
+
+    return jobs
+
+
+# =========================================================
+# STEP 14 — CARE UK
+# =========================================================
+#
+# Care UK has a dedicated careers/vacancies page.
+#
+# =========================================================
+
+CARE_UK_BASE_URL = (
+    "https://www.careuk.com"
+)
+
+CARE_UK_SEARCH_URL = (
+    "https://www.careuk.com/careers/vacancies"
+)
+
+
+def get_careuk_jobs():
+
+    jobs = []
+
+    seen_urls = set()
+
+
+    try:
+
+        r = SESSION.get(
+            CARE_UK_SEARCH_URL,
+            timeout=REQUEST_TIMEOUT
+        )
+
+
+        if r.status_code != 200:
+
+            print(
+                "Care UK HTTP status:",
+                r.status_code
+            )
+
+            return []
+
+
+        soup = BeautifulSoup(
+            r.text,
+            "html.parser"
+        )
+
+
+        # -----------------------------------------------------
+        # Care UK job application links
+        # -----------------------------------------------------
+
+        for anchor in soup.find_all(
+            "a",
+            href=True
+        ):
+
+            href = anchor.get(
+                "href"
+            )
+
+
+            title = anchor.get_text(
+                " ",
+                strip=True
+            )
+
+
+            if not href or not title:
+
+                continue
+
+
+            href_lower = href.lower()
+
+
+            # Care UK applications are normally hosted on
+            # apply.careuk.com.
+            if (
+                "apply.careuk.com"
+                not in href_lower
+            ):
+
+                continue
+
+
+            title_lower = title.lower()
+
+
+            if title_lower in [
+                "apply now",
+                "find out more",
+                "read more",
+                "login",
+            ]:
+
+                continue
+
+
+            job_url = urljoin(
+                CARE_UK_BASE_URL,
+                href
+            )
+
+
+            if job_url in seen_urls:
+
+                continue
+
+
+            # -------------------------------------------------
+            # Find surrounding job card.
+            # -------------------------------------------------
+
+            card = anchor
+
+
+            for _ in range(7):
+
+                if card.parent:
+
+                    card = card.parent
+
+
+                card_text = card.get_text(
+                    " ",
+                    strip=True
+                )
+
+
+                if (
+                    "Care Home Based" in card_text
+                    or
+                    "£" in card_text
+                    or
+                    "Days" in card_text
+                    or
+                    "Nights" in card_text
+                ):
+
+                    break
+
+
+            card_text = card.get_text(
+                " ",
+                strip=True
+            )
+
+
+            # -------------------------------------------------
+            # Location
+            # -------------------------------------------------
+
+            postcode = extract_postcode(
+                card_text
+            )
+
+
+            location = ""
+
+
+            if postcode:
+
+                location = postcode
+
+
+            # -------------------------------------------------
+            # Look for known UK city names
+            # -------------------------------------------------
+
+            if not location:
+
+                lower_card = card_text.lower()
+
+
+                for city in UK_CITY_PATTERNS:
+
+                    if re.search(
+                        rf"\b{re.escape(city)}\b",
+                        lower_card
+                    ):
+
+                        location = city.title()
+
+                        break
+
+
+            if not location:
+
+                location = "UK"
+
+
+            # -------------------------------------------------
+            # Care UK is a dedicated care-home source.
+            # Include care-home support jobs as well.
+            # -------------------------------------------------
+
+            if not is_care_job(
+                title
+            ):
+
+                if not any(
+                    keyword in card_text.lower()
+                    for keyword in [
+                        "care home",
+                        "resident",
+                        "care assistant",
+                        "care team",
+                        "nursing",
+                        "home manager",
+                        "clinical lead",
+                        "housekeeper",
+                        "catering",
+                    ]
+                ):
+
+                    continue
+
+
+            if location != "UK":
+
+                if not is_uk_location(
+                    location
+                ):
+
+                    continue
+
+
+            seen_urls.add(
+                job_url
+            )
+
+
+            jobs.append({
+
+                "company":
+                    "Care UK",
+
+                "job_title":
+                    title,
+
+                "location":
+                    location,
+
+                "job_url":
+                    job_url,
+
+                "source":
+                    "Care UK",
+
+                "is_care_job":
+                    True,
+
+                "is_care_home_job":
+                    True,
+            })
+
+
+        print(
+            f"Care UK: "
+            f"{len(jobs)} care jobs found"
+        )
+
+
+        return jobs
+
+
+    except Exception as e:
+
+        print(
+            f"Care UK error: {e}"
+        )
+
+        return []
+
+
+# =========================================================
+# STEP 15 — EXISTING COMPANY LISTS
 # =========================================================
 
 GREENHOUSE_COMPANIES = [
 
-    # -----------------------------------------------------
-    # FINTECH
-    # -----------------------------------------------------
-
+    # Fintech
     "monzo",
     "wise",
     "checkoutcom",
@@ -1053,10 +2525,7 @@ GREENHOUSE_COMPANIES = [
     "zopa",
     "starlingbank",
 
-    # -----------------------------------------------------
-    # TECH
-    # -----------------------------------------------------
-
+    # Tech
     "datadog",
     "mongodb",
     "snyk",
@@ -1078,31 +2547,19 @@ GREENHOUSE_COMPANIES = [
     "palantir",
     "contentful",
 
-    # -----------------------------------------------------
-    # CONSULTING
-    # -----------------------------------------------------
-
+    # Consulting
     "mckinsey",
     "bcg",
     "bain",
 
-    # -----------------------------------------------------
-    # ENERGY
-    # -----------------------------------------------------
-
+    # Energy
     "octopusenergy",
 
-    # -----------------------------------------------------
-    # LOGISTICS
-    # -----------------------------------------------------
-
+    # Logistics
     "deliveroo",
     "uber",
 
-    # -----------------------------------------------------
-    # MEDIA / RESEARCH
-    # -----------------------------------------------------
-
+    # Media / Research
     "economist",
     "thomsonreuters",
     "bellingcat",
@@ -1149,17 +2606,51 @@ LEVER_COMPANIES = [
 
 WORKDAY_COMPANIES = [
 
-    ("barclays", "External_Career_Site"),
-    ("hsbc", "HSBCCareers"),
-    ("jpmorgan", "jpmc"),
-    ("goldmansachs", "External"),
-    ("morganstanley", "MorganStanleyCareers"),
-    ("blackrock", "BlackRockCareers"),
-    ("natwestgroup", "NatWest_Group_Careers"),
+    (
+        "barclays",
+        "External_Career_Site"
+    ),
+
+    (
+        "hsbc",
+        "HSBCCareers"
+    ),
+
+    (
+        "jpmorgan",
+        "jpmc"
+    ),
+
+    (
+        "goldmansachs",
+        "External"
+    ),
+
+    (
+        "morganstanley",
+        "MorganStanleyCareers"
+    ),
+
+    (
+        "blackrock",
+        "BlackRockCareers"
+    ),
+
+    (
+        "natwestgroup",
+        "NatWest_Group_Careers"
+    ),
 
     # Research / Financial Data
-    ("bloomberg", "careers"),
-    ("factset", "FactSetCareers"),
+    (
+        "bloomberg",
+        "careers"
+    ),
+
+    (
+        "factset",
+        "FactSetCareers"
+    ),
 ]
 
 
@@ -1195,7 +2686,7 @@ ASHBY_COMPANIES = [
 
 
 # =========================================================
-# STEP 12 — DISPLAY NAMES
+# STEP 16 — DISPLAY NAMES
 # =========================================================
 
 COMPANY_DISPLAY_NAMES = {
@@ -1241,11 +2732,19 @@ COMPANY_DISPLAY_NAMES = {
     "theinformation": "The Information",
     "deepl": "DeepL",
     "dw": "Deutsche Welle",
+
+    # Care
+    "barchester": "Barchester Healthcare",
+    "barchesterhealthcare":
+        "Barchester Healthcare",
+    "hc-one": "HC-One",
+    "hcone": "HC-One",
+    "careuk": "Care UK",
 }
 
 
 # =========================================================
-# STEP 13 — PROCESS COMPANY
+# STEP 17 — PROCESS STANDARD ATS COMPANY
 # =========================================================
 
 def process_company(
@@ -1260,6 +2759,7 @@ def process_company(
             slug
         )
 
+
         uk_jobs = [
 
             job
@@ -1269,13 +2769,16 @@ def process_company(
             if is_uk_location(
                 job.get("location")
             )
+
         ]
+
 
         print(
             f"{slug} "
             f"({source_name}): "
             f"{len(uk_jobs)} UK jobs"
         )
+
 
         for job in uk_jobs:
 
@@ -1287,7 +2790,21 @@ def process_company(
                 )
             )
 
+
+            job["is_care_job"] = (
+                is_care_job(
+                    job.get(
+                        "job_title"
+                    )
+                )
+            )
+
+
+            job["is_care_home_job"] = False
+
+
         return uk_jobs
+
 
     except Exception as e:
 
@@ -1300,11 +2817,58 @@ def process_company(
 
 
 # =========================================================
-# STEP 14 — SCRAPE JOBS
+# STEP 18 — SPONSOR MATCHING
 # =========================================================
 
 print("\n" + "=" * 70)
-print("STEP 14 — SCRAPING JOBS")
+print("STEP 18 — PREPARING SPONSOR MATCHING")
+print("=" * 70)
+
+
+def fuzzy_sponsor_match(
+    company_name,
+    threshold=SPONSOR_FUZZY_THRESHOLD
+):
+
+    company_name = normalize_company(
+        company_name
+    )
+
+
+    if not company_name:
+
+        return False
+
+
+    # Exact
+    if company_name in sponsor_set:
+
+        return True
+
+
+    # Fuzzy
+    for sponsor in sponsor_set:
+
+        score = fuzz.token_set_ratio(
+            company_name,
+            sponsor
+        )
+
+
+        if score >= threshold:
+
+            return True
+
+
+    return False
+
+
+# =========================================================
+# STEP 19 — SCRAPE STANDARD JOBS
+# =========================================================
+
+print("\n" + "=" * 70)
+print("STEP 19 — SCRAPING STANDARD JOB SOURCES")
 print("=" * 70)
 
 
@@ -1377,6 +2941,7 @@ with ThreadPoolExecutor(
         tenant
     ) in WORKDAY_COMPANIES:
 
+
         def workday_task(
             c=company,
             t=tenant
@@ -1384,10 +2949,12 @@ with ThreadPoolExecutor(
 
             result = []
 
+
             jobs = get_workday_jobs(
                 c,
                 t
             )
+
 
             for job in jobs:
 
@@ -1403,14 +2970,29 @@ with ThreadPoolExecutor(
                         )
                     )
 
+
+                    job["is_care_job"] = (
+                        is_care_job(
+                            job.get(
+                                "job_title"
+                            )
+                        )
+                    )
+
+
+                    job["is_care_home_job"] = False
+
+
                     result.append(
                         job
                     )
+
 
             print(
                 f"{c} (Workday): "
                 f"{len(result)} UK jobs"
             )
+
 
             return result
 
@@ -1434,11 +3016,13 @@ with ThreadPoolExecutor(
 
             result = future.result()
 
+
             if result:
 
                 all_jobs.extend(
                     result
                 )
+
 
         except Exception as e:
 
@@ -1448,19 +3032,146 @@ with ThreadPoolExecutor(
 
 
 print(
-    f"\nTotal UK jobs found: "
+    f"\nTotal standard UK jobs found: "
     f"{len(all_jobs):,}"
 )
 
 
 # =========================================================
-# STEP 15 — CREATE DATAFRAME
+# STEP 20 — SCRAPE DEDICATED CARE-HOME SOURCES
+# =========================================================
+
+print("\n" + "=" * 70)
+print("STEP 20 — SCRAPING DEDICATED CARE-HOME SOURCES")
+print("=" * 70)
+
+
+care_jobs = []
+
+
+# ---------------------------------------------------------
+# Barchester
+# ---------------------------------------------------------
+
+if care_provider_is_sponsor(
+    "Barchester Healthcare"
+):
+
+    print(
+        "\nBarchester Healthcare "
+        "is present on sponsor list."
+    )
+
+
+    barchester_jobs = (
+        get_barchester_jobs()
+    )
+
+
+    care_jobs.extend(
+        barchester_jobs
+    )
+
+
+else:
+
+    print(
+        "\nWARNING: Barchester Healthcare "
+        "was not matched to sponsor list."
+    )
+
+
+# ---------------------------------------------------------
+# HC-One
+# ---------------------------------------------------------
+
+if care_provider_is_sponsor(
+    "HC-One"
+):
+
+    print(
+        "\nHC-One is present on sponsor list."
+    )
+
+
+    hcone_jobs = (
+        get_hcone_jobs()
+    )
+
+
+    care_jobs.extend(
+        hcone_jobs
+    )
+
+
+else:
+
+    print(
+        "\nWARNING: HC-One "
+        "was not matched to sponsor list."
+    )
+
+
+# ---------------------------------------------------------
+# Care UK
+# ---------------------------------------------------------
+
+if care_provider_is_sponsor(
+    "Care UK"
+):
+
+    print(
+        "\nCare UK is present on sponsor list."
+    )
+
+
+    careuk_jobs = (
+        get_careuk_jobs()
+    )
+
+
+    care_jobs.extend(
+        careuk_jobs
+    )
+
+
+else:
+
+    print(
+        "\nWARNING: Care UK "
+        "was not matched to sponsor list."
+    )
+
+
+print(
+    f"\nDedicated care jobs scraped: "
+    f"{len(care_jobs):,}"
+)
+
+
+# ---------------------------------------------------------
+# Add care jobs
+# ---------------------------------------------------------
+
+all_jobs.extend(
+    care_jobs
+)
+
+
+print(
+    f"Total jobs before sponsor filtering: "
+    f"{len(all_jobs):,}"
+)
+
+
+# =========================================================
+# STEP 21 — CHECK JOB DATA
 # =========================================================
 
 if not all_jobs:
 
     raise Exception(
-        "No UK jobs found."
+        "No jobs found."
     )
 
 
@@ -1470,7 +3181,7 @@ jobs_df = pd.DataFrame(
 
 
 # =========================================================
-# STEP 16 — NORMALIZE JOB COMPANIES
+# STEP 22 — NORMALIZE JOB COMPANIES
 # =========================================================
 
 jobs_df["company_clean"] = (
@@ -1481,26 +3192,33 @@ jobs_df["company_clean"] = (
 
 
 # =========================================================
-# STEP 17 — CARE JOB FLAG
+# STEP 23 — INTERNAL CARE FLAGS
 # =========================================================
 
-jobs_df["is_care_job"] = (
-    jobs_df["job_title"]
-    .apply(is_care_job)
-)
+if "is_care_job" not in jobs_df.columns:
+
+    jobs_df["is_care_job"] = (
+        jobs_df["job_title"]
+        .apply(is_care_job)
+    )
+
+
+if "is_care_home_job" not in jobs_df.columns:
+
+    jobs_df["is_care_home_job"] = False
 
 
 # =========================================================
-# STEP 18 — SPONSOR MATCHING
+# STEP 24 — SPONSOR MATCHING
 # =========================================================
 
 print("\n" + "=" * 70)
-print("STEP 18 — MATCHING JOBS AGAINST GOV.UK SPONSOR LIST")
+print("STEP 24 — MATCHING JOBS AGAINST GOV.UK SPONSOR LIST")
 print("=" * 70)
 
 
 # ---------------------------------------------------------
-# Exact match
+# Exact sponsor matches
 # ---------------------------------------------------------
 
 jobs_df["is_licensed_sponsor"] = (
@@ -1511,49 +3229,50 @@ jobs_df["is_licensed_sponsor"] = (
 
 print(
     "\nExact sponsor matches:",
-    jobs_df["is_licensed_sponsor"].sum()
+    int(
+        jobs_df[
+            "is_licensed_sponsor"
+        ].sum()
+    )
 )
+
+
+# ---------------------------------------------------------
+# Care provider aliases
+# ---------------------------------------------------------
+
+for provider_name in [
+    "Barchester Healthcare",
+    "HC-One",
+    "Care UK",
+]:
+
+    mask = (
+        jobs_df["company"]
+        == provider_name
+    )
+
+
+    if mask.any():
+
+        provider_match = (
+            care_provider_is_sponsor(
+                provider_name
+            )
+        )
+
+
+        if provider_match:
+
+            jobs_df.loc[
+                mask,
+                "is_licensed_sponsor"
+            ] = True
 
 
 # ---------------------------------------------------------
 # Fuzzy matching
 # ---------------------------------------------------------
-
-def fuzzy_sponsor_match(
-    company_name,
-    threshold=SPONSOR_FUZZY_THRESHOLD
-):
-
-    company_name = normalize_company(
-        company_name
-    )
-
-    if not company_name:
-
-        return False
-
-
-    # Exact
-    if company_name in sponsor_set:
-
-        return True
-
-
-    # Fuzzy
-    for sponsor in sponsor_set:
-
-        score = fuzz.token_set_ratio(
-            company_name,
-            sponsor
-        )
-
-        if score >= threshold:
-
-            return True
-
-
-    return False
-
 
 missing_mask = (
     jobs_df["is_licensed_sponsor"]
@@ -1561,7 +3280,9 @@ missing_mask = (
 )
 
 
-missing_count = missing_mask.sum()
+missing_count = int(
+    missing_mask.sum()
+)
 
 
 print(
@@ -1576,57 +3297,113 @@ if missing_count > 0:
         missing_mask,
         "is_licensed_sponsor"
     ] = (
+
         jobs_df.loc[
             missing_mask,
             "company"
         ]
+
         .apply(
             fuzzy_sponsor_match
         )
+
     )
 
 
 # =========================================================
-# STEP 19 — KEEP LICENSED SPONSORS ONLY
+# STEP 25 — SPONSOR FILTER
 # =========================================================
 
+before_sponsor_filter = len(
+    jobs_df
+)
+
+
 jobs_df = jobs_df[
-    jobs_df["is_licensed_sponsor"]
+    jobs_df[
+        "is_licensed_sponsor"
+    ]
     == True
 ].copy()
 
 
+after_sponsor_filter = len(
+    jobs_df
+)
+
+
 print(
-    f"\nLicensed-sponsor jobs: "
-    f"{len(jobs_df):,}"
+    f"\nJobs before sponsor filter: "
+    f"{before_sponsor_filter:,}"
+)
+
+
+print(
+    f"Licensed-sponsor jobs: "
+    f"{after_sponsor_filter:,}"
 )
 
 
 # =========================================================
-# STEP 20 — ADD METADATA
+# STEP 26 — ADD METADATA
 # =========================================================
 
 today = datetime.today().strftime(
     "%Y-%m-%d"
 )
 
-jobs_df["visa_sponsorship_possible"] = True
-jobs_df["scraped_date"] = today
+
+jobs_df[
+    "visa_sponsorship_possible"
+] = True
+
+
+jobs_df[
+    "scraped_date"
+] = today
 
 
 # =========================================================
-# STEP 21 — CLEAN URLS
+# STEP 27 — CLEAN JOB DATA
 # =========================================================
 
-jobs_df["job_url"] = (
-    jobs_df["job_url"]
-    .fillna("")
-    .astype(str)
-)
+for column in [
+    "company",
+    "job_title",
+    "location",
+    "job_url",
+    "source",
+]:
+
+    if column not in jobs_df.columns:
+
+        jobs_df[column] = ""
+
+
+    jobs_df[column] = (
+        jobs_df[column]
+        .fillna("")
+        .astype(str)
+        .str.strip()
+    )
+
+
+# ---------------------------------------------------------
+# Remove invalid jobs
+# ---------------------------------------------------------
+
+jobs_df = jobs_df[
+    jobs_df["job_title"] != ""
+].copy()
+
+
+jobs_df = jobs_df[
+    jobs_df["job_url"] != ""
+].copy()
 
 
 # =========================================================
-# STEP 22 — REMOVE DUPLICATES
+# STEP 28 — REMOVE DUPLICATES
 # =========================================================
 
 jobs_df = jobs_df.drop_duplicates(
@@ -1640,33 +3417,48 @@ jobs_df = jobs_df.drop_duplicates(
 
 
 # =========================================================
-# STEP 23 — COUNT CARE-HOME / CARE JOBS
+# STEP 29 — COUNT CARE-HOME JOBS ACTUALLY ADDED
 # =========================================================
 #
-# is_care_job is used internally only.
-# It will NOT be included in the CSV.
+# This happens AFTER:
 #
-# Because this happens after sponsor filtering and
-# duplicate removal, this is the number of care jobs
-# actually added to the final CSV.
+#     - UK filtering
+#     - sponsor filtering
+#     - invalid-job removal
+#     - duplicate removal
+#
+# Therefore this number represents care-home jobs that
+# actually make it into jobs.csv.
+#
 # =========================================================
 
 care_home_jobs_added = int(
-    jobs_df["is_care_job"].sum()
+    jobs_df[
+        "is_care_home_job"
+    ].sum()
+)
+
+
+care_related_jobs_added = int(
+    jobs_df[
+        "is_care_job"
+    ].sum()
 )
 
 
 # =========================================================
-# STEP 24 — SORT
+# STEP 30 — SORT
 # =========================================================
 
 jobs_df = jobs_df.sort_values(
     by=[
+        "is_care_home_job",
         "is_care_job",
         "company",
         "job_title",
     ],
     ascending=[
+        False,
         False,
         True,
         True,
@@ -1675,26 +3467,22 @@ jobs_df = jobs_df.sort_values(
 
 
 # =========================================================
-# STEP 25 — FINAL CSV COLUMNS
+# STEP 31 — FINAL CSV COLUMNS
 # =========================================================
 #
 # IMPORTANT:
-# The CSV will contain ONLY these columns.
 #
-# company
-# job_title
-# location
-# job_url
-# source
-# visa_sponsorship_possible
-# scraped_date
+# These are the ONLY columns that will be written to CSV.
 #
 # Internal columns such as:
-# - is_care_job
-# - is_licensed_sponsor
-# - company_clean
 #
-# are deliberately excluded.
+#     company_clean
+#     is_care_job
+#     is_care_home_job
+#     is_licensed_sponsor
+#
+# are deliberately removed from the exported CSV.
+#
 # =========================================================
 
 final_columns = [
@@ -1715,11 +3503,8 @@ jobs_df = jobs_df[
 
 
 # =========================================================
-# STEP 26 — EXPORT SINGLE CSV
+# STEP 32 — EXPORT CSV
 # =========================================================
-
-OUTPUT_FILE = "jobs.csv"
-
 
 jobs_df.to_csv(
     OUTPUT_FILE,
@@ -1729,40 +3514,86 @@ jobs_df.to_csv(
 
 
 # =========================================================
-# STEP 27 — SUMMARY
+# STEP 33 — VERIFY CSV
+# =========================================================
+
+verification_df = pd.read_csv(
+    OUTPUT_FILE
+)
+
+
+expected_columns = [
+
+    "company",
+    "job_title",
+    "location",
+    "job_url",
+    "source",
+    "visa_sponsorship_possible",
+    "scraped_date",
+]
+
+
+if verification_df.columns.tolist() != (
+    expected_columns
+):
+
+    raise Exception(
+        "CSV columns are incorrect.\n"
+        f"Expected: {expected_columns}\n"
+        f"Actual: "
+        f"{verification_df.columns.tolist()}"
+    )
+
+
+# =========================================================
+# STEP 34 — FINAL SUMMARY
 # =========================================================
 
 print("\n" + "=" * 70)
 print("FINISHED")
 print("=" * 70)
 
+
 print(
     f"\nSaved: {OUTPUT_FILE}"
 )
+
 
 print(
     f"Total jobs added: "
     f"{len(jobs_df):,}"
 )
 
+
 print(
-    f"Care-home / care-related jobs added: "
+    f"CARE-HOME JOBS ADDED: "
     f"{care_home_jobs_added:,}"
 )
 
+
+print(
+    f"Care-related jobs added: "
+    f"{care_related_jobs_added:,}"
+)
+
+
 print(
     f"Other jobs added: "
-    f"{len(jobs_df) - care_home_jobs_added:,}"
+    f"{len(jobs_df) - care_related_jobs_added:,}"
 )
+
 
 print(
     f"Visa sponsorship possible: "
     f"{jobs_df['visa_sponsorship_possible'].sum():,}"
 )
 
+
 print(
     "\nJobs by source:"
 )
+
 
 print(
     jobs_df[
@@ -1772,15 +3603,69 @@ print(
     .to_string()
 )
 
+
 print(
     "\nCSV columns:"
 )
+
 
 print(
     jobs_df.columns.tolist()
 )
 
+
+print(
+    "\nFirst 10 care-home jobs:"
+)
+
+
+# ---------------------------------------------------------
+# Reconstruct care-home count from source because the
+# internal flag is no longer in jobs_df.
+#
+# We identify the dedicated care-home sources here.
+# ---------------------------------------------------------
+
+care_source_mask = jobs_df[
+    "source"
+].isin(
+    [
+        "Barchester Healthcare",
+        "HC-One",
+        "Care UK",
+    ]
+)
+
+
+care_preview = jobs_df[
+    care_source_mask
+][
+    [
+        "company",
+        "job_title",
+        "location",
+        "job_url",
+        "source",
+    ]
+].head(10)
+
+
+if len(care_preview) > 0:
+
+    print(
+        care_preview.to_string(
+            index=False
+        )
+    )
+
+else:
+
+    print(
+        "WARNING: No dedicated care-home "
+        "jobs were written to the CSV."
+    )
+
+
 print(
     "\nDone."
 )
-
