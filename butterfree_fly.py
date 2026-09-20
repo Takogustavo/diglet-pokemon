@@ -30,10 +30,19 @@ HEADERS = {
 # STEP 1 — DOWNLOAD LATEST UK SPONSOR LIST
 # =========================================================
 
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+
 GOV_PAGE = (
     "https://www.gov.uk/government/publications/"
     "register-of-licensed-sponsors-workers"
 )
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0"
+}
 
 print("Finding latest sponsor list...")
 
@@ -43,32 +52,65 @@ response = requests.get(
     timeout=30
 )
 
+response.raise_for_status()
+
 soup = BeautifulSoup(response.text, "html.parser")
 
 csv_url = None
 
+# Look through all links on the GOV.UK page
 for link in soup.find_all("a", href=True):
 
     href = link["href"]
+    text = link.get_text(" ", strip=True).lower()
 
-    if "Worker_and_Temporary_Worker.csv" in href:
-
-        if href.startswith("/"):
-            csv_url = "https://www.gov.uk" + href
-        else:
-            csv_url = href
-
+    # Current GOV.UK page describes the file as:
+    # "Register of Worker and Temporary Worker licensed sponsors"
+    if ".csv" in href.lower() and (
+        "sponsor" in text
+        or "worker" in text
+        or "temporary worker" in text
+    ):
+        csv_url = urljoin(GOV_PAGE, href)
         break
 
 if not csv_url:
+    # Fallback: find ANY CSV link
+    for link in soup.find_all("a", href=True):
+
+        href = link["href"]
+
+        if ".csv" in href.lower():
+            csv_url = urljoin(GOV_PAGE, href)
+            break
+
+if not csv_url:
+    print("\nLinks found on GOV.UK page:")
+    for link in soup.find_all("a", href=True):
+        print(link.get_text(" ", strip=True), "=>", link["href"])
+
     raise Exception("Could not find sponsor CSV URL")
 
 print("\nLatest sponsor CSV:")
 print(csv_url)
 
-sponsors = pd.read_csv(csv_url)
+# Download CSV
+csv_response = requests.get(
+    csv_url,
+    headers=HEADERS,
+    timeout=60
+)
 
-print(f"\nTotal sponsors: {len(sponsors)}")
+csv_response.raise_for_status()
+
+# Save locally
+with open("uk_sponsor_list.csv", "wb") as f:
+    f.write(csv_response.content)
+
+# Read into pandas
+sponsors = pd.read_csv("uk_sponsor_list.csv")
+
+print(f"\nTotal sponsor rows: {len(sponsors):,}")
 
 # =========================================================
 # STEP 2 — NORMALIZATION
